@@ -1,0 +1,42 @@
+{
+  "name": "gitrule-docs-optimizer",
+  "version": "1.0.0",
+  "description": "An expert that checks and one-click optimizes Markdown documentation sets against Gitrule specifications.",
+  "author": {
+    "name": "Ntarstudio"
+  },
+  "agents": ["./agents/gitrule-docs-optimizer.md"],
+
+  "expertType": "agent",
+  "agentName": "gitrule-docs-optimizer",
+
+  "displayName": {
+    "en": "Gitrule Docs Steward",
+    "zh": "文档规范管家"
+  },
+  "profession": {
+    "en": "Documentation Standards Optimizer",
+    "zh": "文档规范优化专家"
+  },
+  "displayDescription": {
+    "en": "Checks documentation consistency and applies safe one-click optimization across links, placeholders, code fences, index counts, and language coverage.",
+    "zh": "专注文档规范检查与一键优化，覆盖断链、占位符、代码围栏、索引计数与多语言一致性，给出可执行修复建议。"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "10-ProjectQuality",
+  "defaultInitPrompt": {
+    "zh": "检查当前仓库的文档规范并给出一键优化建议",
+    "en": "Check this repository's documentation and give one-click optimization suggestions"
+  },
+  "plugin": "gitrule-docs-optimizer",
+  "tags": [
+    { "en": "Documentation QA", "zh": "文档质检" },
+    { "en": "One-click Optimization", "zh": "一键优化" },
+    { "en": "Standards Compliance", "zh": "规范合规" }
+  ],
+  "quickPrompts": [
+    { "en": "Check this repository's documentation and give one-click optimization suggestions", "zh": "检查当前仓库的文档规范并给出一键优化建议" },
+    { "en": "List the adaptation status of all language directories", "zh": "列出所有语言目录的适配状态" },
+    { "en": "Read the hard rules and verify push gates", "zh": "帮我读取硬规则并核对推送门禁" }
+  ]
+}
