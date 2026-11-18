@@ -13,7 +13,7 @@ import shutil
 import sys
 from pathlib import Path
 
-SUPPORTED_LANGS = ("zh-CN", "en-US", "zh-TW", "ja-JP")
+SUPPORTED_LANGS = ("zh-CN", "en-US", "zh-TW", "ja-JP", "ko-KR")
 PLACEHOLDER_FILE = "README标准模板.md"
 INDEX_MARKERS = ("规范总索引", "Specification Master Index", "規範總索引")
 
