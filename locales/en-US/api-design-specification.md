@@ -29,4 +29,4 @@
 
 - API reference documentation writing: see [API Documentation Specification](./api-documentation-specification.md)
 - Security-related: see [Security and Privacy Specification](./security-and-privacy-specification.md)
-- Error handling is an engineering trade-off: see [Highlights and Engineering Trade-offs Writing Guide](./highlights-and-engineering-tradeoffs-guide.md)
+- Error handling is an engineering trade-off: see [Features and Engineering Trade-offs Writing Guide](./features-and-engineering-tradeoffs-guide.md)

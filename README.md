@@ -8,13 +8,13 @@
 - **专家 / Skill / MCP / 命令行**：文档采用稳定文件名与语言码路径，便于程序化检索（约定见 `locales/zh-CN/机器可读元数据规范.md`）。
 - **多语言**：按语言码分目录平铺，同一规范在各语言目录中一一对应。
 
-## 门面信息
+## 仓库信息
 
 - 仓库描述（简体中文）：一套覆盖项目全生命周期的通用规范模板：从立项、开发、文档、合规到发布运维与 AI 程序化调用。
 - Repository description (English): A universal set of documentation templates covering the full project lifecycle, from planning and development to compliance, release, operations, and programmatic access.
 - 话题标签（建议）：`documentation`、`templates`、`markdown`、`github`、`guidelines`、`open-source`、`developer-tools`
 
-## 核心亮点
+## 核心特性
 
 1. 一文件一职责：66 篇规范各自独立，按七域导航，不必通读。
 2. 全生命周期：八阶段映射覆盖立项、需求、架构、开发、测试、部署、运维与迭代。
@@ -48,7 +48,7 @@
 | 命令行 | [cli/gitrule.py](./cli/gitrule.py) | `check` 检查断链、孤岛、职责句、代码围栏、索引计数、占位符登记；`optimize` 执行安全自动修复；`list` / `spec` / `status` 浏览规范文件与语言状态 |
 | MCP 服务器 | [mcp/server.py](./mcp/server.py) | stdio JSON-RPC，提供 `gitrule_check`、`gitrule_optimize`、`gitrule_list_specs`、`gitrule_get_spec`、`gitrule_language_status` 五个工具，可直接注册到任意 MCP 客户端 |
 | WorkBuddy Skill | [skill/SKILL.md](./skill/SKILL.md) | 一键优化文档规范，含优化规则参考，已按 Skill 规范打包（`dist/gitrule-optimize.zip`） |
-| WorkBuddy 专家包 | [expert/](./expert/) | 「文档规范管家」专家，面向对话式检查与修复，含头像与快速提示词 |
+| WorkBuddy 专家包 | [expert/](./expert/) | 文档规范优化专家，面向对话式检查与修复，含头像与快速提示词 |
 
 CLI 示例：
 
@@ -99,7 +99,7 @@ MCP 注册示例（写入 MCP 配置的 `mcpServers`）：
 | --- | --- |
 | 一、总纲与治理 | 生命周期映射、规范选用指南、角色职责、执行流程、硬规则、禁止事项、术语表、贡献指南、行为准则、免责声明 |
 | 二、规划与立项 | 立项与需求、路线图、信息采集与模板 |
-| 三、命名与文档 | 项目命名、文档矩阵、README 章节、写作规范、多语言、亮点写法、变更日志、API 文档、Issue 与 PR 模板，基于头部项目调研的 README 模板、视觉排版、徽章规范与分类适配，以及免责声明、行为准则、贡献指南、SECURITY 四类可复制模板 |
+| 三、命名与文档 | 项目命名、文档矩阵、README 章节、写作规范、多语言、特性写法、变更日志、API 文档、Issue 与 PR 模板，基于头部项目调研的 README 模板、视觉排版、徽章规范与分类适配，以及免责声明、行为准则、贡献指南、SECURITY 四类可复制模板 |
 | 四、开发与工程 | 代码风格、Git 工作流、提交信息、代码审查、测试、依赖管理、架构设计、API 设计、数据库设计、CI 工作流、代码所有权、可访问性 |
 | 五、质量与合规 | 审核维度、质量门禁、质量度量、开源合规、NOTICE、LICENSE、安全与隐私、审核报告格式、需求追踪矩阵 |
 | 六、发布与运维 | 推送与发布、版本管理、部署与回滚、可观测性、事故响应、开源推广、迁移指南、故障排查、迭代回顾 |
@@ -119,7 +119,7 @@ MCP 注册示例（写入 MCP 配置的 `mcpServers`）：
 
 | 模板 | 用途 | 配套规范 |
 | --- | --- | --- |
-| [README标准模板](./locales/zh-CN/README标准模板.md) | 覆盖 20 章的项目门面 | README章节规范 |
+| [README标准模板](./locales/zh-CN/README标准模板.md) | 覆盖 20 章的项目首页 | README章节规范 |
 | [免责声明模板](./locales/zh-CN/免责声明模板.md) | 界定责任边界与不担保条款 | 免责声明 |
 | [贡献指南模板](./locales/zh-CN/贡献指南模板.md) | 外部贡献者的参与流程 | 贡献指南规范 |
 | [行为准则模板](./locales/zh-CN/行为准则模板.md) | 社区行为准则与处置机制 | 行为准则规范 |

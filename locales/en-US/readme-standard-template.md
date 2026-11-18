@@ -15,7 +15,7 @@
 
 - **Required items**: Project name, repository description, one-line positioning, installation, Quick Start, license.
 - **Fixed order**: Section order is consistent with [README Section Specification](./readme-sections-specification.md), with Chinese and English versions corresponding chapter by chapter.
-- **Evidence first**: Core highlights, performance, and engineering trade-offs must provide verifiable evidence; qualitative praise is prohibited.
+- **Evidence first**: Key features, performance, and engineering trade-offs must provide verifiable evidence; qualitative praise is prohibited.
 - **Transparent disclosure**: Inapplicable scenarios, limitations, known issues, and unimplemented features must be explicitly listed, not concealed.
 - **Not a commitment**: The roadmap is marked "not a commitment", with no specific delivery dates.
 - **Authenticity**: All commands, examples, links, and badges must actually work; contact information and reporting channels must be genuinely reachable.
@@ -31,7 +31,7 @@ The mapping between chapters and lifecycle stages is as follows, for easy locati
 | Project Initiation | 3.1–3.2 | Positioning, background, applicable scenarios and limitations |
 | Requirements Analysis | 3.2–3.3 | Feature boundaries, applicable and inapplicable scenarios |
 | Architecture Design | 3.5–3.6, 3.11 | Engineering trade-offs, tech stack, directory structure |
-| Development | 3.3–3.4, 3.9–3.10 | Features, highlights, configuration, API |
+| Development | 3.3–3.4, 3.9–3.10 | Functions, key features, configuration, API |
 | Testing & Verification | 3.8, 3.12 | Quick Start example, performance evidence |
 | Deployment | 3.7, 3.14 | Installation/deployment, compatibility matrix |
 | Operations & Monitoring | 3.13, 3.15 | Security/privacy, known issues and limitations |
@@ -62,7 +62,7 @@ Note: The README is the project's front page. Process documents for each stage (
 
   {{语言切换链接}}
 
-  [Installation](#installation) · [Quick Start](#quick-start) · [Core Highlights](#core-highlights) · [Known Issues and Limitations](#known-issues-and-limitations) · [Future Roadmap](#future-roadmap) · [Documentation](#documentation) · [Contributing](#contributing)
+  [Installation](#installation) · [Quick Start](#quick-start) · [Key Features](#key-features) · [Known Issues and Limitations](#known-issues-and-limitations) · [Future Roadmap](#future-roadmap) · [Documentation](#documentation) · [Contributing](#contributing)
 </div>
 ````
 
@@ -112,14 +112,14 @@ Note: The README is the project's front page. Process documents for each stage (
 - {{功能三}}: {{触发条件与结果}}
 ````
 
-### 3.4 Core Highlights (corresponds to Chapter 4)
+### 3.4 Key Features (corresponds to Chapter 4)
 
-Each highlight must fully contain the five-part structure; if any part is missing, it must not be listed. See [Highlight and Engineering Trade-off Writing Guide](./highlights-and-engineering-tradeoffs-guide.md) for the writing basis.
+Each key feature must fully contain the five-part structure; if any part is missing, it must not be listed. See [Features and Engineering Trade-offs Writing Guide](./features-and-engineering-tradeoffs-guide.md) for the writing basis.
 
 ````markdown
-## Core Highlights
+## Key Features
 
-### {{亮点名称}}
+### {{特性名称}}
 
 - **Value**: {{价值}}
 - **Implementation**: {{实现方式}}
@@ -129,7 +129,7 @@ Each highlight must fully contain the five-part structure; if any part is missin
 
 ### 3.5 Design Details and Engineering Trade-offs (corresponds to Chapter 5)
 
-Write in the three-part structure "scenario → approach → reason"; for covered categories, see Section 2 of [Highlight and Engineering Trade-off Writing Guide](./highlights-and-engineering-tradeoffs-guide.md).
+Write in the three-part structure "scenario → approach → reason"; for covered categories, see Section 2 of [Features and Engineering Trade-offs Writing Guide](./features-and-engineering-tradeoffs-guide.md).
 
 ````markdown
 ## Design Details and Engineering Trade-offs
@@ -424,8 +424,8 @@ The table lists all placeholders appearing in the template body. They are arrang
 | `{{规避方式}}` | Temporary workaround for the limitation | Use external locking | No |
 | `{{功能一}}` / `{{功能二}}` / `{{功能三}}` | Feature names | Filtering | Yes |
 | `{{触发条件与结果}}` | Trigger condition and result of the feature | Pass `--filter` to output by condition | Yes |
-| `{{亮点名称}}` | Highlight name, no more than 15 characters | Single-file distribution | No |
-| `{{价值}}` | The specific problem solved by the highlight and the consequence of not solving it | Depends on the project | No |
+| `{{特性名称}}` | Key feature name, no more than 15 characters | Single-file distribution | No |
+| `{{价值}}` | The specific problem solved by the key feature and the consequence of not solving it | Depends on the project | No |
 | `{{实现方式}}` | Technology, mechanism, or algorithm adopted, including key files or functions | Depends on the project | No |
 | `{{差异化}}` | Objectively comparable dimension against a named alternative | Depends on the project | No |
 | `{{证据}}` | Reproducible tests, benchmarks, code locations, or steps | Depends on the project | No |
@@ -505,7 +505,7 @@ Section 3 provides copyable body text for all 20 chapters. The following are sup
 
 | Section | Recommended Types to Keep | Condition for Deletion |
 | --- | --- | --- |
-| Core Highlights | All | May be deleted when no verifiable evidence exists; must not be replaced with qualitative descriptions |
+| Key Features | All | May be deleted when no verifiable evidence exists; must not be replaced with qualitative descriptions |
 | Design Details and Engineering Trade-offs | Frameworks, applications, services | May be deleted when there are no key trade-offs |
 | Tech Stack and Dependency List | Libraries, frameworks | May be deleted when there are no external dependencies |
 | Performance | CLI, libraries, services | May be deleted when no test data exists; estimated numbers are prohibited |
@@ -522,7 +522,7 @@ Section 3 provides copyable body text for all 20 chapters. The following are sup
 - [ ] Chinese and English repository descriptions are each no more than 120 characters.
 - [ ] 5–10 topic tags, all lowercase, joined by `-`.
 - [ ] One-line positioning includes a category term, no more than 60 Chinese characters or 25 English words.
-- [ ] Each core highlight contains the five-part structure and has verifiable evidence.
+- [ ] Each key feature contains the five-part structure and has verifiable evidence.
 - [ ] Advantages and limitations are listed separately; limitations include scope of impact and workarounds.
 - [ ] Known issues include tracking links; unimplemented features include reasons and planned status.
 - [ ] Roadmap is marked "not a commitment", with no specific delivery dates.
@@ -542,6 +542,6 @@ Section 3 provides copyable body text for all 20 chapters. The following are sup
 - Visual specification: see [README Visual Layout Specification](./readme-visual-layout-specification.md)
 - Type-based tailoring: see [README Category Adaptation Guide](./readme-category-adaptation-guide.md)
 - Research basis: see [README Template Research Report](./readme-template-research-report.md)
-- Highlight and trade-off writing: see [Highlight and Engineering Trade-off Writing Guide](./highlights-and-engineering-tradeoffs-guide.md)
+- Key feature and trade-off writing: see [Features and Engineering Trade-offs Writing Guide](./features-and-engineering-tradeoffs-guide.md)
 - Metadata rules: see [Project Naming Specification](./project-naming-specification.md)
 - Roadmap rules: see [Roadmap Specification](./roadmap-specification.md)

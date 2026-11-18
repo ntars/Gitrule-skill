@@ -25,7 +25,7 @@ The first screen refers to content visible without scrolling, organized in the f
 3. Badge row (see the [Badge Specification](./badge-specification.md) for details);
 4. One-sentence positioning (stating what the project is, who it is for, and what problem it solves);
 5. Section navigation link row (optional, for long READMEs);
-6. Summary of core features or highlights.
+6. Summary of core features.
 
 Benchmark evidence: `fd` and `ripgrep` place section navigation immediately after the positioning; `next.js` and `rust-lang/rust` open with a centered logo and banner; `vscode` inserts a product screenshot right after the positioning.
 

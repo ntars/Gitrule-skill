@@ -2,8 +2,8 @@
 name: gitrule-docs-optimizer
 description: "Check, audit, and safely optimize Markdown documentation sets against the Gitrule specification. Activate for documentation quality checks, broken links, placeholders, code fences, index counts, and language coverage."
 displayName:
-  en: "Gitrule Docs Steward"
-  zh: "文档规范管家"
+  en: "Gitrule Docs Optimizer"
+  zh: "文档规范优化专家"
 profession:
   en: "Documentation Standards Optimizer"
   zh: "文档规范优化专家"

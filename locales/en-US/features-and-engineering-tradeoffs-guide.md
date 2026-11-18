@@ -1,12 +1,12 @@
-# Highlights and Engineering Trade-offs Writing Guide
+# Features and Engineering Trade-offs Writing Guide
 
-> What this file solves: Defines how to write the two README sections "Core Highlights" and "Design Details and Engineering Trade-offs", giving a five-part structure for highlights and ten mandatory coverage categories for engineering trade-offs respectively.
+> What this file solves: Defines how to write the two README sections "Key Features" and "Design Details and Engineering Trade-offs", giving a five-part structure for key features and ten mandatory coverage categories for engineering trade-offs respectively.
 
-## 1. Core Highlights Writing
+## 1. Key Features Writing
 
-Each highlight is written in the following five-part structure; missing any part disqualifies it from being listed as a highlight.
+Each key feature is written in the following five-part structure; missing any part disqualifies it from being listed as a key feature.
 
-1. **Highlight name**: no more than 15 characters, using a noun phrase.
+1. **Key feature name**: no more than 15 characters, using a noun phrase.
 2. **Value**: the specific problem solved, and the consequence if it is not solved.
 3. **Implementation method**: the technology, mechanism, or algorithm used, indicating the key file or function.
 4. **Differentiation**: the comparison dimension against common solutions, which must be an objectively judgeable dimension.
@@ -14,7 +14,7 @@ Each highlight is written in the following five-part structure; missing any part
 
 Constraints:
 
-1. Evidence must be reproducible; a highlight for which evidence cannot be provided is marked "【To be supplemented: verification method】" and must not be replaced with a qualitative description.
+1. Evidence must be reproducible; a key feature for which evidence cannot be provided is marked "【To be supplemented: verification method】" and must not be replaced with a qualitative description.
 2. Performance-related evidence must state the test environment and test method.
 3. The comparison target must be a named solution; vague references such as "traditional solutions" or "other tools" must not be used.
 
@@ -39,4 +39,4 @@ Mandatory coverage categories:
 
 - Corresponds to README chapters 4 and 5, see the [README Sections Specification](./readme-sections-specification.md)
 - Performance data writing must comply with accuracy requirements, see the [General Writing Specification](./general-writing-specification.md)
-- Highlight evidence and trade-off coverage belong to gates G4/G5, see [Quality Gates](./quality-gate.md)
+- Key feature evidence and trade-off coverage belong to gates G4/G5, see [Quality Gates](./quality-gate.md)

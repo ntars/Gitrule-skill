@@ -34,7 +34,7 @@
 | [README Sections Specification](./readme-sections-specification.md) | Defines the 20 chapters that a README must contain and their content boundaries |
 | [General Writing Specification](./general-writing-specification.md) | Defines register, accuracy, terminology, formatting, and a prohibition list |
 | [Multilingual Specification](./multilingual-specification.md) | Defines bilingual Chinese-English file names, switching, and synchronization rules |
-| [Highlights and Engineering Trade-offs Writing](./highlights-and-engineering-tradeoffs-guide.md) | Defines the five-paragraph highlights format and the ten categories of engineering trade-offs |
+| [Features and Engineering Trade-offs Writing](./features-and-engineering-tradeoffs-guide.md) | Defines the five-paragraph key-features format and the ten categories of engineering trade-offs |
 | [Changelog Specification](./changelog-specification.md) | Defines the user-facing version change record format |
 | [API Documentation Specification](./api-documentation-specification.md) | Defines the structure and fields of complete API reference documentation |
 | [README Template Research Report](./readme-template-research-report.md) | Records the research methodology, samples, and quantitative findings of top-project READMEs |

@@ -120,7 +120,7 @@ Copy the following into the target project's `项目信息采集表.md` and repl
 | Advantages | Fill in: each with verifiable evidence |
 | Limitations | Fill in: each with scope of impact and workaround |
 
-## 3. Features and Highlights
+## 3. Functions and Key Features
 
 | Module | User-Perceivable Behavior | Trigger Condition | Result | Evidence or Link |
 | --- | --- | --- | --- | --- |

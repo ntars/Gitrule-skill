@@ -21,7 +21,7 @@ Before document delivery, verdicts are given item by item; failed items must be 
 | G1 | Colloquialisms and ambiguity | Full-text search for colloquial words and vague references yields 0 hits |
 | G2 | Section completeness | Both Chinese and English versions have 20 chapters, in the same order |
 | G3 | Feature-to-directory consistency | All features described in the README can be found as corresponding modules in the directory structure |
-| G4 | Highlight evidence | Every highlight has evidence or is marked as pending |
+| G4 | Key feature evidence | Every key feature has evidence or is marked as pending |
 | G5 | Design detail coverage | All 10 categories in section 8 have entries or are marked not applicable |
 | G6 | Dependency completeness | Direct and indirect dependency counts match the dependency tree |
 | G7 | License accuracy | Each dependency's SPDX identifier matches the official declaration |

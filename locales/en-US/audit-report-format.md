@@ -18,7 +18,7 @@ Repository: {{仓库名}} · {{可见性}} · {{许可证}} · Default branch {{
 | --- | --- | --- |
 | A Security | {{门禁状态}} | {{未决项}} |
 | B Quality | {{门禁状态}} | {{未决项}} |
-| C Facade | {{门禁状态}} | {{未决项}} |
+| C Front page | {{门禁状态}} | {{未决项}} |
 
 ## II. Issue List
 | Level | Dimension | Issue | Evidence (path:line / command output) | Responsible Agent | Action |
@@ -97,7 +97,7 @@ Repository: markdown-lint-cli · private · NONE · Default branch main
 | --- | --- | --- |
 | A Security | FAIL | D1 detected .env, D2 no LICENSE |
 | B Quality | SKIP | Dependencies not installed in the repository; build and test cannot be executed |
-| C Facade | FAIL | README missing installation section and minimal example |
+| C Front page | FAIL | README missing installation section and minimal example |
 
 ## II. Issue List
 | Level | Dimension | Issue | Evidence (path:line / command output) | Responsible Agent | Action |

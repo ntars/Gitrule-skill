@@ -164,7 +164,7 @@ Adopt the remark ecosystem as the sole Markdown parsing layer, with rules implem
 
 - Responsibility boundaries and forbidden content: [Document Matrix](./document-matrix.md)
 - Reverse tracing from decisions to requirements: [Requirements Traceability Matrix Specification](./requirements-traceability-matrix-specification.md)
-- How to write engineering trade-offs externally: [Highlights and Engineering Trade-offs Writing Guide](./highlights-and-engineering-tradeoffs-guide.md)
+- How to write engineering trade-offs externally: [Features and Engineering Trade-offs Writing Guide](./features-and-engineering-tradeoffs-guide.md)
 - Interface design conventions: [API Design Specification](./api-design-specification.md)
 - Data models and migrations: [Database Design Specification](./database-design-specification.md)
 - Terminology consistency: [Glossary](./glossary.md)
