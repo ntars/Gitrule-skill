@@ -2,6 +2,9 @@
 
 > What this file solves: Serves as a navigation index for the English specification set, listing the responsibility, domain, and reading path of all 66 specifications for on-demand access.
 
+> This repository is the first implementation case of its own specification set: this index and every document in this directory follow the specification set and pass its structural checks.
+
+
 ## 1. General Principles and Governance (10 specifications)
 
 | File | Unique Responsibility |
