@@ -1,8 +1,8 @@
 # Gitrule Specification Set
 
-[简体中文](./README.md) | [English](./README_EN.md) | [繁體中文](./locales/zh-TW/README.md)
+[简体中文](./README.md) | [English](./README_EN.md) | [繁體中文](./locales/zh-TW/README.md) | [日本語](./locales/ja-JP/README.md)
 
-![Status](https://img.shields.io/badge/status-3%20of%203%20languages%20delivered-brightgreen?style=flat-square)
+![Status](https://img.shields.io/badge/status-4%20of%204%20languages%20delivered-brightgreen?style=flat-square)
 
 > A universal set of specification templates covering the full project lifecycle: from planning, development, and documentation to compliance, release, operations, and programmatic access for AI. The entire repository is MIT-licensed and may be freely used, modified, and redistributed.
 
@@ -86,7 +86,7 @@ MCP registration example (into the `mcpServers` block of an MCP configuration):
 | Simplified Chinese | zh-CN | Complete (67 specs) | [Enter](./locales/zh-CN/README.md) |
 | English | en-US | Complete (67 specs) | [Enter](./locales/en-US/README.md) |
 | Traditional Chinese | zh-TW | Completed (67 specs) | [Enter](./locales/zh-TW/README.md) |
-| Japanese | ja-JP | Planned | — |
+| Japanese | ja-JP | Completed (67 specs) | [Enter](./locales/ja-JP/README.md) |
 | Korean | ko-KR | Planned | — |
 | French | fr-FR | Planned | — |
 | German | de-DE | Planned | — |
