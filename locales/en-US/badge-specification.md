@@ -219,6 +219,20 @@ The recommended order is "status → version → license → platform/community 
 - Resource collections or ecosystem projects: can be relaxed to 8–10.
 - All badges are placed after the project name and one-line positioning statement and before the main body, on their own line or in a centered container, not scattered throughout the body.
 
+### 7.4 Static Delivery Status Badge
+
+Item 6 of section 7.1 ("project-custom status") is implemented as a static delivery status badge, updated manually by the project author, for delivery progress and maintenance status that has no external data source:
+
+```text
+![Status](https://img.shields.io/badge/status-4%20of%204%20delivered-brightgreen?style=flat-square)
+```
+
+1. The standard structure is `badge/<label>-<message>-<color>`, with a uniform `?style=flat-square`; the example means "all 4 deliverables delivered".
+2. In the message text, spaces are written as `%20`, dashes as `--`, and underscores as `__`; line breaks and other unescaped special characters must not appear.
+3. Color semantics: `brightgreen` for completed, `yellow` for in progress, `red` for blocked, `lightgrey` for not started.
+4. The badge and the body text must be updated in sync when values change; the badge must not lag behind the actual state for long; switch to a dynamic badge if synchronization cannot be guaranteed.
+5. The `alt` text states the actual meaning, such as `![Delivery status]`; the badge may link to the deliverables list or the corresponding index section.
+
 ## 8. Accessibility and Theme Adaptation
 
 - Each badge's `alt` text must state its actual meaning, e.g., `![build status]` rather than `![badge]`.

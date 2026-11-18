@@ -2,6 +2,8 @@
 
 [简体中文](./README.md) | [English](./README_EN.md)
 
+![Status](https://img.shields.io/badge/status-2%20of%202%20languages%20delivered-brightgreen?style=flat-square)
+
 > A universal set of specification templates covering the full project lifecycle: from planning, development, and documentation to compliance, release, operations, and programmatic access for AI. The entire repository is MIT-licensed and may be freely used, modified, and redistributed.
 
 > **This repository is the first implementation case of its own specification set**: this README and all documents under `locales/`, `cli/`, `mcp/`, `skill/`, and `expert/` are written according to this specification set and pass its structural checks (broken links, orphan files, index counts, and placeholder registration all report zero issues).

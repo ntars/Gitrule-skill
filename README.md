@@ -2,6 +2,8 @@
 
 [English](./README_EN.md) | [简体中文](./README.md)
 
+![状态](https://img.shields.io/badge/status-2%20of%202%20语言已交付-brightgreen?style=flat-square)
+
 > 一套覆盖项目全生命周期的通用规范模板：从立项、开发、文档、合规到发布运维与 AI 程序化调用。全仓库采用 MIT 许可证，可自由使用、修改与再发布。
 
 > **本仓库即本规范集的首个实现案例**：本 README 与 `locales/`、`cli/`、`mcp/`、`skill/`、`expert/` 下的全部文档均按本规范集编写，并通过其结构校验（断链、孤岛、索引计数、占位符登记均为 0 问题）。
