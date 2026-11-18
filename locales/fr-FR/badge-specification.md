@@ -231,11 +231,11 @@ L'implémentation standard du point 6 de la section 7.1, « état personnalisé 
 2. Dans le texte du message, l'espace s'écrit `%20`, le tiret `--`, le souligné `__` ; aucun saut de ligne ni autre caractère spécial non échappé n'est autorisé.
 3. Convention sémantique des couleurs : `brightgreen` indique un achèvement, `yellow` un travail en cours, `red` un blocage, `lightgrey` un état non commencé.
 4. Lorsque les valeurs changent, le badge et le corps du texte doivent être mis à jour simultanément ; le badge ne doit pas rester durablement en retard sur l'état réel ; si la synchronisation ne peut être garantie, passer à un badge dynamique.
-5. Le texte `alt` doit exprimer la signification réelle, par exemple `![交付状态]` ; il peut pointer vers la liste des livrables ou la section d'index correspondante.
+5. Le texte `alt` doit exprimer la signification réelle, par exemple `![État de livraison]` ; il peut pointer vers la liste des livrables ou la section d'index correspondante.
 
 ## 8. Accessibilité et adaptation aux thèmes
 
-- Le texte `alt` de chaque badge doit exprimer sa signification réelle, par exemple `![构建状态]` et non `![badge]`.
+- Le texte `alt` de chaque badge doit exprimer sa signification réelle, par exemple `![État de compilation]` et non `![badge]`.
 - En thème sombre ou clair, il est possible de basculer la source de l'image du badge via `<picture>` ; l'usage de `for-the-badge` avec `labelColor=000` maintient un contraste stable dans les deux thèmes.
 - Chaque badge doit pouvoir être cliqué vers la source de données correspondante (l'état de compilation vers la CI, la version vers la page du gestionnaire de paquets, la licence vers le fichier LICENSE).
 

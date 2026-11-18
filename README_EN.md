@@ -1,8 +1,8 @@
 # Gitrule Specification Set
 
-[简体中文](./README.md) | [English](./README_EN.md) | [繁體中文](./locales/zh-TW/README.md) | [日本語](./locales/ja-JP/README.md) | [한국어](./locales/ko-KR/README.md) | [Français](./locales/fr-FR/README.md)
+[简体中文](./README.md) | [English](./README_EN.md) | [繁體中文](./locales/zh-TW/README.md) | [日本語](./locales/ja-JP/README.md) | [한국어](./locales/ko-KR/README.md) | [Français](./locales/fr-FR/README.md) | [Deutsch](./locales/de-DE/README.md)
 
-![Status](https://img.shields.io/badge/status-6%20of%206%20languages%20delivered-brightgreen?style=flat-square)
+![Status](https://img.shields.io/badge/status-7%20of%207%20languages%20delivered-brightgreen?style=flat-square)
 
 > A universal set of specification templates covering the full project lifecycle: from planning, development, and documentation to compliance, release, operations, and programmatic access for AI. The entire repository is MIT-licensed and may be freely used, modified, and redistributed.
 
@@ -89,7 +89,7 @@ MCP registration example (into the `mcpServers` block of an MCP configuration):
 | Japanese | ja-JP | Completed (67 specs) | [Enter](./locales/ja-JP/README.md) |
 | Korean | ko-KR | Completed (67 specs) | [Enter](./locales/ko-KR/README.md) |
 | French | fr-FR | Completed (67 specs) | [Enter](./locales/fr-FR/README.md) |
-| German | de-DE | Planned | — |
+| German | de-DE | Completed (67 specs) | [Enter](./locales/de-DE/README.md) |
 | Spanish | es-ES | Planned | — |
 | Portuguese (Brazil) | pt-BR | Planned | — |
 | Russian | ru-RU | Planned | — |

@@ -1,6 +1,6 @@
 # 日本語規範総索引
 
-[简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](./README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md)
+[简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](./README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](../de-DE/README.md)
 
 > このファイルが解決する問題：日本語規範集のナビゲーションとして、全 67 件の規範の責務、所属ドメイン、読む順序を列挙し、必要に応じて取り出せるようにする。
 

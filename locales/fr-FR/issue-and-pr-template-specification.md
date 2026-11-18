@@ -85,79 +85,79 @@ Types de champs courants dans `body` :
 À enregistrer sous `.github/ISSUE_TEMPLATE/bug-report.yml` :
 
 ```yaml
-name: 缺陷报告
-description: 报告可复现的功能异常
+name: Rapport de défaut
+description: Signaler une anomalie fonctionnelle reproductible
 title: "[Bug]: "
 labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        提交前请先搜索现有 issue，避免重复。
-        请勿粘贴密钥、令牌或个人隐私信息。
+        Veuillez rechercher les issues existantes avant de soumettre, afin d'éviter les doublons.
+        Ne collez ni secret, ni jeton, ni information personnelle privée.
   - type: checkboxes
     id: duplicate-check
     attributes:
-      label: 重复检查
+      label: Recherche de doublons
       options:
-        - label: 我已搜索现有 issue，确认这不是重复报告
+        - label: J'ai recherché les issues existantes et confirmé qu'il ne s'agit pas d'un doublon
           required: true
   - type: textarea
     id: description
     attributes:
-      label: 问题描述
-      description: 实际发生了什么
-      placeholder: 执行 install 命令后程序退出码为 1
+      label: Description du problème
+      description: Ce qui s'est réellement produit
+      placeholder: Après l'exécution de la commande install, le code de sortie du programme est 1
     validations:
       required: true
   - type: textarea
     id: expected
     attributes:
-      label: 预期行为
-      description: 应当发生什么
+      label: Comportement attendu
+      description: Ce qui aurait dû se produire
     validations:
       required: true
   - type: textarea
     id: steps
     attributes:
-      label: 复现步骤
-      description: 编号列出，确保他人可独立复现
+      label: Étapes de reproduction
+      description: Listez et numérotez afin que d'autres puissent reproduire de façon autonome
       placeholder: |
-        1. 执行命令
-        2. 观察输出
-        3. 出现异常
+        1. Exécuter la commande
+        2. Observer la sortie
+        3. Une anomalie apparaît
     validations:
       required: true
   - type: input
     id: version
     attributes:
-      label: 项目版本
+      label: Version du projet
       placeholder: v1.0.0
     validations:
       required: true
   - type: dropdown
     id: os
     attributes:
-      label: 操作系统
+      label: Système d'exploitation
       options:
         - macOS
         - Linux
         - Windows
-        - 其他
+        - Autre
     validations:
       required: true
   - type: textarea
     id: logs
     attributes:
-      label: 日志或截图
-      description: 提供错误信息，敏感信息须脱敏
+      label: Journaux ou captures d'écran
+      description: Fournir les messages d'erreur ; les informations sensibles doivent être expurgées
       render: shell
   - type: checkboxes
     id: security
     attributes:
-      label: 信息安全确认
+      label: Confirmation de sécurité de l'information
       options:
-        - label: 已确认未包含密钥、令牌或个人隐私
+        - label: Confirmation obtenue : aucun secret, jeton ni donnée personnelle n'est inclus
           required: true
 ```
 
@@ -166,43 +166,43 @@ body:
 À enregistrer sous `.github/ISSUE_TEMPLATE/feature-request.yml` :
 
 ```yaml
-name: 功能请求
-description: 提出新能力或改进建议
+name: Demande de fonctionnalité
+description: Proposer une nouvelle capacité ou une suggestion d'amélioration
 title: "[Feature]: "
 labels: ["enhancement"]
 body:
   - type: textarea
     id: problem
     attributes:
-      label: 问题陈述
-      description: 当前缺少什么能力
+      label: Énoncé du problème
+      description: Quelle capacité manque actuellement
     validations:
       required: true
   - type: textarea
     id: scenario
     attributes:
-      label: 使用场景
-      description: 谁在什么情况下需要该能力
+      label: Cas d'usage
+      description: Qui a besoin de cette capacité et dans quelles circonstances
     validations:
       required: true
   - type: textarea
     id: proposal
     attributes:
-      label: 期望方案
-      description: 希望如何实现
+      label: Solution attendue
+      description: Comment la mise en œuvre est souhaitée
   - type: textarea
     id: alternatives
     attributes:
-      label: 替代方案
-      description: 已考虑过的其他方式
+      label: Solutions alternatives
+      description: Autres approches déjà envisagées
   - type: dropdown
     id: breaking
     attributes:
-      label: 是否涉及破坏性变更
+      label: Présence d'un changement incompatible
       options:
-        - 否
-        - 是
-        - 不确定
+        - Non
+        - Oui
+        - Incertain
     validations:
       required: true
 ```
@@ -249,7 +249,7 @@ body:
 
 | Espace réservé | Obligatoire | Points de saisie |
 | --- | --- | --- |
-| `{{变更说明}}` | Oui | Énoncer en une phrase le contenu de la modification et joindre le numéro d'issue sous la forme `#数字` |
+| `{{变更说明}}` | Oui | Énoncer en une phrase le contenu de la modification et joindre le numéro d'issue sous la forme `#nombre` |
 | `{{破坏性变更说明}}` | Oui | Écrire « aucun » en l'absence de changement incompatible ; sinon, indiquer les étapes de migration et faire un lien vers le guide de migration |
 
 Les champs `name`, `description`, `title` et `labels` des formulaires YAML sont des métadonnées du gabarit, à remplacer selon la situation réelle du projet ; les types de champs et les valeurs `required` du `body` sont ajustés selon les listes de champs des sections 2 et 3, sans réduction des champs obligatoires.
