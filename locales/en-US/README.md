@@ -1,6 +1,6 @@
 # English Specification Master Index
 
-[简体中文](../zh-CN/README.md) | [English](./README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](../de-DE/README.md)
+[简体中文](../zh-CN/README.md) | [English](./README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](../de-DE/README.md) | [Español](../es-ES/README.md)
 
 > What this file solves: Serves as a navigation index for the English specification set, listing the responsibility, domain, and reading path of all 67 specifications for on-demand access.
 

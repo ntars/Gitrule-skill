@@ -85,79 +85,79 @@
 `.github/ISSUE_TEMPLATE/bug-report.yml`로 저장합니다：
 
 ```yaml
-name: 缺陷报告
-description: 报告可复现的功能异常
+name: 결함 보고
+description: 재현 가능한 기능 이상을 보고합니다
 title: "[Bug]: "
 labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        提交前请先搜索现有 issue，避免重复。
-        请勿粘贴密钥、令牌或个人隐私信息。
+        제출 전에 기존 이슈를 먼저 검색하여 중복을 피하십시오.
+        키, 토큰 또는 개인정보를 붙여넣지 마십시오.
   - type: checkboxes
     id: duplicate-check
     attributes:
-      label: 重复检查
+      label: 중복 확인
       options:
-        - label: 我已搜索现有 issue，确认这不是重复报告
+        - label: 기존 이슈를 검색했으며 중복 보고가 아님을 확인했습니다
           required: true
   - type: textarea
     id: description
     attributes:
-      label: 问题描述
-      description: 实际发生了什么
-      placeholder: 执行 install 命令后程序退出码为 1
+      label: 문제 설명
+      description: 실제로 발생한 일
+      placeholder: install 명령 실행 후 프로그램 종료 코드가 1입니다
     validations:
       required: true
   - type: textarea
     id: expected
     attributes:
-      label: 预期行为
-      description: 应当发生什么
+      label: 기대 동작
+      description: 어떤 일이 발생해야 하는지
     validations:
       required: true
   - type: textarea
     id: steps
     attributes:
-      label: 复现步骤
-      description: 编号列出，确保他人可独立复现
+      label: 재현 단계
+      description: 번호를 매겨 나열하여 다른 사람이 독립적으로 재현할 수 있게 하십시오
       placeholder: |
-        1. 执行命令
-        2. 观察输出
-        3. 出现异常
+        1. 명령 실행
+        2. 출력 관찰
+        3. 이상 발생
     validations:
       required: true
   - type: input
     id: version
     attributes:
-      label: 项目版本
+      label: 프로젝트 버전
       placeholder: v1.0.0
     validations:
       required: true
   - type: dropdown
     id: os
     attributes:
-      label: 操作系统
+      label: 운영체제
       options:
         - macOS
         - Linux
         - Windows
-        - 其他
+        - 기타
     validations:
       required: true
   - type: textarea
     id: logs
     attributes:
-      label: 日志或截图
-      description: 提供错误信息，敏感信息须脱敏
+      label: 로그 또는 스크린샷
+      description: 오류 정보를 제공하되 민감 정보는 마스킹해야 합니다
       render: shell
   - type: checkboxes
     id: security
     attributes:
-      label: 信息安全确认
+      label: 정보 보안 확인
       options:
-        - label: 已确认未包含密钥、令牌或个人隐私
+        - label: 키, 토큰 또는 개인정보가 포함되지 않았음을 확인했습니다
           required: true
 ```
 
@@ -166,43 +166,43 @@ body:
 `.github/ISSUE_TEMPLATE/feature-request.yml`로 저장합니다：
 
 ```yaml
-name: 功能请求
-description: 提出新能力或改进建议
+name: 기능 요청
+description: 새로운 기능이나 개선 제안을 제출합니다
 title: "[Feature]: "
 labels: ["enhancement"]
 body:
   - type: textarea
     id: problem
     attributes:
-      label: 问题陈述
-      description: 当前缺少什么能力
+      label: 문제 진술
+      description: 현재 어떤 기능이 부족한지
     validations:
       required: true
   - type: textarea
     id: scenario
     attributes:
-      label: 使用场景
-      description: 谁在什么情况下需要该能力
+      label: 사용 시나리오
+      description: 누가 어떤 상황에서 이 기능이 필요한지
     validations:
       required: true
   - type: textarea
     id: proposal
     attributes:
-      label: 期望方案
-      description: 希望如何实现
+      label: 희망 방안
+      description: 어떻게 구현되기를 원하는지
   - type: textarea
     id: alternatives
     attributes:
-      label: 替代方案
-      description: 已考虑过的其他方式
+      label: 대안
+      description: 이미 고려한 다른 방식
   - type: dropdown
     id: breaking
     attributes:
-      label: 是否涉及破坏性变更
+      label: 파괴적 변경 여부
       options:
-        - 否
-        - 是
-        - 不确定
+        - 아니요
+        - 예
+        - 확실하지 않음
     validations:
       required: true
 ```

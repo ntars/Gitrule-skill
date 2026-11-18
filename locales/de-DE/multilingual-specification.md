@@ -24,9 +24,10 @@
 
 1. Übersetzungen müssen vollständig sein: Anzahl der Abschnitte, Reihenfolge der Abschnitte, Spaltenzahl der Tabellen und Anzahl der Codeblöcke müssen mit der Ausgangssprache übereinstimmen; zusammenfassende oder unkorrigierte maschinelle Übersetzungen sind nicht zulässig.
 2. Befehle, Pfade, Konfigurationsschlüsselnamen, Platzhalternamen und Parameterwerte in Codeblöcken bleiben unverändert; nur Kommentare und Erläuterungstexte werden übersetzt.
-3. Termini werden gemäß der chinesisch-englischen Terminologietabelle in [Informationserfassung und Vorlagen](./information-collection-and-templates.md) vereinheitlicht; dasselbe Konzept verwendet in allen Sprachen dieselbe Zuordnung.
-4. Jede einseitige Änderung muss in alle abgeschlossenen Sprachen synchronisiert werden, und im Änderungsprotokoll sind die synchronisierten Sprachcodes und Versionen zu erfassen; ohne abgeschlossene Synchronisierung gilt die Revision nicht als abgeschlossen.
-5. Die Konsistenzprüfung gehört zum Qualitätstor G10, siehe [Qualitätstor](./quality-gate.md).
+3. **Benutzersichtbare Vorlagenfelder müssen lokalisiert werden**: In der `yaml`-Konfiguration eines Issue-Formulars werden `name`, `label`, `description`, `placeholder` und die Optionen der Auswahlliste direkt auf der GitHub-Seite angezeigt und müssen in die Zielsprache übersetzt werden; strukturierte Felder wie `type`, `id`, `labels`, `required` und `render` bleiben englisch. Maßgeblich ist, ob ein Eintrag einer Person angezeigt wird, nicht ob er innerhalb eines Codeblocks steht. Ebenso wird der kopierbare Vorlagentext innerhalb eines `markdown`-Blocks stets übersetzt.
+4. Termini werden gemäß der chinesisch-englischen Terminologietabelle in [Informationserfassung und Vorlagen](./information-collection-and-templates.md) vereinheitlicht; dasselbe Konzept verwendet in allen Sprachen dieselbe Zuordnung.
+5. Jede einseitige Änderung muss in alle abgeschlossenen Sprachen synchronisiert werden, und im Änderungsprotokoll sind die synchronisierten Sprachcodes und Versionen zu erfassen; ohne abgeschlossene Synchronisierung gilt die Revision nicht als abgeschlossen.
+6. Die Konsistenzprüfung gehört zum Qualitätstor G10, siehe [Qualitätstor](./quality-gate.md).
 
 ## 4. Rechtliche Texte
 

@@ -1,6 +1,6 @@
 # 简体中文规范总索引
 
-[简体中文](./README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](../de-DE/README.md)
+[简体中文](./README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](../de-DE/README.md) | [Español](../es-ES/README.md)
 
 > 本文件解决什么问题：作为简体中文规范集的导航，列出全部 67 篇规范的职责、所属域与阅读路径，便于按需取用。
 

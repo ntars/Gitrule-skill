@@ -85,60 +85,60 @@
 儲存為 `.github/ISSUE_TEMPLATE/bug-report.yml`：
 
 ```yaml
-name: 缺陷报告
-description: 报告可复现的功能异常
+name: 缺陷報告
+description: 回報可重現的功能異常
 title: "[Bug]: "
 labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        提交前请先搜索现有 issue，避免重复。
-        请勿粘贴密钥、令牌或个人隐私信息。
+        提交前請先搜尋現有 issue，避免重複。
+        請勿貼上金鑰、權杖或個人隱私資訊。
   - type: checkboxes
     id: duplicate-check
     attributes:
-      label: 重复检查
+      label: 重複檢查
       options:
-        - label: 我已搜索现有 issue，确认这不是重复报告
+        - label: 我已搜尋現有 issue，確認這不是重複回報
           required: true
   - type: textarea
     id: description
     attributes:
-      label: 问题描述
-      description: 实际发生了什么
-      placeholder: 执行 install 命令后程序退出码为 1
+      label: 問題描述
+      description: 實際發生了什麼
+      placeholder: 執行 install 命令後程式結束碼為 1
     validations:
       required: true
   - type: textarea
     id: expected
     attributes:
-      label: 预期行为
-      description: 应当发生什么
+      label: 預期行為
+      description: 應當發生什麼
     validations:
       required: true
   - type: textarea
     id: steps
     attributes:
-      label: 复现步骤
-      description: 编号列出，确保他人可独立复现
+      label: 重現步驟
+      description: 以編號列出，確保他人可獨立重現
       placeholder: |
-        1. 执行命令
-        2. 观察输出
-        3. 出现异常
+        1. 執行命令
+        2. 觀察輸出
+        3. 出現異常
     validations:
       required: true
   - type: input
     id: version
     attributes:
-      label: 项目版本
+      label: 專案版本
       placeholder: v1.0.0
     validations:
       required: true
   - type: dropdown
     id: os
     attributes:
-      label: 操作系统
+      label: 作業系統
       options:
         - macOS
         - Linux
@@ -149,15 +149,15 @@ body:
   - type: textarea
     id: logs
     attributes:
-      label: 日志或截图
-      description: 提供错误信息，敏感信息须脱敏
+      label: 日誌或截圖
+      description: 提供錯誤訊息，敏感資訊須去識別化
       render: shell
   - type: checkboxes
     id: security
     attributes:
-      label: 信息安全确认
+      label: 資訊安全確認
       options:
-        - label: 已确认未包含密钥、令牌或个人隐私
+        - label: 已確認未包含金鑰、權杖或個人隱私
           required: true
 ```
 
@@ -166,43 +166,43 @@ body:
 儲存為 `.github/ISSUE_TEMPLATE/feature-request.yml`：
 
 ```yaml
-name: 功能请求
-description: 提出新能力或改进建议
+name: 功能請求
+description: 提出新能力或改進建議
 title: "[Feature]: "
 labels: ["enhancement"]
 body:
   - type: textarea
     id: problem
     attributes:
-      label: 问题陈述
-      description: 当前缺少什么能力
+      label: 問題陳述
+      description: 目前缺少什麼能力
     validations:
       required: true
   - type: textarea
     id: scenario
     attributes:
-      label: 使用场景
-      description: 谁在什么情况下需要该能力
+      label: 使用情境
+      description: 誰在什麼情況下需要該能力
     validations:
       required: true
   - type: textarea
     id: proposal
     attributes:
       label: 期望方案
-      description: 希望如何实现
+      description: 希望如何實作
   - type: textarea
     id: alternatives
     attributes:
       label: 替代方案
-      description: 已考虑过的其他方式
+      description: 已考慮過的其他方式
   - type: dropdown
     id: breaking
     attributes:
-      label: 是否涉及破坏性变更
+      label: 是否涉及破壞性變更
       options:
         - 否
         - 是
-        - 不确定
+        - 不確定
     validations:
       required: true
 ```

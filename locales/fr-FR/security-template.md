@@ -69,7 +69,7 @@ Ne soumettez pas de données de production réelles, de clés ni d'informations 
 
 ## Exceptions et clause de non-responsabilité
 
-La présente politique ne constitue aucun engagement de garantie de sécurité ; le contenu du projet est fourni « en l'état », voir la [clause de non-responsabilité](./disclaimer.md) et la [LICENSE](./LICENSE).
+La présente politique ne constitue aucun engagement de garantie de sécurité ; le contenu du projet est fourni « en l'état », voir la [clause de non-responsabilité](./DISCLAIMER.md) et la [LICENSE](./LICENSE).
 ```
 
 ## 4. Tableau de correspondance des espaces réservés et définition des champs

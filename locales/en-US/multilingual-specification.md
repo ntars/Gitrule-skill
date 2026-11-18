@@ -24,9 +24,10 @@
 
 1. A translation must be a complete translation; the number of sections, section order, number of table columns, and number of code blocks must match the source language; summary-style or unproofread machine-translation output must not be provided.
 2. Commands, paths, configuration key names, placeholder names, and parameter values inside code blocks remain unchanged; only comments and explanatory text are translated.
-3. Terminology is unified according to the Chinese-English terminology mapping table in the [Information Collection and Templates](./information-collection-and-templates.md); the same concept uses the same correspondence in all languages.
-4. Any one-sided modification must be synchronized to all completed languages, and the synchronized language codes and versions recorded in the changelog; a revision must not be judged complete until synchronization is finished.
-5. Consistency checking belongs to gate G10, see [Quality Gates](./quality-gate.md).
+3. **User-facing template fields must be localized**: in an Issue form's `yaml` configuration, `name`, `label`, `description`, `placeholder`, and dropdown options are displayed directly on the GitHub web page and must be translated into the target language; structured fields such as `type`, `id`, `labels`, `required`, and `render` remain in English. The criterion is "whether the item is shown to a person", not "whether it sits inside a code fence". By the same principle, copyable template bodies inside `markdown` fences are always translated.
+4. Terminology is unified according to the Chinese-English terminology mapping table in the [Information Collection and Templates](./information-collection-and-templates.md); the same concept uses the same correspondence in all languages.
+5. Any one-sided modification must be synchronized to all completed languages, and the synchronized language codes and versions recorded in the changelog; a revision must not be judged complete until synchronization is finished.
+6. Consistency checking belongs to gate G10, see [Quality Gates](./quality-gate.md).
 
 ## 4. Legal Text
 

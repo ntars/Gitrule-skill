@@ -85,79 +85,79 @@ Häufige Feldtypen in `body`:
 Als `.github/ISSUE_TEMPLATE/bug-report.yml` speichern:
 
 ```yaml
-name: 缺陷报告
-description: 报告可复现的功能异常
+name: Fehlerbericht
+description: Meldet eine reproduzierbare funktionale Anomalie
 title: "[Bug]: "
 labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        提交前请先搜索现有 issue，避免重复。
-        请勿粘贴密钥、令牌或个人隐私信息。
+        Vor dem Absenden zuerst nach bestehenden Issues suchen, um Doppelmeldungen zu vermeiden.
+        Keine Schlüssel, Tokens oder personenbezogenen Daten einfügen.
   - type: checkboxes
     id: duplicate-check
     attributes:
-      label: 重复检查
+      label: Prüfung auf Doppelmeldung
       options:
-        - label: 我已搜索现有 issue，确认这不是重复报告
+        - label: Ich habe nach bestehenden Issues gesucht und bestätige, dass dies keine Doppelmeldung ist
           required: true
   - type: textarea
     id: description
     attributes:
-      label: 问题描述
-      description: 实际发生了什么
-      placeholder: 执行 install 命令后程序退出码为 1
+      label: Problembeschreibung
+      description: Was tatsächlich passiert
+      placeholder: Nach dem Befehl install endet das Programm mit Exit-Code 1
     validations:
       required: true
   - type: textarea
     id: expected
     attributes:
-      label: 预期行为
-      description: 应当发生什么
+      label: Erwartetes Verhalten
+      description: Was passieren sollte
     validations:
       required: true
   - type: textarea
     id: steps
     attributes:
-      label: 复现步骤
-      description: 编号列出，确保他人可独立复现
+      label: Schritte zur Reproduktion
+      description: Nummeriert auflisten, damit Dritte unabhängig reproduzieren können
       placeholder: |
-        1. 执行命令
-        2. 观察输出
-        3. 出现异常
+        1. Befehl ausführen
+        2. Ausgabe beobachten
+        3. Anomalie tritt auf
     validations:
       required: true
   - type: input
     id: version
     attributes:
-      label: 项目版本
+      label: Projektversion
       placeholder: v1.0.0
     validations:
       required: true
   - type: dropdown
     id: os
     attributes:
-      label: 操作系统
+      label: Betriebssystem
       options:
         - macOS
         - Linux
         - Windows
-        - 其他
+        - Sonstiges
     validations:
       required: true
   - type: textarea
     id: logs
     attributes:
-      label: 日志或截图
-      description: 提供错误信息，敏感信息须脱敏
+      label: Logs oder Screenshots
+      description: Fehlermeldung angeben; sensible Angaben müssen entfernt werden
       render: shell
   - type: checkboxes
     id: security
     attributes:
-      label: 信息安全确认
+      label: Bestätigung der Informationssicherheit
       options:
-        - label: 已确认未包含密钥、令牌或个人隐私
+        - label: Bestätigt, dass keine Schlüssel, Tokens oder personenbezogenen Daten enthalten sind
           required: true
 ```
 
@@ -166,43 +166,43 @@ body:
 Als `.github/ISSUE_TEMPLATE/feature-request.yml` speichern:
 
 ```yaml
-name: 功能请求
-description: 提出新能力或改进建议
+name: Funktionsanfrage
+description: Neue Fähigkeit oder Verbesserungsvorschlag einreichen
 title: "[Feature]: "
 labels: ["enhancement"]
 body:
   - type: textarea
     id: problem
     attributes:
-      label: 问题陈述
-      description: 当前缺少什么能力
+      label: Problemdarstellung
+      description: Welche Fähigkeit derzeit fehlt
     validations:
       required: true
   - type: textarea
     id: scenario
     attributes:
-      label: 使用场景
-      description: 谁在什么情况下需要该能力
+      label: Anwendungsfall
+      description: Wer die Fähigkeit unter welchen Umständen benötigt
     validations:
       required: true
   - type: textarea
     id: proposal
     attributes:
-      label: 期望方案
-      description: 希望如何实现
+      label: Gewünschte Lösung
+      description: Wie die Umsetzung aussehen soll
   - type: textarea
     id: alternatives
     attributes:
-      label: 替代方案
-      description: 已考虑过的其他方式
+      label: Alternativen
+      description: Bereits erwogene andere Wege
   - type: dropdown
     id: breaking
     attributes:
-      label: 是否涉及破坏性变更
+      label: Sind Breaking Changes betroffen
       options:
-        - 否
-        - 是
-        - 不确定
+        - Nein
+        - Ja
+        - Unklar
     validations:
       required: true
 ```

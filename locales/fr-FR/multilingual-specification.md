@@ -24,9 +24,10 @@
 
 1. La traduction doit être intégrale : le nombre de sections, leur ordre, le nombre de colonnes des tableaux et le nombre de blocs de code doivent être identiques à la langue source ; aucune production de type résumé ou traduction automatique non relue n'est admise.
 2. Dans les blocs de code, les commandes, chemins, noms de clés de configuration, noms d'espaces réservés et valeurs de paramètres restent inchangés ; seuls les commentaires et les textes explicatifs sont traduits.
-3. Les termes sont unifiés selon le tableau de correspondance terminologique chinois-anglais de la [collecte d'informations et gabarits](./information-collection-and-templates.md) ; un même concept utilise le même jeu de correspondances dans toutes les langues.
-4. Toute modification unilatérale doit être synchronisée dans toutes les langues déjà terminées, et le journal des mises à jour doit consigner les codes de langue et la version synchronisés ; sans synchronisation achevée, la révision ne peut pas être considérée comme terminée.
-5. La vérification de cohérence relève de la porte G10, voir la [porte qualité](./quality-gate.md).
+3. **Les champs de gabarit destinés à l'utilisateur doivent être localisés** : dans la configuration `yaml` d'un formulaire d'issue, `name`, `label`, `description`, `placeholder` et les options de liste déroulante s'affichent directement sur la page GitHub et doivent être traduits dans la langue cible ; les champs structurés `type`, `id`, `labels`, `required`, `render` restent en anglais. Le critère est « cet élément est-il montré à une personne », et non « se trouve-t-il dans un bloc de code ». Par le même principe, le corps des gabarits copiables placé dans un bloc `markdown` est toujours traduit.
+4. Les termes sont unifiés selon le tableau de correspondance terminologique chinois-anglais de la [collecte d'informations et gabarits](./information-collection-and-templates.md) ; un même concept utilise le même jeu de correspondances dans toutes les langues.
+5. Toute modification unilatérale doit être synchronisée dans toutes les langues déjà terminées, et le journal des mises à jour doit consigner les codes de langue et la version synchronisés ; sans synchronisation achevée, la révision ne peut pas être considérée comme terminée.
+6. La vérification de cohérence relève de la porte G10, voir la [porte qualité](./quality-gate.md).
 
 ## 4. Textes juridiques
 
