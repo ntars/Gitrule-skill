@@ -9,7 +9,7 @@
 | Project name | The repository name and the display name; when the two differ, this must be explained | Whole document |
 | One-sentence positioning | No more than 60 characters, stating what the project is and what problem it solves for whom | Chapter 1 |
 | Repository description (native language and English) | No more than 120 characters in each language, stating the project type and core purpose respectively | Chapter 1 |
-| Topics | 5–10 lowercase English words joined with `-`; mixed capitalization counts as a missing item | Chapter 1 |
+| Topics | Fill all 20 slots with lowercase English words joined with `-`; mixed capitalization or non-English words counts as a missing item | Chapter 1 |
 | Project background | Reason for project initiation, shortcomings of existing solutions | Chapter 2 |
 | Core feature list | Grouped by module, including user-perceivable behaviors | Chapter 3 |
 | Technology stack | Language, framework, runtime version constraints | Chapter 6 |
@@ -29,7 +29,7 @@ Configuration item list, API definitions, directory structure, performance test 
 | Project name | Repository name uses lowercase letters, digits, and `-`; the display name may use brand styling; when the two differ, state the reason | Repository name `markdown-lint-cli`, display name `Markdown Lint CLI` |
 | One-sentence positioning | Includes a category word and a qualifier, does not pile up adjectives, no more than 60 characters | `A Markdown specification checking CLI tool for technical documentation teams` |
 | Repository description (native language and English) | The native language and English each form an independent sentence, each no more than 120 characters, and a slogan must not replace the description | `中文：检查 Markdown 文档结构的命令行工具` / `English: A CLI tool for checking Markdown document structure` |
-| Topics | All lowercase, words joined with `-`, prioritizing language, form, use, and ecosystem | `go cli markdown linter developer-tools` |
+| Topics | All lowercase English, words joined with `-`, fill all 20 slots, fully covering language, form, use, ecosystem, and scenario | `go cli markdown linter developer-tools` |
 | Technology stack | State the primary language, framework, and runtime version constraints; do not write "latest version" | `Go >= 1.22; Cobra v1.8.x` |
 | Dependency list | Each item includes version, license, copyright holder, and official address; items of unknown origin are marked as unconfirmed | See the dependency list table template in Appendix C |
 | License type | Use an SPDX identifier, not vague phrases such as "open source" or "free to use" | `MIT` |
@@ -113,7 +113,7 @@ Copy the following into the target project's `项目信息采集表.md` and repl
 | One-sentence positioning | Fill in: no more than 60 characters, including a category word and a qualifier |
 | Repository description (native language) | Fill in: no more than 120 characters |
 | Repository description (English) | Fill in: no more than 120 characters |
-| Topics | Fill in: 5–10 lowercase English words joined with hyphens |
+| Topics | Fill in: all 20 lowercase English words joined with hyphens |
 | Project background | Fill in: the reason for project initiation and the shortcomings of existing solutions |
 | Applicable scenarios | Fill in: list item by item, each with a trigger condition |
 | Inapplicable scenarios | Fill in: list item by item, each with a reason |

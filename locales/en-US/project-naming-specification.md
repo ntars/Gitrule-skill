@@ -53,8 +53,9 @@
 
 ### 5.2 Topics
 
-- 5–10 topics, all lowercase, joined with `-`, no spaces or special characters.
-- Cover three categories — language, domain, and form — optionally with generic terms such as `documentation` and `open-source`.
+- Fill all 20 slots (GitHub limit) for full coverage; never leave empty slots.
+- English only — Chinese or any other language is forbidden; all lowercase, joined with `-`, no spaces or special characters.
+- Fully cover five categories — language, domain, form, ecosystem, and scenario — optionally with generic terms such as `documentation` and `open-source`.
 - Set them at repository creation and never leave them empty; re-verify after a repository rename or repositioning.
 
 ## Related Files

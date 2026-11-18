@@ -16,9 +16,8 @@
 
 ## Repository Information
 
-- Repository description (Simplified Chinese): 一套覆盖项目全生命周期的通用规范模板：从立项、开发、文档、合规到发布运维与 AI 程序化调用。
-- Repository description (English): A universal set of documentation templates covering the full project lifecycle, from planning and development to compliance, release, operations, and programmatic access.
-- Suggested topics: `documentation`, `templates`, `markdown`, `github`, `guidelines`, `open-source`, `developer-tools`
+- Repository description (`Simplified Chinese | English`): 一套覆盖项目全生命周期的通用规范模板：从立项、开发、文档、合规到发布运维与 AI 程序化调用 | A universal set of documentation templates covering the full project lifecycle, from planning and development to compliance, release, operations, and programmatic access.
+- Topics (20, English only): `documentation`, `templates`, `markdown`, `github`, `guidelines`, `open-source`, `developer-tools`, `readme`, `specification`, `standards`, `best-practices`, `multilingual`, `software-development`, `project-management`, `code-review`, `changelog`, `versioning`, `compliance`, `contribution`, `ai-agents`
 
 ## Key Features
 

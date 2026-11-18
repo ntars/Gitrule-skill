@@ -409,7 +409,7 @@ The table lists all placeholders appearing in the template body. They are arrang
 | `{{RELEASE_URL}}` | Release page URL | GitHub Releases link | No |
 | `{{仓库描述中文}}` | Chinese part of the repository description, ≤120 characters | A lightweight Go CLI tool for JSON processing | Yes |
 | `{{REPO_DESCRIPTION_EN}}` | English part of the repository description, ≤120 characters | A lightweight Go CLI for JSON processing | Yes |
-| `{{TOPICS}}` | Topic tags, 5–10 lowercase words joined by `-` | `go cli json command-line developer-tools` | No |
+| `{{TOPICS}}` | Topic tags, all 20 lowercase English words joined by `-` | `go cli json command-line developer-tools` | No |
 | `{{一句话定位}}` | One-line statement of what the project is, who it is for, and what problem it solves | A lightweight Go command-line tool for JSON processing | Yes |
 | `{{语言切换链接}}` | Language switch link | Link text `English`, target path filled according to the actual language directory, e.g., `../en-US/README.md` | No |
 | `{{背景}}` | The reason the project was created and the problem it solves | Depends on the project | Yes |
@@ -520,7 +520,7 @@ Section 3 provides copyable body text for all 20 chapters. The following are sup
 - [ ] No residual `{{...}}` placeholders.
 - [ ] The first screen includes the repository description [Chinese | English] and topic tags, both consistent with repository metadata.
 - [ ] Chinese and English repository descriptions are each no more than 120 characters.
-- [ ] 5–10 topic tags, all lowercase, joined by `-`.
+- [ ] All 20 topic tags are lowercase English words joined by `-`.
 - [ ] One-line positioning includes a category term, no more than 60 Chinese characters or 25 English words.
 - [ ] Each key feature contains the five-part structure and has verifiable evidence.
 - [ ] Advantages and limitations are listed separately; limitations include scope of impact and workarounds.

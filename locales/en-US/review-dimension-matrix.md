@@ -15,7 +15,7 @@
 | D7 | Commit history | Conventional Commits, atomicity, no WIP, author information, no sensitive commit messages | commit-reviewer | P1 |
 | D8 | Branch and release | main protection, branch naming, tag SemVer, annotated tag, Release Notes | release-manager | P1 |
 | D9 | Automation | CI workflows runnable, status badges, dependabot, CODEOWNERS, issue/PR templates | ci-runner | P1 |
-| D10 | Repository metadata | description (bilingual merged format `national language \| English`, each language ≤120 characters), topics (5–10, all lowercase), default branch, About links, social preview | metadata-agent | P1 |
+| D10 | Repository metadata | description (bilingual merged format `national language \| English`, each language ≤120 characters), topics (all 20, English only, all lowercase), default branch, About links, social preview | metadata-agent | P1 |
 | D11 | Documentation completeness | Item-by-item existence check against the document matrix | docs-orchestrator | P0/P1 |
 | D12 | Document quality | Heading levels, code block language tags, link validity, image alt, Chinese-English spacing, no placeholders | docs-orchestrator | P1/P2 |
 | D13 | README front page | One-sentence positioning, installation, quick start, badges ≤4, screenshots, no local absolute paths | readme-writer | P1 |

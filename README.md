@@ -16,9 +16,8 @@
 
 ## 仓库信息
 
-- 仓库描述（简体中文）：一套覆盖项目全生命周期的通用规范模板：从立项、开发、文档、合规到发布运维与 AI 程序化调用。
-- Repository description (English): A universal set of documentation templates covering the full project lifecycle, from planning and development to compliance, release, operations, and programmatic access.
-- 话题标签（建议）：`documentation`、`templates`、`markdown`、`github`、`guidelines`、`open-source`、`developer-tools`
+- 仓库描述（`简体中文 | English`）：一套覆盖项目全生命周期的通用规范模板：从立项、开发、文档、合规到发布运维与 AI 程序化调用 | A universal set of documentation templates covering the full project lifecycle, from planning and development to compliance, release, operations, and programmatic access.
+- 话题标签（20 个，仅英文）：`documentation`、`templates`、`markdown`、`github`、`guidelines`、`open-source`、`developer-tools`、`readme`、`specification`、`standards`、`best-practices`、`multilingual`、`software-development`、`project-management`、`code-review`、`changelog`、`versioning`、`compliance`、`contribution`、`ai-agents`
 
 ## 核心特性
 
