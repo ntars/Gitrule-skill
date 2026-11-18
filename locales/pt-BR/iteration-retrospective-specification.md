@@ -60,7 +60,7 @@ Período da iteração: {{YYYY-MM-DD ~ YYYY-MM-DD}} ｜ Facilitador: {{姓名}} 
 ## 3. Modelo de item de ação de melhoria
 
 ```markdown
-### A-{{两位序号}}：{{动作标题}}
+### A-{{两位序号}}: {{动作标题}}
 
 - Problema associado: {{R-NN}}
 - Ação: {{一个可执行的动作，含具体对象}}
@@ -76,14 +76,14 @@ Período da iteração: {{YYYY-MM-DD ~ YYYY-MM-DD}} ｜ Facilitador: {{姓名}} 
 | Campo | Obrigatório | Tipo | Pontos de preenchimento | Exemplo |
 | --- | --- | --- | --- | --- |
 | Identificador da iteração | Sim | Texto | Coerente com a numeração de fases da [especificação de roteiro](./roadmap-specification.md) | `Sprint-12` |
-| Situação de alcance | Sim | Enumeração | Alcançado / Não alcançado / Parcialmente alcançado | `部分达成` |
-| Base de julgamento | Sim | Texto | Dados ou link de entrega; não pode ficar em branco | `REQ-001 已发布` |
-| Instantâneo de dados | Sim | Tabela | Pelo menos 3 métricas, com valores do ciclo anterior e deste ciclo | `缺陷逃逸 2 → 0` |
-| Causa raiz | Sim | Texto | Distinguir sintoma de causa raiz; encadear com “porque” de forma verificável | `因为环境未纳入 CI` |
-| Ação | Sim | Texto | Ação única, com objeto e comportamento | `将集成环境纳入 CI` |
+| Situação de alcance | Sim | Enumeração | Alcançado / Não alcançado / Parcialmente alcançado | `Parcialmente alcançado` |
+| Base de julgamento | Sim | Texto | Dados ou link de entrega; não pode ficar em branco | `REQ-001 publicado` |
+| Instantâneo de dados | Sim | Tabela | Pelo menos 3 métricas, com valores do ciclo anterior e deste ciclo | `Defeitos escapados 2 → 0` |
+| Causa raiz | Sim | Texto | Distinguir sintoma de causa raiz; encadear com “porque” de forma verificável | `Porque o ambiente não foi incluído na CI` |
+| Ação | Sim | Texto | Ação única, com objeto e comportamento | `Incluir o ambiente de integração na CI` |
 | Responsável | Sim | Texto | Único; é vedado escrever “equipe” | `Wang Wu` |
-| Forma de verificação | Sim | Texto | Julgável, com momento de checagem | `下轮 CI 时长 <10 分钟` |
-| Estado | Sim | Enumeração | Um dos quatro estados | `已完成` |
+| Forma de verificação | Sim | Texto | Julgável, com momento de checagem | `Duração da CI do próximo ciclo <10 minutos` |
+| Estado | Sim | Enumeração | Um dos quatro estados | `Concluída` |
 
 ## 5. Instruções de preenchimento
 

@@ -7,8 +7,8 @@
 | Camada | Significado | Condição de liberação |
 | --- | --- | --- |
 | Gate A · portão de segurança | Chaves, privacidade, licença, arquivos grandes | Zero P0 |
-| Gate B · portão de qualidade | Build, testes, lint, convenção de commits, proteção de branch | Zero P0 e P1 registrado como pendência |
-| Gate C · portão da página inicial | README, metadados, matriz de documentação, selos, links | Zero P0 e P1 ≤ 3 já agendado |
+| Gate B · portão de qualidade | Build, testes, lint, convenção de commits, proteção de branch | Zero P0; P1 registrado como pendência |
+| Gate C · portão da página inicial | README, metadados, matriz de documentação, selos, links | Zero P0; P1 ≤ 3 e já agendado |
 
 Somente com A, B e C verdes deve ser emitido `✅ ALLOW PUSH`. Os itens não aprovados devem ser corrigidos ou ter o motivo indicado, e o resultado deve ser registrado no [formato do relatório de auditoria](./audit-report-format.md).
 

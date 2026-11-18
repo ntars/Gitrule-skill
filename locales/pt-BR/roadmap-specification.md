@@ -37,7 +37,7 @@ Estado: Em planejamento / Em andamento / Concluído / Cancelado
 | {{YYYY-MM-DD}} | {{计划项}} | {{规划中 → 已取消}} | {{原因}} | {{姓名}} |
 
 ## Justificativa de cancelamento
-- {{计划项}}：{{取消原因，如需求变更、依赖 unavailable}}
+- {{计划项}}: {{取消原因，如需求变更、依赖 unavailable}}
 ```
 
 ## 3. Modelo de item de plano
@@ -58,15 +58,15 @@ Estado: Em planejamento / Em andamento / Concluído / Cancelado
 
 | Campo | Obrigatório | Tipo | Pontos de preenchimento | Exemplo |
 | --- | --- | --- | --- | --- |
-| Item de plano | Sim | Sintagma nominal | Descreve a capacidade a entregar, não a ação da tarefa | `TOML 配置支持` |
-| Estado | Sim | Enumeração | Em planejamento / Em andamento / Concluído / Cancelado | `进行中` |
+| Item de plano | Sim | Sintagma nominal | Descreve a capacidade a entregar, não a ação da tarefa | `Suporte a configuração TOML` |
+| Estado | Sim | Enumeração | Em planejamento / Em andamento / Concluído / Cancelado | `Em andamento` |
 | Versão-alvo | Sim | Versão / Trimestre / A definir | Datas concretas são vedadas | `v1.1 ~ v1.2` |
 | Requisito associado | Sim | `REQ-NNN` | Coerente com a numeração da iniciação do projeto | `REQ-008` |
-| Origem | Sim | Texto | Iniciação, retrospectiva de iteração ou feedback de usuário | `迭代回顾 A-01` |
-| Dependência | Sim | Texto | Sem dependência, escrever “nenhuma”; é vedado deixar em branco | `依赖计划项 A` |
-| Critério de aceite | Sim | Texto | Verificável, com limiar | `解析 100 份样例无失败` |
+| Origem | Sim | Texto | Iniciação, retrospectiva de iteração ou feedback de usuário | `Retrospectiva de iteração A-01` |
+| Dependência | Sim | Texto | Sem dependência, escrever “nenhuma”; é vedado deixar em branco | `Depende do item de plano A` |
+| Critério de aceite | Sim | Texto | Verificável, com limiar | `Análise de 100 amostras sem falhas` |
 | Registro de alterações | Condicionalmente obrigatório | Link | Obrigatório para itens concluídos | `[1.0.0]` |
-| Motivo de cancelamento | Condicionalmente obrigatório | Texto | Obrigatório para itens cancelados | `依赖的外部 API 下线` |
+| Motivo de cancelamento | Condicionalmente obrigatório | Texto | Obrigatório para itens cancelados | `A API externa dependente foi descontinuada` |
 
 ## 5. Instruções de preenchimento
 

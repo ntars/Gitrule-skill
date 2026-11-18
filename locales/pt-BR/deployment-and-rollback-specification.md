@@ -1,6 +1,6 @@
 # Especificação de implantação e reversão
 
-> Problema que este arquivo resolve: definir modelos, campos e critérios de execução da lista de implantação, da ordem de alteração e do plano de reversão, garantindo que a entrada em produção seja controlável, o estado consultável e as falhas rapidamente recuperáveis.
+> Problema que este arquivo resolve: definir modelos, campos e critérios de execução da lista de implantação, da solicitação de mudança e do plano de reversão, garantindo que a entrada em produção seja controlável, o estado consultável e as falhas rapidamente recuperáveis.
 
 ## 1. Dispositivos normativos
 
@@ -83,14 +83,14 @@ Versão: {{vX.Y.Z}} ｜ tag: {{vX.Y.Z}} ｜ Ambiente de destino: {{预发布 / �
 | Campo | Obrigatório | Tipo | Pontos de preenchimento | Exemplo |
 | --- | --- | --- | --- | --- |
 | tag | Sim | Texto | Totalmente coerente com a tag da [especificação de gerenciamento de versões](./version-management-specification.md) | `v1.2.0` |
-| Ambiente de destino | Sim | Enumeração | Pré-produção / Produção, sem uso cruzado de configuração | `生产` |
-| Item de alteração.Tipo | Sim | Enumeração | Novo / Alteração / Remoção | `修改` |
+| Ambiente de destino | Sim | Enumeração | Pré-produção / Produção, sem uso cruzado de configuração | `Produção` |
+| Item de alteração.Tipo | Sim | Enumeração | Novo / Alteração / Remoção | `Alteração` |
 | Requisito associado | Sim | Lista | Numeração REQ; sem alteração de requisito, escrever “nenhum” | `REQ-007` |
 | Proporção de canário | Não | Percentual | Obrigatório na liberação gradual | `10% → 50% → 100%` |
 | Condição de julgamento | Sim | Limiar | Observável e julgável | `HTTP 200` |
 | Número de versão real | Sim | Texto | Divergência em relação à versão prevista deve ser justificada | `v1.2.1` |
-| Condição de disparo da reversão | Sim | Limiar + duração | Formulações como “sensação de anormalidade” são vedadas | `错误率 >1% 持续 5 分钟` |
-| Compatibilidade de dados | Sim | Texto | Indicar claramente se há necessidade de reversão de dados | `无需数据回滚` |
+| Condição de disparo da reversão | Sim | Limiar + duração | Formulações como “sensação de anormalidade” são vedadas | `Taxa de erro >1% por 5 minutos` |
+| Compatibilidade de dados | Sim | Texto | Indicar claramente se há necessidade de reversão de dados | `Sem necessidade de reversão de dados` |
 
 ## 5. Instruções de preenchimento
 

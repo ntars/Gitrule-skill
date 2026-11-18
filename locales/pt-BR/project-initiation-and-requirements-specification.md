@@ -8,7 +8,7 @@
 2. Os requisitos devem ser classificados em três níveis, “obrigatório / recomendado / opcional”; as convenções de redação estão na [especificação geral de redação](./general-writing-specification.md).
 3. Cada requisito deve ser verificável: apresentar critérios de aceite no formato Given/When/Then ou um limiar de métrica julgável.
 4. Cada requisito deve ter numeração estável e origem definida; é vedado manter itens de requisito sem numeração.
-5. Quando as informações forem insuficientes, marcar “【A confirmar: nome do campo】”; é vedado preencher por suposição; as regras estão em [coleta de informações e modelos](./information-collection-and-templates.md).
+5. Quando as informações forem insuficientes, marcar “【Pendente: nome do campo】”; é vedado preencher por suposição; as regras estão em [coleta de informações e modelos](./information-collection-and-templates.md).
 6. O escopo deve indicar simultaneamente os itens incluídos e os excluídos; não objetivos vazios significam escopo não delimitado.
 7. Alterações de escopo devem registrar motivo, impacto e responsável pela decisão, e entrar no registro de alterações da [especificação da matriz de rastreabilidade de requisitos](./requirements-traceability-matrix-specification.md).
 
@@ -55,7 +55,7 @@ Oferecer a {{目标用户}} {{核心能力}}, resolvendo {{当前痛点}}.
 ## Escopo
 - Incluído: {{本期交付项}}
 - Excluído: {{本期明确不交付项}}
-- A confirmar: {{【待确认：字段名】}}
+- Pendente de confirmação: {{【待确认：字段名】}}
 
 ## Registro de decisões
 | Data | Decisão | Responsável pela decisão | Base |
@@ -89,35 +89,35 @@ Oferecer a {{目标用户}} {{核心能力}}, resolvendo {{当前痛点}}.
 | Campo | Obrigatório | Tipo | Pontos de preenchimento | Exemplo |
 | --- | --- | --- | --- | --- |
 | Versão do documento | Sim | Texto | Versionamento semântico ou versão por data | `v0.1` |
-| Estado | Sim | Enumeração | Rascunho / Em revisão / Aprovado | `评审中` |
+| Estado | Sim | Enumeração | Rascunho / Em revisão / Aprovado | `Em revisão` |
 | Responsável pela decisão | Sim | Texto | Pessoa com poder de decisão final sobre escopo e prioridade | `Zhang San` |
 | Posicionamento em uma frase | Sim | Texto | Usuário-alvo + capacidade central + dor, ≤60 caracteres | Oferecer aos desenvolvedores front-end… |
 | Base da iniciação | Sim | Texto | Pelo menos um registro rastreável; “decisão da equipe” é vedado | `ISSUE-142` |
-| Objetivos / Não objetivos | Sim | Tabela | Cada objetivo com resultado verificável; pelo menos um não objetivo | `G1：冷启动 <2s` |
-| Critérios de sucesso | Sim | Tabela | A métrica deve ter linha de base, limiar, forma e momento de medição | `错误率 <0.1%` |
-| Restrições | Sim | Lista | As quatro categorias devem ser preenchidas; sem restrição, escrever “nenhuma” | `须兼容 Node 18+` |
-| A confirmar | Não | Lista | Usar apenas o formato 【A confirmar: nome do campo】 | `【待确认：预算上限】` |
+| Objetivos / Não objetivos | Sim | Tabela | Cada objetivo com resultado verificável; pelo menos um não objetivo | `G1: inicialização a frio <2s` |
+| Critérios de sucesso | Sim | Tabela | A métrica deve ter linha de base, limiar, forma e momento de medição | `Taxa de erro <0.1%` |
+| Restrições | Sim | Lista | As quatro categorias devem ser preenchidas; sem restrição, escrever “nenhuma” | `Compatível com Node 18+` |
+| Pendente de confirmação | Não | Lista | Usar apenas o formato 【Pendente: nome do campo】 | `【待确认：预算上限】` |
 
 ### 4.2 Campos do item de requisito
 
 | Campo | Obrigatório | Tipo | Pontos de preenchimento | Exemplo |
 | --- | --- | --- | --- | --- |
 | Numeração | Sim | `REQ-NNN` | Número de três dígitos, contínuo, sem reutilização nem reordenação | `REQ-007` |
-| Origem | Sim | Texto | Rastreável até o registro concreto | `用户访谈 #3` |
-| Prioridade | Sim | Enumeração | Obrigatório / Recomendado / Opcional | `必须` |
+| Origem | Sim | Texto | Rastreável até o registro concreto | `Entrevista com usuário #3` |
+| Prioridade | Sim | Enumeração | Obrigatório / Recomendado / Opcional | `Obrigatório` |
 | Objetivo associado | Sim | Lista | Número G correspondente no documento de iniciação | `G1` |
 | História de usuário | Sim | Texto | Os três elementos — perfil, comportamento e valor — completos | Como… quero… para que… |
 | Critérios de aceite | Sim | Lista | Pelo menos 1 conjunto Given/When/Then, com limite ou exceção | ver modelo |
-| Estado | Sim | Enumeração | Um dos cinco estados, apenas avançando, sem retroceder | `已确认` |
+| Estado | Sim | Enumeração | Um dos cinco estados, apenas avançando, sem retroceder | `Confirmado` |
 
 ## 5. Instruções de preenchimento
 
 1. **Posicionamento em uma frase**: escrever na estrutura de três partes “para quem + o que oferece + o que resolve”; se a frase deixa de fazer sentido ao remover os modificadores, faltam informações substanciais.
 2. **Critérios de sucesso**: cada item deve ter simultaneamente linha de base e limiar. “Melhorar o desempenho” e “melhor experiência” são considerados inaceitáveis e devem ser reescritos como “tempo de inicialização P95 de 3s para <1.5s”.
-3. **Não objetivos**: indicar o escopo explicitamente excluído e a fronteira de julgamento, não “veremos depois”; sem não objetivos não vazios, considera-se o escopo não delimitado.
+3. **Não objetivos**: indicar o escopo explicitamente excluído e a fronteira de julgamento, não “veremos depois”; na ausência de não objetivos preenchidos, considera-se o escopo não delimitado.
 4. **Numeração de requisitos**: uma vez atribuída, é fixa para sempre; ao tornar um requisito obsoleto, o estado muda para “Obsoleto” e a numeração não pode ser recuperada nem reutilizada.
 5. **Critérios de aceite**: devem cobrir o caminho normal e pelo menos um caminho de limite ou exceção; condições sem julgamento objetivo (como “interface bonita”) devem ser convertidas em métricas ou itens de verificação verificáveis.
-6. **Itens a confirmar**: a iniciação admite itens a confirmar, mas eles devem ser listados integralmente com um responsável pela confirmação indicado; antes do início do desenvolvimento devem ser zerados.
+6. **Itens pendentes de confirmação**: a iniciação admite itens pendentes de confirmação, mas eles devem ser listados integralmente com um responsável pela confirmação indicado; antes do início do desenvolvimento devem ser zerados.
 
 Erros comuns:
 
@@ -127,7 +127,7 @@ Erros comuns:
 | Não objetivos escritos como “nenhum” | Escopo não delimitado, sujeito a expansão | Listar os itens explicitamente excluídos neste ciclo |
 | Requisito sem numeração, descrito direto no texto | Impossível rastrear e referenciar | Atribuir `REQ-NNN` e referenciar em todo o escopo |
 | Critério de aceite escrito como “funciona normalmente” | Não julgável | Dividir em Given/When/Then |
-| Conteúdo suposto tratado como requisito estabelecido | Origem não rastreável | Marcar a origem como “suposição” e converter em item a confirmar |
+| Conteúdo suposto tratado como requisito estabelecido | Origem não rastreável | Marcar a origem como “suposição” e converter em item pendente de confirmação |
 
 ## 6. Exemplo completo
 

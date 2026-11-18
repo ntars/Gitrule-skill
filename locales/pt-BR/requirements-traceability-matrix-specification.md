@@ -55,14 +55,14 @@ Estado: A confirmar / Confirmado / A implementar / Implementado / Verificado / P
 | Campo | Obrigatório | Tipo | Pontos de preenchimento | Exemplo |
 | --- | --- | --- | --- | --- |
 | ID do requisito | Sim | `REQ-NNN` | Coerente com a numeração da [especificação de iniciação do projeto e requisitos](./project-initiation-and-requirements-specification.md) | `REQ-001` |
-| Prioridade | Sim | Enumeração | Obrigatório / Recomendado / Opcional | `必须` |
+| Prioridade | Sim | Enumeração | Obrigatório / Recomendado / Opcional | `Obrigatório` |
 | Objetivo da iniciação | Sim | `G-N` | Número do objetivo correspondente no documento de iniciação | `G1` |
 | Decisão de arquitetura | Não | `ADR-NNNN` | Sem decisão de arquitetura, escrever “—”; é vedado deixar em branco | `ADR-0002` |
 | Documento de design | Não | `caminho#âncora` | Preciso até a âncora de seção | `docs/api.md#check` |
 | PR de implementação | Não | `#número` | Número da PR, não o hash do commit | `#12` |
 | Caso de teste | Sim | Lista `TC-NNN` | Pelo menos um; sem caso, justificar | `TC-001` |
 | Versão de publicação | Não | `vX.Y.Z` | Coerente com a tag | `v1.0.0` |
-| Estado | Sim | Enumeração | Um dos sete estados, apenas avançando, exceto obsolescência | `已验证` |
+| Estado | Sim | Enumeração | Um dos sete estados, apenas avançando, exceto obsolescência | `Verificado` |
 | Registro de alterações.Escopo de impacto | Sim | Texto | Listar os ADR, PR e TC afetados | `ADR-0002, TC-001` |
 
 ## 6. Instruções de preenchimento
