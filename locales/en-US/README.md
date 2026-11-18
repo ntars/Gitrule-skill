@@ -129,5 +129,5 @@ The seven domains contain 66 specifications in total.
 
 ## Related Files
 
-- Return to the repository front page: [../../README.md](../../README.md)
+- Return to the repository front page: [../../README.md](../../README_EN.md)
 - License: [../../LICENSE](../../LICENSE)
