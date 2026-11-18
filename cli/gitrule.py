@@ -13,8 +13,9 @@ import shutil
 import sys
 from pathlib import Path
 
-SUPPORTED_LANGS = ("zh-CN", "en-US")
+SUPPORTED_LANGS = ("zh-CN", "en-US", "zh-TW")
 PLACEHOLDER_FILE = "README标准模板.md"
+INDEX_MARKERS = ("规范总索引", "Specification Master Index", "規範總索引")
 
 
 def strip_code(text):
@@ -48,14 +49,22 @@ def analyze_fences(text):
 
 
 def has_purpose(text):
-    """判断文件开头是否写明唯一职责。"""
+    """判断文件开头是否写明唯一职责：不依赖具体语种，取位置与结构判定。
+
+    约定为首个二级标题之前存在一段以 `>` 引出的说明块。
+    """
     head = text[:600]
-    return "本文件解决什么问题" in head or "What this file solves" in head
+    if "本文件解决什么问题" in head or "What this file solves" in head:
+        return True
+    return bool(re.search(r"(?m)^> ", head))
 
 
 def has_related(text):
-    """判断文件结尾是否有相关文件区。"""
-    return "## 相关文件" in text or "## Related Files" in text
+    """判断文件结尾是否有相关文件区：末段存在二级标题且其后接列表或表格。"""
+    if "## 相关文件" in text or "## Related Files" in text:
+        return True
+    tail = text[int(len(text) * 0.55):]
+    return bool(re.search(r"(?m)^## .+\n\n(- |\|)", tail))
 
 
 def check_links(directory, files):
@@ -83,7 +92,7 @@ def check_index(directory, files):
     text = (directory / "README.md").read_text(encoding="utf-8")
     numbers = [int(value) for value in re.findall(r"[（(](\d+)\s*(?:篇|files?|specs?)\s*[）)]", text)]
     listed = len(re.findall(r"^\| \[[^\]]+\]\(\./[^)]+\.md\)", text, flags=re.M))
-    declared_match = re.search(r"(?:合计|total)[^\d]{0,12}(\d+)", text)
+    declared_match = re.search(r"(?:合计|合計|total)[^\d]{0,12}(\d+)", text, flags=re.I)
     declared = int(declared_match.group(1)) if declared_match else None
     issues = []
     if numbers and sum(numbers) != listed:
@@ -101,18 +110,32 @@ def check_index(directory, files):
     return issues
 
 
+def find_template_file(directory):
+    """按语言无关的结构特征定位 README 模板：同时含模板正文与占位符对照表。"""
+    for path in sorted(directory.glob("*.md")):
+        text = path.read_text(encoding="utf-8")
+        if "{{" not in text:
+            continue
+        has_body = re.search(r"(?mi)^##\s+.*(模板正文|template body|模板內文)", text)
+        has_table = re.search(r"(?mi)^##\s+.*(占位符对照表|placeholder reference|佔位符對照表)", text)
+        if has_body and has_table:
+            return path.name
+    return None
+
+
 def check_placeholders(directory):
     """检查 README 模板正文占位符是否全部登记到对照表。"""
-    if not (directory / PLACEHOLDER_FILE).exists():
+    name = find_template_file(directory)
+    if not name:
         return []
-    text = (directory / PLACEHOLDER_FILE).read_text(encoding="utf-8")
+    text = (directory / name).read_text(encoding="utf-8")
     chunks = re.split(r"(?m)^##\s+", text)
     body, table = "", ""
     for chunk in chunks:
         low = chunk.lower()
-        if "模板正文" in chunk or "template body" in low:
+        if re.search(r"(模板正文|template body|模板內文)", chunk) or "template body" in low:
             body = chunk
-        if "占位符对照表" in chunk or "placeholder reference" in low:
+        if re.search(r"(占位符对照表|placeholder reference|佔位符對照表)", chunk) or "placeholder reference" in low:
             table = chunk
     if not body or not table:
         return []
@@ -121,7 +144,7 @@ def check_placeholders(directory):
     missing = sorted(body_names - table_names)
     if missing:
         return [{
-            "file": PLACEHOLDER_FILE,
+            "file": name,
             "type": "unregistered-placeholder",
             "detail": ", ".join(missing),
         }]

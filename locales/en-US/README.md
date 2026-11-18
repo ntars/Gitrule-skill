@@ -1,5 +1,7 @@
 # English Specification Master Index
 
+[简体中文](../zh-CN/README.md) | [English](./README.md) | [繁體中文](../zh-TW/README.md)
+
 > What this file solves: Serves as a navigation index for the English specification set, listing the responsibility, domain, and reading path of all 67 specifications for on-demand access.
 
 > This repository is the first implementation case of its own specification set: this index and every document in this directory follow the specification set and pass its structural checks.
