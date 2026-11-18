@@ -39,8 +39,23 @@
 
 ## 5. Accompanying Metadata
 
-- The description shares the same origin as the repository name, ≤120 characters, using the pattern `<做什么> for <谁>`.
-- 5–10 topics, all lowercase, joined with `-`, covering the three categories of language, domain, and form.
+### 5.1 Repository Description
+
+- Shares the same origin as the repository name, using the pattern `<what it does> for <whom>`.
+- Bilingual merged format: `national language | English` — write the national-language version first, then a half-width vertical bar with one space on each side, then the English version. Example for a Chinese project:
+
+```text
+轻量级 Go 命令行 JSON 处理工具 | A lightweight Go CLI for JSON processing
+```
+
+- Length: the national language and English versions are each no more than 120 characters, with a combined total of no more than 350 characters (GitHub limit).
+- No line breaks, Markdown syntax, or emoji; end-of-sentence punctuation style must be consistent across the two languages (either always or never).
+
+### 5.2 Topics
+
+- 5–10 topics, all lowercase, joined with `-`, no spaces or special characters.
+- Cover three categories — language, domain, and form — optionally with generic terms such as `documentation` and `open-source`.
+- Set them at repository creation and never leave them empty; re-verify after a repository rename or repositioning.
 
 ## Related Files
 

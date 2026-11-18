@@ -68,7 +68,7 @@ Promoting before completing the above checklist is a prohibited behavior under t
 
 | Material | Specification | Purpose |
 | --- | --- | --- |
-| One-line pitch | Within 60 Chinese characters / within 25 English words | Repository Description, social summary |
+| One-line pitch | Within 60 Chinese characters / within 25 English words; the repository Description follows the bilingual merged format `national language \| English`, see [Project Naming Specification](./project-naming-specification.md) Section 5 | Repository Description, social summary |
 | Screenshots | Both light and dark theme versions, controlled width | README above the fold |
 | Demo GIF | Controlled size after compression, shows the core flow | README demo section |
 | Logo | SVG format, with light and dark versions | Above the fold and social cards |

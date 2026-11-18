@@ -8,7 +8,7 @@ All of the following 20 sections must be present, in a fixed order, with a one-t
 
 | No. | Section | Must Include | Must Not Contain |
 | --- | --- | --- | --- |
-| 1 | Project name and positioning | Project name, repository description (native language and English bilingual comparison), topics (5–10), one-sentence positioning, language switch links, current version, maintenance status | Vague adjectives; repository description exceeding 120 characters; mixed capitalization in topics |
+| 1 | Project name and positioning | Project name, repository description (bilingual merged format `national language \| English`), topics (5–10), one-sentence positioning, language switch links, current version, maintenance status | Vague adjectives; repository description exceeding 120 characters; mixed capitalization in topics |
 | 2 | Project introduction | Background, problem to be solved, core approach, applicable scenarios, inapplicable scenarios, and separately listed advantages and limitations (limitations must include scope of impact and workaround) | A single passing sentence; listing advantages but not limitations |
 | 3 | Core features | Feature items grouped by module, each including a trigger condition and result | Only listing feature names |
 | 4 | Key features | Expanded according to the structure in the [Features and Engineering Trade-offs Writing Guide](./features-and-engineering-tradeoffs-guide.md) | Praise without evidence |
