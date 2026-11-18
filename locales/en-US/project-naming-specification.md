@@ -49,6 +49,7 @@
 ```
 
 - Length: the national language and English versions are each no more than 120 characters, with a combined total of no more than 350 characters (GitHub limit).
+- Trade-off when the combined total exceeds the limit: compress the English version first rather than the national-language version — Chinese carries higher information density, so trimming it loses more meaning; when compressing, first drop modifiers and repeated qualifiers, then merge synonymous phrasing, and finally keep an intact subject–predicate structure in both language versions.
 - No line breaks, Markdown syntax, or emoji; end-of-sentence punctuation style must be consistent across the two languages (either always or never).
 
 ### 5.2 Topics
