@@ -1,6 +1,6 @@
 # English Specification Master Index
 
-> What this file solves: Serves as a navigation index for the English specification set, listing the responsibility, domain, and reading path of all 66 specifications for on-demand access.
+> What this file solves: Serves as a navigation index for the English specification set, listing the responsibility, domain, and reading path of all 67 specifications for on-demand access.
 
 > This repository is the first implementation case of its own specification set: this index and every document in this directory follow the specification set and pass its structural checks.
 
@@ -83,7 +83,7 @@
 | [Audit Report Format](./audit-report-format.md) | Defines the sole delivery format and delivery order of audit reports |
 | [Requirements Traceability Matrix Specification](./requirements-traceability-matrix-specification.md) | Defines bidirectional traceability from requirements to design, implementation, testing, and release, and coverage statistics |
 
-## 6. Release and Operations (9 specifications)
+## 6. Release and Operations (10 specifications)
 
 | File | Unique Responsibility |
 | --- | --- |
@@ -96,6 +96,7 @@
 | [Migration Guide Specification](./migration-guide-specification.md) | Defines migration steps for breaking changes and release coordination |
 | [Troubleshooting Specification](./troubleshooting-specification.md) | Defines the structure and entry writing of FAQ and troubleshooting documents |
 | [Iteration Retrospective Specification](./iteration-retrospective-specification.md) | Defines the data, root causes, improvement actions, and closure verification of iteration retrospectives |
+| [Existing-Project Alignment Checklist](./existing-project-alignment-checklist.md) | Defines item-by-item checks, judgement methods and acceptance records when bringing an existing project under this specification set |
 
 ## 7. AI and Machine Adaptation (4 specifications)
 
@@ -106,7 +107,7 @@
 | [MCP Tool Specification](./mcp-tool-specification.md) | Defines MCP tool interface design and description rules |
 | [Agent Invocation and Prompt Specification](./agent-invocation-and-prompt-specification.md) | Defines Agent dispatch contracts and prompt writing |
 
-The seven domains contain 66 specifications in total.
+The seven domains contain 67 specifications in total.
 
 ## Reading Paths
 

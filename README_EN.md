@@ -21,7 +21,7 @@
 
 ## Key Features
 
-1. One file, one responsibility: 66 specifications, independently navigable across seven domains.
+1. One file, one responsibility: 67 specifications, independently navigable across seven domains.
 2. Full lifecycle: eight-stage mapping from planning, requirements, architecture, development, and testing to deployment, operations, and iteration.
 3. Multilingual ready: language codes centralized in `locales/`; adding a language changes no existing file.
 4. Machine readable: stable identifiers and path mappings per specification, with a copy-ready manifest example.
@@ -83,8 +83,8 @@ MCP registration example (into the `mcpServers` block of an MCP configuration):
 
 | Language | Code | Status | Entry |
 | --- | --- | --- | --- |
-| Simplified Chinese | zh-CN | Complete (66 specs) | [Enter](./locales/zh-CN/README.md) |
-| English | en-US | Complete (66 specs) | [Enter](./locales/en-US/README.md) |
+| Simplified Chinese | zh-CN | Complete (67 specs) | [Enter](./locales/zh-CN/README.md) |
+| English | en-US | Complete (67 specs) | [Enter](./locales/en-US/README.md) |
 | Traditional Chinese | zh-TW | Planned | — |
 | Japanese | ja-JP | Planned | — |
 | Korean | ko-KR | Planned | — |
@@ -107,7 +107,7 @@ Adding a language only requires creating the corresponding directory and transla
 | 3. Naming and documentation | Project naming, document matrix, README sections, writing standards, multilingual, feature writing, changelog, API documentation, Issue and PR templates, plus README template research, visual layout, badges, and category adaptation based on top-project research, and four copy-ready templates (disclaimer, code of conduct, contribution guide, SECURITY) |
 | 4. Development and engineering | Code style, Git workflow, commit messages, code review, testing, dependency management, architecture design, API design, database design, CI workflow, code ownership, accessibility |
 | 5. Quality and compliance | Review dimension matrix, quality gates, quality metrics, open-source compliance, NOTICE, LICENSE, security and privacy, audit report format, requirements traceability matrix |
-| 6. Release and operations | Push and release, version management, deployment and rollback, observability, incident response, open-source promotion, migration guide, troubleshooting, iteration retrospective |
+| 6. Release and operations | Push and release, version management, deployment and rollback, observability, incident response, open-source promotion, migration guide, troubleshooting, iteration retrospective, existing-project alignment checklist |
 | 7. AI and machine adaptation | Machine-readable metadata, Skill authoring, MCP tools, Agent invocation and prompts |
 
 The full file list and reading paths are in the [English entry](./locales/en-US/README.md).
