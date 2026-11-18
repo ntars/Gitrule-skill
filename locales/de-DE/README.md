@@ -1,6 +1,6 @@
 # Gesamtindex der deutschen Spezifikationen
 
-[简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](./README.md) | [Español](../es-ES/README.md)
+[简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](./README.md) | [Español](../es-ES/README.md) | [Português](../pt-BR/README.md)
 
 > Problem, das diese Datei löst: Sie dient als Navigation der deutschsprachigen Spezifikationssammlung und listet Zuständigkeit, zugehörigen Bereich und Lesepfad aller 67 Spezifikationen auf, damit die benötigten Dokumente gezielt gefunden werden.
 

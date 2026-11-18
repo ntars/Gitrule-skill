@@ -1,6 +1,6 @@
 # Index général des spécifications en français
 
-[简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](./README.md) | [Deutsch](../de-DE/README.md) | [Español](../es-ES/README.md)
+[简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](./README.md) | [Deutsch](../de-DE/README.md) | [Español](../es-ES/README.md) | [Português](../pt-BR/README.md)
 
 > Problème que ce fichier résout : servir de navigation pour l'ensemble des spécifications en français, en listant la responsabilité, le domaine d'appartenance et le parcours de lecture des 67 spécifications, afin de permettre de les consulter à la demande.
 

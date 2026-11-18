@@ -1,6 +1,6 @@
 # 繁體中文規範總索引
 
-[简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](./README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](../de-DE/README.md) | [Español](../es-ES/README.md)
+[简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](./README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](../de-DE/README.md) | [Español](../es-ES/README.md) | [Português](../pt-BR/README.md)
 
 > 本檔案解決什麼問題：作為繁體中文規範集的導航，列出全部 67 篇規範的職責、所屬域與閱讀路徑，便於按需取用。
 

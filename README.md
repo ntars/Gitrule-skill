@@ -2,7 +2,7 @@
 
 [English](./README_EN.md) | [简体中文](./README.md) | [繁體中文](./locales/zh-TW/README.md) | [日本語](./locales/ja-JP/README.md) | [한국어](./locales/ko-KR/README.md) | [Français](./locales/fr-FR/README.md) | [Deutsch](./locales/de-DE/README.md)
 
-![状态](https://img.shields.io/badge/status-8%20of%208%20语言已交付-brightgreen?style=flat-square)
+![状态](https://img.shields.io/badge/status-9%20of%209%20语言已交付-brightgreen?style=flat-square)
 
 > 一套覆盖项目全生命周期的通用规范模板：从立项、开发、文档、合规到发布运维与 AI 程序化调用。全仓库采用 MIT 许可证，可自由使用、修改与再发布。
 
@@ -91,7 +91,7 @@ MCP 注册示例（写入 MCP 配置的 `mcpServers`）：
 | 法语 | fr-FR | 已完成（67 篇） | [进入](./locales/fr-FR/README.md) |
 | 德语 | de-DE | 已完成（67 篇） | [进入](./locales/de-DE/README.md) |
 | 西班牙语 | es-ES | 已完成（67 篇） | [进入](./locales/es-ES/README.md) |
-| 葡萄牙语（巴西） | pt-BR | 待补充 | — |
+| 葡萄牙语（巴西） | pt-BR | 已完成（67 篇） | [进入](./locales/pt-BR/README.md) |
 | 俄语 | ru-RU | 待补充 | — |
 | 阿拉伯语 | ar-SA | 待补充 | — |
 | 印地语 | hi-IN | 待补充 | — |
