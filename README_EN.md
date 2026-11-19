@@ -2,7 +2,7 @@
 
 [简体中文](./README.md) | [English](./README_EN.md) | [繁體中文](./locales/zh-TW/README.md) | [日本語](./locales/ja-JP/README.md) | [한국어](./locales/ko-KR/README.md) | [Français](./locales/fr-FR/README.md) | [Deutsch](./locales/de-DE/README.md)
 
-![Status](https://img.shields.io/badge/status-9%20of%209%20languages%20delivered-brightgreen?style=flat-square)
+![Status](https://img.shields.io/badge/status-10%20of%2010%20languages%20delivered-brightgreen?style=flat-square)
 
 > A universal set of specification templates covering the full project lifecycle: from planning, development, and documentation to compliance, release, operations, and programmatic access for AI. The entire repository is MIT-licensed and may be freely used, modified, and redistributed.
 
@@ -83,16 +83,16 @@ MCP registration example (into the `mcpServers` block of an MCP configuration):
 
 | Language | Code | Status | Entry |
 | --- | --- | --- | --- |
-| Simplified Chinese | zh-CN | Complete (67 specs) | [Enter](./locales/zh-CN/README.md) |
-| English | en-US | Complete (67 specs) | [Enter](./locales/en-US/README.md) |
-| Traditional Chinese | zh-TW | Completed (67 specs) | [Enter](./locales/zh-TW/README.md) |
-| Japanese | ja-JP | Completed (67 specs) | [Enter](./locales/ja-JP/README.md) |
-| Korean | ko-KR | Completed (67 specs) | [Enter](./locales/ko-KR/README.md) |
-| French | fr-FR | Completed (67 specs) | [Enter](./locales/fr-FR/README.md) |
-| German | de-DE | Completed (67 specs) | [Enter](./locales/de-DE/README.md) |
+| Simplified Chinese | zh-CN | Complete (67 documents) | [Open](./locales/zh-CN/README.md) |
+| English | en-US | Complete (67 documents) | [Open](./locales/en-US/README.md) |
+| Traditional Chinese | zh-TW | Complete (67 documents) | [Open](./locales/zh-TW/README.md) |
+| Japanese | ja-JP | Complete (67 documents) | [Open](./locales/ja-JP/README.md) |
+| Korean | ko-KR | Complete (67 documents) | [Open](./locales/ko-KR/README.md) |
+| French | fr-FR | Complete (67 documents) | [Open](./locales/fr-FR/README.md) |
+| German | de-DE | Complete (67 documents) | [Open](./locales/de-DE/README.md) |
 | Spanish | es-ES | Complete (67 documents) | [Open](./locales/es-ES/README.md) |
 | Portuguese (Brazil) | pt-BR | Complete (67 documents) | [Open](./locales/pt-BR/README.md) |
-| Russian | ru-RU | Planned | — |
+| Russian | ru-RU | Complete (67 documents) | [Open](./locales/ru-RU/README.md) |
 | Arabic | ar-SA | Planned | — |
 | Hindi | hi-IN | Planned | — |
 
