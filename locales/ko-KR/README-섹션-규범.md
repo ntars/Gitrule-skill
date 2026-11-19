@@ -60,7 +60,7 @@ README 첫 화면은 네 가지 질문에 답해야 하며, 순서는 고정입�
 ## 2. 저작권 행 표준 형식
 
 ```text
-Copyright © {{연도}} {{저작권자}}. Licensed under {{SPDX 식별자}}.
+Copyright © {{年份}} {{著作权人}}. Licensed under {{SPDX 标识符}}.
 ```
 
 ## 관련 파일

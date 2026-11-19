@@ -98,7 +98,7 @@
 | [Migration Guide Specification](./migration-guide-specification.md) | Defines migration steps for breaking changes and release coordination |
 | [Troubleshooting Specification](./troubleshooting-specification.md) | Defines the structure and entry writing of FAQ and troubleshooting documents |
 | [Iteration Retrospective Specification](./iteration-retrospective-specification.md) | Defines the data, root causes, improvement actions, and closure verification of iteration retrospectives |
-| [Existing-Project Alignment Checklist](./existing-project-alignment-checklist.md) | Defines item-by-item checks, judgement methods and acceptance records when bringing an existing project under this specification set |
+| [Legacy-Project Alignment Checklist](./legacy-project-alignment-checklist.md) | Defines item-by-item checks, judgement methods and acceptance records when bringing an existing project under this specification set |
 
 ## 7. AI and Machine Adaptation (4 specifications)
 

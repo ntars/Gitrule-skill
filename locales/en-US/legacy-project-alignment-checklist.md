@@ -104,19 +104,19 @@ For repositories with three or more languages, add:
 ## 5. Acceptance record template
 
 ```text
-Repository: {{repository}}
-Date: {{date}}
-Specification version: {{version or commit}}
+Repository: {{仓库名}}
+Date: {{日期}}
+Specification version: {{版本或提交号}}
 
-Metadata: A1 {{pass/fail}} A2 {{ }} A3 {{ }} A4 {{ }} A5 {{ }}
+Metadata: A1 {{通过/不通过}} A2 {{通过/不通过}} A3 {{通过/不通过}} A4 {{通过/不通过}} A5 {{通过/不通过}}
 File naming: B1 {{ }} B2 {{ }} B3 {{ }} B4 {{ }} B5 {{ }}
 Section structure: C1 {{ }} C2 {{ }} C3 {{ }} C4 {{ }} C5 {{ }}
 Bilingual: D1 {{ }} D2 {{ }} D3 {{ }} D4 {{ }} D5 {{ }}
 Links and content: E1 {{ }} E2 {{ }} E3 {{ }} E4 {{ }} E5 {{ }} E6 {{ }}
 Community and release: F1 {{ }} F2 {{ }} F3 {{ }} F4 {{ }} F5 {{ }}
 
-Failures and handling: {{item by item}}
-Release conclusion: {{pass / conditional pass / blocked}}
+Failures and handling: {{逐条列出}}
+Release conclusion: {{通过 / 有条件通过 / 阻断}}
 ```
 
 ## 6. Field definitions
