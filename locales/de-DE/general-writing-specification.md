@@ -38,6 +38,7 @@
 2. Formelle Platzhalter müssen in der Platzhaltertabelle der zugehörigen Vorlage registriert werden; der Eintrag enthält Bedeutung, Beispiel und Angabe zur Pflicht.
 3. Inhalt in geschweiften Klammern natürlicher Sprache in Spezifikationsbeispielen oder Ausfüllhinweisen dient nur als Beispiel, ist kein formeller Platzhalter und wird nicht in die Tabelle aufgenommen; bei der Erzeugung des endgültigen Dokuments muss er vollständig durch tatsächliche Inhalte ersetzt werden.
 4. Verschachtelte geschweifte Klammern, Backticks oder ein zweiter Platzhalter dürfen nicht als Platzhaltername verwendet werden.
+5. Bei der Übersetzung müssen Platzhalternamen zeichengenau mit der Ausgangssprache übereinstimmen; sie dürfen weder lokalisiert noch transliteriert oder umschrieben werden. Übersetzt werden darf nur erklärender Text außerhalb der Platzhalter. Ein Platzhalter ist der Anker für die Vorlagenersetzung; wird sein Name übersetzt, scheitern sprachübergreifende Zuordnung und Sammelersetzung.
 
 ## 6. Verbotsliste
 

@@ -1,6 +1,6 @@
 ---
 name: gitrule-optimize
-description: Use this skill when a user asks to check, audit, or one-click optimize Markdown documentation sets against the Gitrule specification, including broken links, placeholder registration, code fences, index counts, and language coverage. Trigger phrases include 文档规范检查, 一键优化文档, Gitrule, 断链检查, 占位符校验.
+description: Use this skill when a user asks to check, audit, or one-click optimize Markdown documentation sets against the Gitrule specification, including broken links, placeholder registration, code fences, index counts, language coverage, and cross-language structural consistency. Trigger phrases include 文档规范检查, 一键优化文档, 文档一致性检查, Gitrule, 断链检查, 占位符校验, 跨语种校验.
 agent_created: true
 ---
 
@@ -13,6 +13,7 @@ agent_created: true
 ## 何时使用
 
 - 用户要求检查文档集的断链、孤岛、占位符、代码围栏或索引计数。
+- 用户要求校验多语种之间的结构一致性（标题、表格、占位符是否漂移）。
 - 用户要求“一键优化”文档规范一致性。
 - 用户要求按语言码列出规范、读取某篇规范全文，或查看语言适配状态。
 
@@ -33,6 +34,13 @@ python3 ../cli/gitrule.py optimize --path <仓库根目录> --lang all
 # 执行安全修复并备份
 python3 ../cli/gitrule.py optimize --path <仓库根目录> --lang all --fix --backup
 
+# 跨语种结构一致性校验（以某语种为基准，逐篇比对）
+python3 ../cli/gitrule.py xcheck --path <仓库根目录> --reference zh-CN
+
+# 只校验单个语种，或输出 JSON
+python3 ../cli/gitrule.py xcheck --path <仓库根目录> --lang en-US --reference zh-CN
+python3 ../cli/gitrule.py xcheck --path <仓库根目录> --reference zh-CN --json
+
 # 列出规范 / 读取单篇 / 查看语言状态
 python3 ../cli/gitrule.py list --path <仓库根目录> --lang zh-CN
 python3 ../cli/gitrule.py spec --path <仓库根目录> --lang zh-CN --name 硬规则.md
@@ -43,9 +51,10 @@ python3 ../cli/gitrule.py status --path <仓库根目录>
 
 1. 确定仓库根目录与语言码；未指定时检查 `zh-CN` 与 `en-US`。
 2. 先执行只读 `check`，把问题按 `file / type / detail` 汇总给用户。
-3. 对 `bare-code-fence` 类问题，执行 `optimize` 预览；用户确认后再加 `--fix --backup`。
-4. 对 `broken-link`、`unregistered-placeholder`、`index-count` 等问题，只报告不自动改写，依据 `references/optimization-rules.md` 给出人工修正建议。
-5. 修复后再次执行 `check`，确认问题数归零。
+3. 涉及多语种时，再执行 `xcheck` 以 `zh-CN` 为基准逐篇比对标题、围栏、链接、有序/无序列表、表格形状与占位符集合；差异项定位到具体文件与轴。
+4. 对 `bare-code-fence` 类问题，执行 `optimize` 预览；用户确认后再加 `--fix --backup`。
+5. 对 `broken-link`、`unregistered-placeholder`、`index-count`、`cross-*` 等问题，只报告不自动改写，依据 `references/optimization-rules.md` 给出人工修正建议。
+6. 修复后再次执行 `check` 与 `xcheck`，确认问题数归零。
 
 ## 安全边界
 

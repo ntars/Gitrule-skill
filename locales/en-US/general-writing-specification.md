@@ -38,6 +38,7 @@
 2. Formal placeholders must be registered in the placeholder mapping table of the template to which they belong; the registration entry includes meaning, example, and whether it is required.
 3. Natural-language brace content in specification examples or filling prompts is for illustration only, does not count as a formal placeholder, and is not included in the mapping table; when generating the final document it must all be replaced with actual content.
 4. Nested braces, backticks, or a second placeholder must not be used as a placeholder name.
+5. When translating, placeholder names must match the source language verbatim; they must not be localized, transliterated, or paraphrased. Only explanatory text outside the placeholders may be translated. A placeholder is the anchor for template substitution; once its name is translated, cross-language mapping and batch replacement break down.
 
 ## 6. Prohibition List
 

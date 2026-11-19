@@ -38,6 +38,7 @@
 2. Os marcadores de posição formais devem ser registrados na tabela de correspondência de marcadores de posição do modelo a que pertencem, e o registro inclui significado, exemplo e se é obrigatório.
 3. O conteúdo entre chaves em linguagem natural, presente em exemplos de especificação ou dicas de preenchimento, serve apenas de exemplo, não é marcador de posição formal e não entra na tabela de correspondência; na geração da documentação final, deve ser integralmente substituído pelo conteúdo real.
 4. Não devem ser usadas chaves aninhadas, crases nem um segundo marcador de posição como nome de marcador de posição.
+5. Na tradução, o nome dos marcadores de posição deve coincidir literalmente com o idioma de origem; não deve ser localizado, transliterado nem parafraseado. Apenas o texto explicativo fora dos marcadores pode ser traduzido. Um marcador é a âncora da substituição de modelo: se seu nome for traduzido, a correspondência entre idiomas e a substituição em lote deixam de funcionar.
 
 ## 6. Lista de proibições
 

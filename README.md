@@ -66,6 +66,9 @@ python3 cli/gitrule.py list --lang zh-CN --path .
 
 # 对中文规范执行安全自动修复
 python3 cli/gitrule.py optimize --path . --lang zh-CN
+
+# 跨语种结构一致性校验（以中文为基准，比对全部译语种）
+python3 cli/gitrule.py xcheck --path . --reference zh-CN
 ```
 
 MCP 注册示例（写入 MCP 配置的 `mcpServers`）：

@@ -111,6 +111,19 @@ def tools():
                 },
             },
         },
+        {
+            "name": "gitrule_xcheck",
+            "title": "跨语种结构校验",
+            "description": "以某一语种为基准，比对其他语种的标题、围栏、链接、列表、表格行列与占位符是否一致，返回结构化差异列表。",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "path": {"type": "string", "description": "仓库根目录，默认当前目录"},
+                    "lang": {"type": "string", "description": "待比对语言码或 all，默认 all"},
+                    "reference": {"type": "string", "description": "参考语种，默认 zh-CN"},
+                },
+            },
+        },
     ]
 
 
@@ -137,6 +150,19 @@ def run_tool(name, arguments):
         return gitrule.get_spec(root, arguments.get("lang", "zh-CN"), arguments.get("name", ""))
     if name == "gitrule_language_status":
         return json.dumps(gitrule.language_status(root), ensure_ascii=False, indent=2)
+    if name == "gitrule_xcheck":
+        reference = arguments.get("reference", "zh-CN")
+        langs = [lang for lang in gitrule.SUPPORTED_LANGS if lang != reference]
+        if arguments.get("lang", "all") != "all":
+            langs = [arguments["lang"]]
+        issues = []
+        for lang in langs:
+            issues.extend(gitrule.cross_check_language(root, lang, reference))
+        return json.dumps(
+            {"reference": reference, "compared": langs, "issueCount": len(issues), "issues": issues},
+            ensure_ascii=False,
+            indent=2,
+        )
     raise ValueError(f"未知工具：{name}")
 
 

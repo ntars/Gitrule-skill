@@ -38,6 +38,7 @@
 2. Un espace réservé officiel doit être enregistré dans le tableau de correspondance des espaces réservés du gabarit auquel il appartient ; l'entrée comprend la signification, un exemple et le caractère obligatoire ou non.
 3. Le contenu entre accolades en langage naturel présent dans les exemples de spécification ou les indications de saisie n'est qu'illustratif, ne constitue pas un espace réservé officiel et n'est pas inscrit au tableau de correspondance ; lors de la génération du document final, il doit être entièrement remplacé par le contenu réel.
 4. Il est interdit d'utiliser des accolades imbriquées, des accents graves ou un second espace réservé comme nom d'espace réservé.
+5. Lors de la traduction, le nom des espaces réservés doit être identique mot pour mot à la langue source ; il ne doit être ni localisé, ni translittéré, ni paraphrasé. Seul le texte explicatif situé hors des espaces réservés peut être traduit. Un espace réservé est l'ancre de la substitution de gabarit : une fois son nom traduit, la correspondance entre langues et le remplacement par lot cessent de fonctionner.
 
 ## 6. Liste des interdictions
 

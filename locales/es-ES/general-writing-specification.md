@@ -38,6 +38,7 @@
 2. Los marcadores de posición formales deben registrarse en la tabla de correspondencia de marcadores de posición de la plantilla a la que pertenecen; la entrada de registro incluye el significado, un ejemplo y si es obligatorio.
 3. El contenido entre llaves en lenguaje natural de los ejemplos de especificación o de las indicaciones de cumplimentación es solo un ejemplo y no constituye un marcador de posición formal, por lo que no se incluye en la tabla de correspondencia; al generar el documento final debe sustituirse en su totalidad por el contenido real.
 4. No deben usarse llaves anidadas, comillas invertidas ni un segundo marcador de posición como nombre de un marcador de posición.
+5. Al traducir, el nombre de los marcadores de posición debe coincidir literalmente con el idioma de origen; no debe localizarse, transliterarse ni parafrasearse. Solo puede traducirse el texto explicativo situado fuera de los marcadores. Un marcador es el ancla de la sustitución de plantilla: si se traduce su nombre, la correspondencia entre idiomas y el reemplazo masivo dejan de funcionar.
 
 ## 6. Lista de prohibiciones
 

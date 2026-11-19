@@ -183,6 +183,130 @@ def check_language(root, lang):
     return issues
 
 
+CROSS_AXES = ("heading", "fence", "link", "ordered", "unordered")
+
+
+def cross_metrics(text):
+    """提取用于跨语种比对的八轴结构指标。
+
+    章号形态（`## 一、` 与 `## 1.`）先归一，其余数字保留，供占位符与数字比对。
+    """
+    normalized = re.sub(r"^## [一二三四五六七八九十]+、", "## ", text, flags=re.M)
+    normalized = re.sub(r"^## \d+\. ", "## ", normalized, flags=re.M)
+    table = [line for line in text.split("\n") if line.strip().startswith("|")]
+    return {
+        "heading": len(re.findall(r"^#{1,6} ", text, re.M)),
+        "fence": len(re.findall(r"^```", text, re.M)),
+        "link": len(re.findall(r"\]\(", text)),
+        "ordered": len(re.findall(r"^\d+\. ", text, re.M)),
+        "unordered": len(re.findall(r"^[-*] ", text, re.M)),
+        "table": table,
+        "placeholder": sorted(re.findall(r"\{\{[^{}]*\}\}", normalized)),
+    }
+
+
+def table_shape(table):
+    """把表格行转为「每行列数」序列，用于逐行比对列数是否一致。"""
+    shape = []
+    for line in table:
+        cells = line.strip().strip("|")
+        shape.append(cells.count("|") + 1 if cells else 0)
+    return shape
+
+
+def index_links(directory):
+    """按出现顺序读取索引页的规范链接，作为跨语种文件名的一一映射依据。"""
+    index = directory / "README.md"
+    if not index.exists():
+        return []
+    text = index.read_text(encoding="utf-8")
+    return re.findall(r"\]\(\./([^)#]+\.md)\)", text)
+
+
+def cross_check_language(root, lang, reference="zh-CN"):
+    """以参考语种为基准，比对某一语种的结构是否一致。
+
+    文件名映射完全依赖两个语种索引页的链接顺序，不依赖外部映射表，
+    因此新增语种时无需额外维护清单。
+
+    检查顺序固定，前面的分支一旦命中即返回，不再进入后续比对：
+    目标目录缺失 -> 参考索引无链接 -> 两索引链接数不等 -> 逐篇比对。
+
+    注意 cross-missing-reference 表示**参考语种自己**索引里有、但目录里
+    没有该文件；因为逐语种独立调用，同一个缺失会按语种数各报一条。
+    """
+    base_dir = Path(root) / "locales" / reference
+    target_dir = Path(root) / "locales" / lang
+    if not target_dir.exists():
+        return [{"file": lang, "type": "cross-missing-language", "detail": str(target_dir)}]
+    base_names = index_links(base_dir)
+    target_names = index_links(target_dir)
+    if not base_names:
+        return [{"file": reference, "type": "cross-no-reference", "detail": "索引页无规范链接"}]
+    if len(base_names) != len(target_names):
+        return [{
+            "file": lang,
+            "type": "cross-index-count",
+            "detail": f"索引链接 {len(target_names)}，参考 {reference} 为 {len(base_names)}",
+        }]
+
+    issues = []
+    for base_name, target_name in zip(base_names, target_names):
+        base_path = base_dir / base_name
+        target_path = target_dir / target_name
+        if not base_path.exists():
+            issues.append({"file": base_name, "type": "cross-missing-reference", "detail": reference})
+            continue
+        if not target_path.exists():
+            issues.append({
+                "file": target_name,
+                "type": "cross-broken-index",
+                "detail": f"{lang} 索引指向不存在的文件",
+            })
+            continue
+        base_m = cross_metrics(base_path.read_text(encoding="utf-8"))
+        target_m = cross_metrics(target_path.read_text(encoding="utf-8"))
+        # 索引页的语言切换条比参考语种多一个本语种自链接，属固有条目。
+        is_index = target_name == "README.md"
+        for axis in CROSS_AXES:
+            base_v, target_v = base_m[axis], target_m[axis]
+            if is_index and axis == "link" and target_v - base_v == 1:
+                continue
+            if base_v != target_v:
+                issues.append({
+                    "file": target_name,
+                    "type": f"cross-{axis}",
+                    "detail": f"{lang} {target_v}，参考 {base_v}",
+                })
+        base_shape = table_shape(base_m["table"])
+        target_shape = table_shape(target_m["table"])
+        if len(base_shape) != len(target_shape):
+            issues.append({
+                "file": target_name,
+                "type": "cross-table-rows",
+                "detail": f"{lang} {len(target_shape)}，参考 {len(base_shape)}",
+            })
+        else:
+            for row, (base_col, target_col) in enumerate(zip(base_shape, target_shape), 1):
+                if base_col != target_col:
+                    issues.append({
+                        "file": target_name,
+                        "type": "cross-table-columns",
+                        "detail": f"第 {row} 行 {lang} {target_col} 列，参考 {base_col} 列",
+                    })
+                    break
+        if base_m["placeholder"] != target_m["placeholder"]:
+            missing = sorted(set(base_m["placeholder"]) - set(target_m["placeholder"]))
+            extra = sorted(set(target_m["placeholder"]) - set(base_m["placeholder"]))
+            detail = f"缺失 {len(missing)} 个，多出 {len(extra)} 个"
+            if missing:
+                detail += f"；首个缺失 {missing[0]}"
+            if extra:
+                detail += f"；首个多出 {extra[0]}"
+            issues.append({"file": target_name, "type": "cross-placeholder", "detail": detail})
+    return issues
+
+
 def list_specs(root, lang):
     """列出语言目录内全部规范文件名。"""
     directory = Path(root) / "locales" / lang
@@ -263,6 +387,12 @@ def print_report(report, as_json):
     elif "languages" in report and isinstance(report["languages"], list):
         for row in report["languages"]:
             print(f"{row['code']}\t{row['status']}\t{row['language']}")
+    elif "cross" in report:
+        print(f"参考语种：{report['reference']}")
+        print(f"比对语种：{', '.join(report['compared']) or '无'}")
+        print(f"检查篇目：{report['documents']}，问题数：{len(report['cross'])}")
+        for item in report["cross"]:
+            print(f"- {item['file']} / {item['type']}：{item['detail']}")
 
 
 def main():
@@ -296,6 +426,12 @@ def main():
     status = sub.add_parser("status", help="查看语言适配状态")
     status.add_argument("--path", default=".", help="仓库根目录")
     status.add_argument("--json", action="store_true", help="输出 JSON")
+
+    xcheck = sub.add_parser("xcheck", help="跨语种结构一致性校验")
+    xcheck.add_argument("--path", default=".", help="仓库根目录")
+    xcheck.add_argument("--lang", default="all", help="待比对语言码或 all")
+    xcheck.add_argument("--reference", default="zh-CN", help="参考语种")
+    xcheck.add_argument("--json", action="store_true", help="输出 JSON")
 
     args = parser.parse_args()
     root = os.path.abspath(args.path)
@@ -338,6 +474,23 @@ def main():
     if args.command == "status":
         print_report({"languages": language_status(root)}, args.json)
         return 0
+
+    if args.command == "xcheck":
+        langs = [lang for lang in SUPPORTED_LANGS if lang != args.reference]
+        if args.lang != "all":
+            langs = [args.lang]
+        issues = []
+        for lang in langs:
+            issues.extend(cross_check_language(root, lang, args.reference))
+        documents = len(index_links(Path(root) / "locales" / args.reference))
+        report = {
+            "reference": args.reference,
+            "compared": langs,
+            "documents": documents,
+            "cross": issues,
+        }
+        print_report(report, args.json)
+        return 1 if issues else 0
 
     return 2
 

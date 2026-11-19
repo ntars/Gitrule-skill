@@ -66,6 +66,9 @@ python3 cli/gitrule.py list --lang zh-CN --path .
 
 # Run safe auto-fixes on the Chinese set
 python3 cli/gitrule.py optimize --path . --lang zh-CN
+
+# Cross-language structural consistency check against the Chinese reference
+python3 cli/gitrule.py xcheck --path . --reference zh-CN
 ```
 
 MCP registration example (into the `mcpServers` block of an MCP configuration):
