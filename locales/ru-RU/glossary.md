@@ -20,12 +20,37 @@
 | 持续集成 / 持续交付 | Continuous Integration / Continuous Delivery | CI/CD | Автоматизированный процесс сборки, тестирования и доставки |
 | 软件许可证标识符 | Software Package Data Exchange | SPDX | Система стандартных идентификаторов лицензий |
 | 最小可行产品 | Minimum Viable Product | MVP | Минимальная версия, позволяющая проверить ключевую гипотезу |
-| 自然语言处理器 | Natural Language Processing | NLP | Технологии обработки текста |
+| 自然语言处理 | Natural Language Processing | NLP | Технологии обработки текста |
 | 大模型 | Large Language Model | LLM | Масштабная предварительно обученная языковая модель |
 | 模型上下文协议 | Model Context Protocol | MCP | Протокол подключения моделей к внешним инструментам |
 | 待补充 | To Be Determined | TBD | Пометка-заполнитель для ещё не подтверждённой информации |
 
 > Пункты таблицы являются типовыми примерами; перед использованием их следует дополнить или сократить в соответствии с фактической терминологией проекта.
+
+## 3. Матрица терминов на разных языках
+
+| Код | Язык | SemVer | ADR | CoC | CI/CD | MCP | TBD |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `zh-CN` | 简体中文 | 语义化版本 | 架构决策记录 | 行为准则 | 持续集成 | 模型上下文协议 | 待补充 |
+| `zh-TW` | 繁體中文 | 語義化版本 | 架構決策記錄 | 行為準則 | 持續整合 | 模型上下文協議 | 待補充 |
+| `en-US` | English | Semantic Versioning | Architecture Decision Record | Code of Conduct | Continuous Integration | Model Context Protocol | TBD |
+| `ja-JP` | 日本語 | セマンティックバージョニング | アーキテクチャ決定記録 | 行動規範 | 継続的インテグレーション | モデルコンテキストプロトコル | 未定 |
+| `ko-KR` | 한국어 | 시맨틱 버저닝 | 아키텍처 결정 기록 | 행동 강령 | 지속적 통합 | 모델 컨텍스트 프로토콜 | 미정 |
+| `fr-FR` | Français | versionnage sémantique | décision d'architecture | code de conduite | intégration continue | protocole de contexte de modèle | À compléter |
+| `de-DE` | Deutsch | semantische Versionierung | Architekturentscheidung | Verhaltenskodex | kontinuierliche Integration | Model Context Protocol | Zu ergänzen |
+| `es-ES` | Español | versionado semántico | registros de decisión de arquitectura | código de conducta | integración continua | protocolo de contexto de modelo | pendiente |
+| `pt-BR` | Português | versionamento semântico | registro de decisão de arquitetura | código de conduta | integração contínua | protocolo de contexto de modelo | pendente |
+| `ru-RU` | Русский | семантическое версионирование | запись архитектурных решений | Кодекс поведения | непрерывная интеграция | протокол контекста модели | будет дополнено |
+| `ar-SA` | العربية | الإصدار الدلالي | القرارات المعمارية | مدونة السلوك | التكامل المستمر | بروتوكول سياق النموذج | قيد الاستكمال |
+| `hi-IN` | हिन्दी | SemVer | संरचना निर्णय अभिलेख | आचार संहिता | सतत एकीकरण | मॉडल संदर्भ प्रोटोकॉल | पूर्ति शेष |
+
+- **Общие сокращения**: Используются в тексте каждого языка без изменений и никогда не локализуются: SBOM, SPDX, ADR, SemVer, CoC, CI/CD, MVP, NLP, LLM, MCP, TBD.
+
+В этой таблице для каждого термина закреплён один перевод на язык, на который следует ссылаться при добавлении языка или при сквозной замене. Термины даны в цитатной форме (именительный падеж или инфинитив); в русском и немецком тексте они склоняются, поэтому искать следует по основе.
+
+Критерий включения: приводятся только термины, реально встречающиеся в тексте, и каждая ячейка ниже находится поиском в каталоге соответствующего языка. SBOM, MVP, NLP и LLM не встречаются в тексте ни одного из двенадцати языков ни разу и существуют только как примеры в таблице соответствий предыдущего раздела, поэтому в матрицу не входят. SPDX в каждом языке всегда используется только как аббревиатура, полная форма не встречается нигде, поэтому он приведён выше, в строке сокращений, вместе с остальными и без столбца перевода.
+
+При добавлении языка сначала дополните переводы по этой таблице, затем выполните `python3 cli/gitrule.py xcheck --path . --reference zh-CN`, чтобы проверить структурную согласованность.
 
 ## Связанные файлы
 

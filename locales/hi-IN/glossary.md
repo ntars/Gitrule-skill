@@ -20,12 +20,37 @@
 | 持续集成 / 持续交付 | Continuous Integration / Continuous Delivery | CI/CD | स्वचालित निर्माण, परीक्षण और परिदान की प्रक्रिया |
 | 软件许可证标识符 | Software Package Data Exchange | SPDX | लाइसेंस के मानक पहचानकर्ताओं की प्रणाली |
 | 最小可行产品 | Minimum Viable Product | MVP | मुख्य परिकल्पना को सत्यापित करने योग्य न्यूनतम संस्करण |
-| 自然语言处理器 | Natural Language Processing | NLP | पाठ प्रसंस्करण से संबंधित तकनीकें |
+| 自然语言处理 | Natural Language Processing | NLP | पाठ प्रसंस्करण से संबंधित तकनीकें |
 | 大模型 | Large Language Model | LLM | बड़े पैमाने पर पूर्व-प्रशिक्षित भाषा मॉडल |
 | 模型上下文协议 | Model Context Protocol | MCP | मॉडल को बाहरी उपकरणों से जोड़ने वाला प्रोटोकॉल |
 | 待补充 | To Be Determined | TBD | वह प्लेसहोल्डर चिह्न जिसकी जानकारी अभी पुष्टि नहीं हुई |
 
 > सूची की प्रविष्टियाँ सामान्य उदाहरण हैं; उपयोग से पहले परियोजना के वास्तविक पदों के अनुसार उन्हें जोड़ें या हटाएँ।
+
+## 3. बहुभाषी शब्दावली मैट्रिक्स
+
+| कोड | भाषा | SemVer | ADR | CoC | CI/CD | MCP | TBD |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `zh-CN` | 简体中文 | 语义化版本 | 架构决策记录 | 行为准则 | 持续集成 | 模型上下文协议 | 待补充 |
+| `zh-TW` | 繁體中文 | 語義化版本 | 架構決策記錄 | 行為準則 | 持續整合 | 模型上下文協議 | 待補充 |
+| `en-US` | English | Semantic Versioning | Architecture Decision Record | Code of Conduct | Continuous Integration | Model Context Protocol | TBD |
+| `ja-JP` | 日本語 | セマンティックバージョニング | アーキテクチャ決定記録 | 行動規範 | 継続的インテグレーション | モデルコンテキストプロトコル | 未定 |
+| `ko-KR` | 한국어 | 시맨틱 버저닝 | 아키텍처 결정 기록 | 행동 강령 | 지속적 통합 | 모델 컨텍스트 프로토콜 | 미정 |
+| `fr-FR` | Français | versionnage sémantique | décision d'architecture | code de conduite | intégration continue | protocole de contexte de modèle | À compléter |
+| `de-DE` | Deutsch | semantische Versionierung | Architekturentscheidung | Verhaltenskodex | kontinuierliche Integration | Model Context Protocol | Zu ergänzen |
+| `es-ES` | Español | versionado semántico | registros de decisión de arquitectura | código de conducta | integración continua | protocolo de contexto de modelo | pendiente |
+| `pt-BR` | Português | versionamento semântico | registro de decisão de arquitetura | código de conduta | integração contínua | protocolo de contexto de modelo | pendente |
+| `ru-RU` | Русский | семантическое версионирование | запись архитектурных решений | Кодекс поведения | непрерывная интеграция | протокол контекста модели | будет дополнено |
+| `ar-SA` | العربية | الإصدار الدلالي | القرارات المعمارية | مدونة السلوك | التكامل المستمر | بروتوكول سياق النموذج | قيد الاستكمال |
+| `hi-IN` | हिन्दी | SemVer | संरचना निर्णय अभिलेख | आचार संहिता | सतत एकीकरण | मॉडल संदर्भ प्रोटोकॉल | पूर्ति शेष |
+
+- **सामान्य संक्षेपण**: हर भाषा के पाठ में ज्यों के त्यों प्रयुक्त होते हैं और कभी स्थानीयकृत नहीं होते: SBOM, SPDX, ADR, SemVer, CoC, CI/CD, MVP, NLP, LLM, MCP, TBD.
+
+यह तालिका प्रत्येक शब्द के लिए हर भाषा में एक निश्चित अनुवाद तय करती है, जिसे नई भाषा जोड़ते समय या पूरे पाठ में प्रतिस्थापन करते समय सीधे उद्धृत किया जा सके। शब्द उद्धरण रूप (कर्ता कारक या मूल रूप) में दिए गए हैं; रूसी और जर्मन पाठ में ये रूप बदलते हैं, इसलिए मूलांश से खोजें।
+
+समावेशन का आधार: केवल वे शब्द रखे गए हैं जिनके पाठ में वास्तविक प्रयोग हैं, और नीचे की प्रत्येक कोठरी उस भाषा की निर्देशिका में खोजने पर मिलती है। SBOM, MVP, NLP और LLM बारह भाषाओं के पाठ में एक बार भी नहीं आते और पिछले अनुभाग की तुलना तालिका में केवल उदाहरण के रूप में मौजूद हैं, इसलिए इन्हें मैट्रिक्स में नहीं रखा गया। SPDX हर भाषा के पाठ में सदैव केवल संक्षेपण के रूप में प्रयुक्त होता है और उसका पूर्ण रूप कभी नहीं आता, इसलिए वह ऊपर संक्षेपण पंक्ति में शेष संक्षेपणों के साथ दिया गया है, अनुवाद स्तंभ के बिना।
+
+नई भाषा जोड़ते समय पहले इस तालिका के अनुसार अनुवाद भरें, फिर संरचनात्मक एकरूपता जाँचने के लिए `python3 cli/gitrule.py xcheck --path . --reference zh-CN` चलाएँ।
 
 ## संबंधित फ़ाइलें
 

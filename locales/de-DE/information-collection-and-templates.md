@@ -63,7 +63,7 @@ Anwendungsregeln:
 
 | Nr. | Komponentenname | Version | Einbindungsart | Rechteinhaber | Lizenz | Offizielle Adresse | Zweck in diesem Projekt | Geändert | Änderungsbeschreibung | Position im Originaltext |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | 待补充 | 待补充 | direkt | 待补充 | 待补充 | 待补充 | 待补充 | nein | keine | 待补充 |
+| 1 | Zu ergänzen | Zu ergänzen | direkt | Zu ergänzen | Zu ergänzen | Zu ergänzen | Zu ergänzen | nein | keine | Zu ergänzen |
 
 Feldanforderungen siehe [Open-Source-Compliance-Spezifikation](./open-source-compliance-specification.md).
 
