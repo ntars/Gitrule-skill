@@ -1,6 +1,6 @@
 # GitHub 规范化交付规范集
 
-[English](./README_EN.md) | [简体中文](./README.md) | [繁體中文](./locales/zh-TW/README.md) | [日本語](./locales/ja-JP/README.md) | [한국어](./locales/ko-KR/README.md) | [Français](./locales/fr-FR/README.md) | [Deutsch](./locales/de-DE/README.md)
+[English](./README_EN.md) | [简体中文](./README.md) | [繁體中文](./locales/zh-TW/README.md) | [日本語](./locales/ja-JP/README.md) | [한국어](./locales/ko-KR/README.md) | [Français](./locales/fr-FR/README.md) | [Deutsch](./locales/de-DE/README.md) | [العربية](./locales/ar-SA/README.md)
 
 ![状态](https://img.shields.io/badge/status-11%20of%2012%20语言已交付-brightgreen?style=flat-square)
 
