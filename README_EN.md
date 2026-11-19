@@ -2,7 +2,7 @@
 
 [简体中文](./README.md) | [English](./README_EN.md) | [繁體中文](./locales/zh-TW/README.md) | [日本語](./locales/ja-JP/README.md) | [한국어](./locales/ko-KR/README.md) | [Français](./locales/fr-FR/README.md) | [Deutsch](./locales/de-DE/README.md)
 
-![Status](https://img.shields.io/badge/status-10%20of%2010%20languages%20delivered-brightgreen?style=flat-square)
+![Status](https://img.shields.io/badge/status-11%20of%2012%20languages%20delivered-brightgreen?style=flat-square)
 
 > A universal set of specification templates covering the full project lifecycle: from planning, development, and documentation to compliance, release, operations, and programmatic access for AI. The entire repository is MIT-licensed and may be freely used, modified, and redistributed.
 
@@ -93,7 +93,7 @@ MCP registration example (into the `mcpServers` block of an MCP configuration):
 | Spanish | es-ES | Complete (67 documents) | [Open](./locales/es-ES/README.md) |
 | Portuguese (Brazil) | pt-BR | Complete (67 documents) | [Open](./locales/pt-BR/README.md) |
 | Russian | ru-RU | Complete (67 documents) | [Open](./locales/ru-RU/README.md) |
-| Arabic | ar-SA | Planned | — |
+| Arabic | ar-SA | Complete (67 docs) | [Open](./locales/ar-SA/README.md) |
 | Hindi | hi-IN | Planned | — |
 
 Adding a language only requires creating the corresponding directory and translating according to the same specifications, without changing existing language files.
