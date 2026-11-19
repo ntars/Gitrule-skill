@@ -11,7 +11,7 @@ Los parámetros descritos en este archivo se verificaron con la documentación o
 Las insignias estáticas reciben parámetros a través de la ruta de la URL; la estructura estándar es la siguiente:
 
 ```text
-https://img.shields.io/badge/<标签>-<消息>-<颜色>?style=<样式>&<其他查询参数>
+https://img.shields.io/badge/<etiqueta>-<mensaje>-<color>?style=<estilo>&<otros parámetros de consulta>
 ```
 
 Los tres segmentos de la ruta se separan con guiones `-`:
@@ -25,7 +25,7 @@ Los tres segmentos de la ruta se separan con guiones `-`:
 La forma de dos segmentos (se omite la etiqueta y solo quedan mensaje y color) también es válida:
 
 ```text
-https://img.shields.io/badge/<消息>-<颜色>
+https://img.shields.io/badge/<mensaje>-<color>
 ```
 
 ### 1.2 Reglas de escape de caracteres

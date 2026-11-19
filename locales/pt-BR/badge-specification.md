@@ -11,7 +11,7 @@ Os parâmetros descritos neste arquivo foram verificados na documentação ofici
 Os selos estáticos recebem parâmetros pelo caminho da URL, com a seguinte estrutura padrão:
 
 ```text
-https://img.shields.io/badge/<标签>-<消息>-<颜色>?style=<样式>&<其他查询参数>
+https://img.shields.io/badge/<rótulo>-<mensagem>-<cor>?style=<estilo>&<outros parâmetros de consulta>
 ```
 
 Os três segmentos do caminho são separados por hífen `-`:
@@ -25,7 +25,7 @@ Os três segmentos do caminho são separados por hífen `-`:
 A forma de dois segmentos (omitindo o rótulo, com apenas mensagem e cor) também é válida:
 
 ```text
-https://img.shields.io/badge/<消息>-<颜色>
+https://img.shields.io/badge/<mensagem>-<cor>
 ```
 
 ### 1.2 Regras de escape de caracteres
@@ -227,7 +227,7 @@ A implementação padrão do item 6 da seção 7.1 (“estado personalizado do p
 ![Status](https://img.shields.io/badge/status-4%20of%204%20delivered-brightgreen?style=flat-square)
 ```
 
-1. A estrutura padrão é `badge/<标签>-<消息>-<颜色>`, com estilo uniforme `?style=flat-square`; o significado do exemplo é “4 de 4 entregáveis entregues”.
+1. A estrutura padrão é `badge/<rótulo>-<mensagem>-<cor>`, com estilo uniforme `?style=flat-square`; o significado do exemplo é “4 de 4 entregáveis entregues”.
 2. No texto da mensagem, espaços são escritos como `%20`, hífens como `--` e sublinhados como `__`; não deve haver quebras de linha nem outros caracteres especiais não escapados.
 3. Convenção semântica de cores: `brightgreen` indica concluído, `yellow` indica em andamento, `red` indica bloqueado e `lightgrey` indica não iniciado.
 4. Quando o valor mudar, o selo e o texto devem ser atualizados em conjunto; o selo não deve ficar por muito tempo defasado em relação ao estado real; quando não for possível garantir a sincronização, usar um selo dinâmico.

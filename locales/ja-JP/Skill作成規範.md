@@ -8,9 +8,9 @@ Skill は「エントリーポイント + オンデマンドリソース」の�
 
 ```text
 skill-name/
-├── SKILL.md          必需：元数据 + 核心流程
-├── references/       规范正文，按需加载
-└── assets/           模板与素材（可选）
+├── SKILL.md          必須：メタデータ + コアフロー
+├── references/       規範本文、必要時に読み込み
+└── assets/           テンプレートと素材（任意）
 ```
 
 ## 2. SKILL.md の要件

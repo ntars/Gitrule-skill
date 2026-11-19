@@ -8,9 +8,9 @@ Ein Skill verwendet die Struktur „Einstiegspunkt + bedarfsgesteuerte Ressource
 
 ```text
 skill-name/
-├── SKILL.md          必需：元数据 + 核心流程
-├── references/       规范正文，按需加载
-└── assets/           模板与素材（可选）
+├── SKILL.md          erforderlich: Metadaten + Kernablauf
+├── references/       Spezifikationstext, bei Bedarf geladen
+└── assets/           Vorlagen und Materialien (optional)
 ```
 
 ## 2. Anforderungen an SKILL.md

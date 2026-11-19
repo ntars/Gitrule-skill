@@ -8,9 +8,9 @@ Skill 採用「入口 + 按需資源」結構：
 
 ```text
 skill-name/
-├── SKILL.md          必需：元数据 + 核心流程
-├── references/       规范正文，按需加载
-└── assets/           模板与素材（可选）
+├── SKILL.md          必需：中繼資料 + 核心流程
+├── references/       規範正文，按需載入
+└── assets/           範本與素材（選用）
 ```
 
 ## 2. SKILL.md 要求

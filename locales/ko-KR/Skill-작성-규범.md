@@ -8,9 +8,9 @@ Skill은 「진입점 + 온디맨드 리소스」 구조를 사용한다:
 
 ```text
 skill-name/
-├── SKILL.md          必需：元数据 + 核心流程
-├── references/       规范正文，按需加载
-└── assets/           模板与素材（可选）
+├── SKILL.md          필수: 메타데이터 + 핵심 흐름
+├── references/       규범 본문, 필요 시 로드
+└── assets/           템플릿과 자료(선택)
 ```
 
 ## 2. SKILL.md 요구사항

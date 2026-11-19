@@ -18,7 +18,7 @@ Die Checkliste wird in der Reihenfolge „zuerst Metadaten, dann Struktur, zulet
 | Nummer | Prüfpunkt | Beurteilungsmethode | Bestehenskriterium |
 | --- | --- | --- | --- |
 | A1 | Repository-Name regelkonform | Abgleich mit Benennungsformel und Zeichensatzregeln | Durchgehend klein geschrieben, kebab-case, 2–25 Zeichen, ohne Versionsnummer und Füllwörter |
-| A2 | Beschreibung im zweisprachig zusammengeführten Format | Bereich „About“ des Repositorys lesen oder `gh repo view --json description` | `国家语言 \| Englisch`, je ein Leerzeichen beiderseits des senkrechten Strichs |
+| A2 | Beschreibung im zweisprachig zusammengeführten Format | Bereich „About“ des Repositorys lesen oder `gh repo view --json description` | `Landessprache \| Englisch`, je ein Leerzeichen beiderseits des senkrechten Strichs |
 | A3 | Länge der Beschreibung | Zeichen zählen, chinesisch und englisch getrennt | Je höchstens 120 Zeichen, zusammen höchstens 350 Zeichen |
 | A4 | Anzahl und Sprache der Topics | `gh repo view --json repositoryTopics` | Genau 20, ausschließlich Englisch, ausschließlich klein geschrieben, Wörter mit Bindestrichen getrennt |
 | A5 | Abdeckung der Topics | Prüfung nach den fünf Kategorien Sprache, Domäne, Form, Ökosystem, Szenario | Alle fünf Kategorien abgedeckt, keine Topics im Widerspruch zum Technologie-Stack |

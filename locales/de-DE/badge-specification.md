@@ -11,7 +11,7 @@ Alle in diesem Dokument genannten Parameter wurden anhand der offiziellen Shield
 Statische Badges übergeben Parameter über den URL-Pfad; die Standardstruktur lautet:
 
 ```text
-https://img.shields.io/badge/<标签>-<消息>-<颜色>?style=<样式>&<其他查询参数>
+https://img.shields.io/badge/<Label>-<Meldung>-<Farbe>?style=<Stil>&<weitere Abfrageparameter>
 ```
 
 Die drei Pfadsegmente werden durch Bindestriche `-` getrennt:
@@ -25,7 +25,7 @@ Die drei Pfadsegmente werden durch Bindestriche `-` getrennt:
 Die zweiteilige Schreibweise (Label entfällt, nur Nachricht und Farbe) ist ebenfalls zulässig:
 
 ```text
-https://img.shields.io/badge/<消息>-<颜色>
+https://img.shields.io/badge/<Meldung>-<Farbe>
 ```
 
 ### 1.2 Regeln zur Zeichenmaskierung
@@ -227,7 +227,7 @@ Die Standardumsetzung von Punkt 6 in Abschnitt 7.1, „projektspezifische Status
 ![Status](https://img.shields.io/badge/status-4%20of%204%20delivered-brightgreen?style=flat-square)
 ```
 
-1. Die Standardstruktur lautet `badge/<标签>-<消息>-<颜色>`, der Stil ist einheitlich `?style=flat-square`; das Beispiel bedeutet „alle 4 Lieferobjekte geliefert“.
+1. Die Standardstruktur lautet `badge/<Label>-<Meldung>-<Farbe>`, der Stil ist einheitlich `?style=flat-square`; das Beispiel bedeutet „alle 4 Lieferobjekte geliefert“.
 2. Leerzeichen im Nachrichtentext werden als `%20`, Bindestriche als `--` und Unterstriche als `__` geschrieben; Zeilenumbrüche und andere nicht maskierte Sonderzeichen sind unzulässig.
 3. Farbkonvention: `brightgreen` bedeutet abgeschlossen, `yellow` in Arbeit, `red` blockiert, `lightgrey` nicht begonnen.
 4. Bei Wertänderungen müssen Badge und Haupttext synchron aktualisiert werden; das Badge darf nicht dauerhaft hinter dem tatsächlichen Status zurückbleiben. Ist die Synchronität nicht gewährleistet, ist ein dynamisches Badge zu verwenden.

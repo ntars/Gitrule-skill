@@ -8,9 +8,9 @@ El Skill adopta una estructura de «punto de entrada + recursos bajo demanda»:
 
 ```text
 skill-name/
-├── SKILL.md          必需：元数据 + 核心流程
-├── references/       规范正文，按需加载
-└── assets/           模板与素材（可选）
+├── SKILL.md          obligatorio: metadatos + flujo principal
+├── references/       cuerpo de la especificación, cargado bajo demanda
+└── assets/           plantillas y recursos (opcional)
 ```
 
 ## 2. Requisitos de SKILL.md
