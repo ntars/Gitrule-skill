@@ -50,8 +50,8 @@ Four programmatic adapters ship with the repository, all with zero third-party d
 
 | Adapter | Location | Purpose |
 | --- | --- | --- |
-| CLI | [cli/gitrule.py](./cli/gitrule.py) | `check` for broken links, orphans, responsibility lines, code fences, index counts, and placeholder registration; `optimize` for safe auto-fixes; `list` / `spec` / `status` to browse specifications and language status |
-| MCP server | [mcp/server.py](./mcp/server.py) | stdio JSON-RPC exposing five tools: `gitrule_check`, `gitrule_optimize`, `gitrule_list_specs`, `gitrule_get_spec`, `gitrule_language_status` |
+| CLI | [cli/gitrule.py](./cli/gitrule.py) | `check` for broken links, orphans, responsibility lines, code fences, index counts, and placeholder registration; `optimize` for safe auto-fixes; `xcheck` for cross-language structural consistency; `termcheck` for glossary-matrix consistency; `list` / `spec` / `status` to browse specifications and language status |
+| MCP server | [mcp/server.py](./mcp/server.py) | stdio JSON-RPC exposing seven tools: `gitrule_check`, `gitrule_optimize`, `gitrule_list_specs`, `gitrule_get_spec`, `gitrule_language_status`, `gitrule_xcheck`, `gitrule_termcheck` |
 | WorkBuddy Skill | [skill/SKILL.md](./skill/SKILL.md) | One-click documentation optimization with optimization rules reference, packaged per the Skill specification (`dist/gitrule-optimize.zip`) |
 | WorkBuddy Expert | [expert/](./expert/) | Documentation standards optimizer for conversational checking and fixing, with avatar and quick prompts |
 
@@ -69,6 +69,9 @@ python3 cli/gitrule.py optimize --path . --lang zh-CN
 
 # Cross-language structural consistency check against the Chinese reference
 python3 cli/gitrule.py xcheck --path . --reference zh-CN
+
+# Glossary matrix check (matrix values present in prose, inflected stems consistent)
+python3 cli/gitrule.py termcheck --path .
 ```
 
 MCP registration example (into the `mcpServers` block of an MCP configuration):

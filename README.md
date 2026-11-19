@@ -50,8 +50,8 @@
 
 | 接入方式 | 位置 | 用途 |
 | --- | --- | --- |
-| 命令行 | [cli/gitrule.py](./cli/gitrule.py) | `check` 检查断链、孤岛、职责句、代码围栏、索引计数、占位符登记；`optimize` 执行安全自动修复；`list` / `spec` / `status` 浏览规范文件与语言状态 |
-| MCP 服务器 | [mcp/server.py](./mcp/server.py) | stdio JSON-RPC，提供 `gitrule_check`、`gitrule_optimize`、`gitrule_list_specs`、`gitrule_get_spec`、`gitrule_language_status` 五个工具，可直接注册到任意 MCP 客户端 |
+| 命令行 | [cli/gitrule.py](./cli/gitrule.py) | `check` 检查断链、孤岛、职责句、代码围栏、索引计数、占位符登记；`optimize` 执行安全自动修复；`xcheck` 校验跨语种结构一致性；`termcheck` 校验术语矩阵与正文自洽；`list` / `spec` / `status` 浏览规范文件与语言状态 |
+| MCP 服务器 | [mcp/server.py](./mcp/server.py) | stdio JSON-RPC，提供 `gitrule_check`、`gitrule_optimize`、`gitrule_list_specs`、`gitrule_get_spec`、`gitrule_language_status`、`gitrule_xcheck`、`gitrule_termcheck` 七个工具，可直接注册到任意 MCP 客户端 |
 | WorkBuddy Skill | [skill/SKILL.md](./skill/SKILL.md) | 一键优化文档规范，含优化规则参考，已按 Skill 规范打包（`dist/gitrule-optimize.zip`） |
 | WorkBuddy 专家包 | [expert/](./expert/) | 文档规范优化专家，面向对话式检查与修复，含头像与快速提示词 |
 
@@ -69,6 +69,9 @@ python3 cli/gitrule.py optimize --path . --lang zh-CN
 
 # 跨语种结构一致性校验（以中文为基准，比对全部译语种）
 python3 cli/gitrule.py xcheck --path . --reference zh-CN
+
+# 术语矩阵校验（矩阵译名是否见于正文、变格词干是否自洽）
+python3 cli/gitrule.py termcheck --path .
 ```
 
 MCP 注册示例（写入 MCP 配置的 `mcpServers`）：

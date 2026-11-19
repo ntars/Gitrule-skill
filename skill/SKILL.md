@@ -41,6 +41,10 @@ python3 ../cli/gitrule.py xcheck --path <仓库根目录> --reference zh-CN
 python3 ../cli/gitrule.py xcheck --path <仓库根目录> --lang en-US --reference zh-CN
 python3 ../cli/gitrule.py xcheck --path <仓库根目录> --reference zh-CN --json
 
+# 术语矩阵与正文用词一致性校验
+python3 ../cli/gitrule.py termcheck --path <仓库根目录>
+python3 ../cli/gitrule.py termcheck --path <仓库根目录> --lang ja-JP
+
 # 列出规范 / 读取单篇 / 查看语言状态
 python3 ../cli/gitrule.py list --path <仓库根目录> --lang zh-CN
 python3 ../cli/gitrule.py spec --path <仓库根目录> --lang zh-CN --name 硬规则.md
@@ -52,9 +56,10 @@ python3 ../cli/gitrule.py status --path <仓库根目录>
 1. 确定仓库根目录与语言码；未指定时检查 `zh-CN` 与 `en-US`。
 2. 先执行只读 `check`，把问题按 `file / type / detail` 汇总给用户。
 3. 涉及多语种时，再执行 `xcheck` 以 `zh-CN` 为基准逐篇比对标题、围栏、链接、有序/无序列表、表格形状与占位符集合；差异项定位到具体文件与轴。
-4. 对 `bare-code-fence` 类问题，执行 `optimize` 预览；用户确认后再加 `--fix --backup`。
-5. 对 `broken-link`、`unregistered-placeholder`、`index-count`、`cross-*` 等问题，只报告不自动改写，依据 `references/optimization-rules.md` 给出人工修正建议。
-6. 修复后再次执行 `check` 与 `xcheck`，确认问题数归零。
+4. 术语表有译名矩阵时，执行 `termcheck` 核对矩阵译名与正文用词是否自洽，重点看 `term-not-in-corpus`（矩阵填了正文没有的写法）。
+5. 对 `bare-code-fence` 类问题，执行 `optimize` 预览；用户确认后再加 `--fix --backup`。
+6. 对 `broken-link`、`unregistered-placeholder`、`index-count`、`cross-*` 等问题，只报告不自动改写，依据 `references/optimization-rules.md` 给出人工修正建议。
+7. 修复后再次执行 `check`、`xcheck` 与 `termcheck`，确认问题数归零。
 
 ## 安全边界
 

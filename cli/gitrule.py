@@ -185,6 +185,19 @@ def check_language(root, lang):
 
 CROSS_AXES = ("heading", "fence", "link", "ordered", "unordered")
 
+# 术语译名矩阵的列名。这 6 个术语在十二个语种正文中均有实际用例，
+# 故纳入自动校验；SBOM / MVP / NLP / LLM 在正文出现 0 次，不参与校验。
+TERM_MATRIX_TERMS = ("SemVer", "ADR", "CoC", "CI/CD", "MCP", "TBD")
+
+# 变格语言的检索词干。俄语、德语正文按语法变格，矩阵取引用形，
+# 严格全字匹配会误判为"正文未出现"，故按词干比对。
+TERM_STEMS = {
+    ("ru-RU", "SemVer"): "семантическ",
+    ("ru-RU", "ADR"): "архитектурн",
+    ("ru-RU", "CI/CD"): "непрерывн",
+    ("de-DE", "SemVer"): "semantisch",
+}
+
 
 def cross_metrics(text):
     """提取用于跨语种比对的八轴结构指标。
@@ -307,6 +320,126 @@ def cross_check_language(root, lang, reference="zh-CN"):
     return issues
 
 
+def parse_term_matrix(directory):
+    """从术语表读回多语言译名矩阵。
+
+    矩阵形态：表头为「语种 | 语种名称 | 术语1 | 术语2 ...」，
+    每行以反引号包裹的语言码开头。为避免把普通表格误认成矩阵，
+    要求表头同时出现两个以上已知术语列名。
+
+    返回 (字段名列表, {术语: 该语种译名})，读不到则返回 ([], {})。
+    """
+    known = set(TERM_MATRIX_TERMS)
+    for path in sorted(directory.glob("*.md")):
+        if path.name == "README.md":
+            continue
+        lines = path.read_text(encoding="utf-8").splitlines()
+        for i, line in enumerate(lines):
+            if not line.strip().startswith("|"):
+                continue
+            header = [c.strip() for c in line.strip().strip("|").split("|")]
+            terms = [c for c in header[2:] if c in known]
+            if len(terms) < 2:
+                continue
+            for row in lines[i + 2:]:
+                if not row.strip().startswith("|"):
+                    break
+                cells = [c.strip() for c in row.strip().strip("|").split("|")]
+                if len(cells) < len(header):
+                    continue
+                if cells[0].strip("`") != directory.name:
+                    continue
+                return terms, dict(zip(header[2:], cells[2:]))
+    return [], {}
+
+
+def term_corpus(directory, skip_names):
+    """拼接某语种全部正文，用于术语检索。
+
+    排除术语表本身与索引页：前者是矩阵的出处，计入会自证；
+    后者是导航，不承载术语定义。
+    """
+    chunks = []
+    for path in sorted(directory.glob("*.md")):
+        if path.name in skip_names or path.name == "README.md":
+            continue
+        chunks.append(path.read_text(encoding="utf-8"))
+    return "\n".join(chunks)
+
+
+def term_check_language(root, lang):
+    """校验某语种的术语矩阵与正文用词是否自洽。
+
+    检查三类问题：
+    1. term-not-in-corpus：矩阵登记的译名在正文一次都没出现。
+    2. term-doubtful-stem：变格语言的矩阵值与登记词干对不上。
+    3. term-no-matrix / term-missing-language：矩阵或目录缺失。
+
+    只做"矩阵 -> 正文"的单向核对。不做"正文缺术语"检查：技术规范按
+    主题分篇，某篇不涉及某术语是正常的，强行要求出现会产生大量误报。
+    """
+    directory = Path(root) / "locales" / lang
+    if not directory.exists():
+        return [{"file": lang, "type": "term-missing-language", "detail": str(directory)}]
+    terms, rendering = parse_term_matrix(directory)
+    if not terms:
+        return [{"file": lang, "type": "term-no-matrix", "detail": "术语表未找到译名矩阵"}]
+    skip = {path.name for path in directory.glob("*.md") if "glossary" in path.name.lower()}
+    # 术语表文件名随语种变化，按"含矩阵"识别更稳
+    for path in directory.glob("*.md"):
+        if parse_term_matrix_of_file(path):
+            skip.add(path.name)
+    corpus = term_corpus(directory, skip)
+
+    issues = []
+    for term in terms:
+        value = rendering.get(term, "").strip()
+        if not value or value in ("—", "-"):
+            continue
+        # 先查矩阵值本身是否见于正文。变格语言允许用词干命中，
+        # 但前提是矩阵值的词干必须与登记词干一致，否则视为矩阵填错。
+        stem = TERM_STEMS.get((lang, term))
+        if stem:
+            consistent = value.lower().startswith(stem.lower()[:6]) or stem.lower() in value.lower()
+            if not consistent:
+                issues.append({
+                    "file": lang,
+                    "type": "term-doubtful-stem",
+                    "detail": f"{term} 矩阵作「{value}」，与登记词干「{stem}」不符",
+                })
+                continue
+            hit = stem.lower() in corpus.lower()
+        else:
+            hit = value.lower() in corpus.lower()
+        if not hit:
+            issues.append({
+                "file": lang,
+                "type": "term-not-in-corpus",
+                "detail": f"{term} 矩阵作「{value}」，正文未出现",
+            })
+            continue
+        # 说明：曾尝试用「全称（缩写）」展开式自动发现同义异写，但自然语言的
+        # 短语边界无法可靠切分（会把定语、从句一并吞入，且单复数与冠词差异
+        # 造成大量误报），误报率高于价值，故不纳入自动检查。
+    return issues
+
+
+def parse_term_matrix_of_file(path):
+    """判断单个文件是否含译名矩阵，供排除术语表用。"""
+    try:
+        text = path.read_text(encoding="utf-8")
+    except OSError:
+        return False
+    known = set(TERM_MATRIX_TERMS)
+    for line in text.splitlines():
+        if not line.strip().startswith("|"):
+            continue
+        header = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len([c for c in header[2:] if c in known]) >= 2:
+            return True
+    return False
+
+
 def list_specs(root, lang):
     """列出语言目录内全部规范文件名。"""
     directory = Path(root) / "locales" / lang
@@ -369,7 +502,13 @@ def print_report(report, as_json):
     if as_json:
         print(json.dumps(report, ensure_ascii=False, indent=2))
         return
-    if "issues" in report:
+    if "terms" in report:
+        print(f"检查语言：{', '.join(report['languages'])}")
+        print(f"校验术语：{', '.join(report['terms'])}")
+        print(f"问题数：{len(report['termsIssues'])}")
+        for item in report["termsIssues"]:
+            print(f"- {item['file']} / {item['type']}：{item['detail']}")
+    elif "issues" in report:
         issues = report["issues"]
         print(f"检查语言：{', '.join(report['languages'])}")
         print(f"文档数：{report['files']}，问题数：{len(issues)}")
@@ -433,6 +572,11 @@ def main():
     xcheck.add_argument("--reference", default="zh-CN", help="参考语种")
     xcheck.add_argument("--json", action="store_true", help="输出 JSON")
 
+    termcheck = sub.add_parser("termcheck", help="术语矩阵与正文用词一致性校验")
+    termcheck.add_argument("--path", default=".", help="仓库根目录")
+    termcheck.add_argument("--lang", default="all", help="语言码或 all")
+    termcheck.add_argument("--json", action="store_true", help="输出 JSON")
+
     args = parser.parse_args()
     root = os.path.abspath(args.path)
 
@@ -488,6 +632,19 @@ def main():
             "compared": langs,
             "documents": documents,
             "cross": issues,
+        }
+        print_report(report, args.json)
+        return 1 if issues else 0
+
+    if args.command == "termcheck":
+        langs = SUPPORTED_LANGS if args.lang == "all" else (args.lang,)
+        issues = []
+        for lang in langs:
+            issues.extend(term_check_language(root, lang))
+        report = {
+            "languages": list(langs),
+            "terms": list(TERM_MATRIX_TERMS),
+            "termsIssues": issues,
         }
         print_report(report, args.json)
         return 1 if issues else 0

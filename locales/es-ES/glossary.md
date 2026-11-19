@@ -42,7 +42,7 @@
 | `pt-BR` | Português | versionamento semântico | registro de decisão de arquitetura | código de conduta | integração contínua | protocolo de contexto de modelo | pendente |
 | `ru-RU` | Русский | семантическое версионирование | запись архитектурных решений | Кодекс поведения | непрерывная интеграция | протокол контекста модели | будет дополнено |
 | `ar-SA` | العربية | الإصدار الدلالي | القرارات المعمارية | مدونة السلوك | التكامل المستمر | بروتوكول سياق النموذج | قيد الاستكمال |
-| `hi-IN` | हिन्दी | SemVer | संरचना निर्णय अभिलेख | आचार संहिता | सतत एकीकरण | मॉडल संदर्भ प्रोटोकॉल | पूर्ति शेष |
+| `hi-IN` | हिन्दी | सेमांटिक वर्ज़निंग | संरचना निर्णय | आचार संहिता | सतत एकीकरण | मॉडल संदर्भ प्रोटोकॉल | पूर्ति शेष |
 
 - **Abreviaturas comunes**: Se usan tal cual en el cuerpo del texto de cada idioma y nunca se localizan: SBOM, SPDX, ADR, SemVer, CoC, CI/CD, MVP, NLP, LLM, MCP, TBD.
 

@@ -124,6 +124,18 @@ def tools():
                 },
             },
         },
+        {
+            "name": "gitrule_termcheck",
+            "title": "术语矩阵校验",
+            "description": "校验术语表的译名矩阵与各语种正文用词是否自洽：矩阵登记的译名是否真在正文出现，变格语言的词干是否匹配。",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "path": {"type": "string", "description": "仓库根目录，默认当前目录"},
+                    "lang": {"type": "string", "description": "语言码或 all，默认 all"},
+                },
+            },
+        },
     ]
 
 
@@ -163,8 +175,18 @@ def run_tool(name, arguments):
             ensure_ascii=False,
             indent=2,
         )
+    if name == "gitrule_termcheck":
+        langs = gitrule.SUPPORTED_LANGS if arguments.get("lang", "all") == "all" else [arguments["lang"]]
+        issues = []
+        for lang in langs:
+            issues.extend(gitrule.term_check_language(root, lang))
+        return json.dumps(
+            {"languages": langs, "terms": list(gitrule.TERM_MATRIX_TERMS),
+             "issueCount": len(issues), "issues": issues},
+            ensure_ascii=False,
+            indent=2,
+        )
     raise ValueError(f"未知工具：{name}")
-
 
 def handle(message):
     """处理单条 JSON-RPC 消息。"""
