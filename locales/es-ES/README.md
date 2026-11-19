@@ -1,6 +1,6 @@
 # Índice general de las especificaciones en español
 
-[简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](../de-DE/README.md) | [Español](./README.md) | [Português](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [العربية](../ar-SA/README.md)
+[简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](../de-DE/README.md) | [Español](./README.md) | [Português](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [العربية](../ar-SA/README.md) | [हिन्दी](../hi-IN/README.md)
 
 > Problema que resuelve este archivo: sirve como navegación de la colección de especificaciones en español y enumera la responsabilidad, el dominio correspondiente y la ruta de lectura de las 67 especificaciones, para que los documentos necesarios se localicen con precisión.
 

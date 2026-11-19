@@ -1,6 +1,6 @@
 # الفهرس العام للمواصفات بالعربية
 
-[简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](../de-DE/README.md) | [Español](../es-ES/README.md) | [Português](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [العربية](./README.md)
+[简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](../de-DE/README.md) | [Español](../es-ES/README.md) | [Português](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [العربية](./README.md) | [हिन्दी](../hi-IN/README.md)
 
 > المشكلة التي يحلها هذا الملف: يمثل نقطة الدخول إلى مجموعة المواصفات بالعربية، ويسرد المسؤولية والوثيقة المقابلة ومسار القراءة لكل وثيقة من الوثائق الـ 67، حتى يصل القارئ إلى ما يحتاجه بدقة.
 

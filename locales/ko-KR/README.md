@@ -1,6 +1,6 @@
 # 한국어 규범 총색인
 
-[简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](./README.md) | [Français](../fr-FR/README.md) | [Deutsch](../de-DE/README.md) | [Español](../es-ES/README.md) | [Português](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [العربية](../ar-SA/README.md)
+[简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](./README.md) | [Français](../fr-FR/README.md) | [Deutsch](../de-DE/README.md) | [Español](../es-ES/README.md) | [Português](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [العربية](../ar-SA/README.md) | [हिन्दी](../hi-IN/README.md)
 
 > 이 파일이 해결하는 문제：한국어 규범집의 내비게이션으로서, 전체 67건 규범의 책임, 소속 영역, 읽기 경로를 나열하여 필요에 따라 바로 꺼내 쓸 수 있게 합니다.
 
