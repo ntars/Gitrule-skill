@@ -1,6 +1,6 @@
 # Общий указатель спецификаций на русском языке
 
-[简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](../de-DE/README.md) | [Español](../es-ES/README.md) | [Português](../pt-BR/README.md) | [Русский](./README.md)
+[简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](../de-DE/README.md) | [Español](../es-ES/README.md) | [Português](../pt-BR/README.md) | [Русский](./README.md) | [العربية](../ar-SA/README.md)
 
 > Какую задачу решает этот файл: служит навигацией по коллекции спецификаций на русском языке и перечисляет ответственность, соответствующий домен и путь чтения всех 67 спецификаций, чтобы нужные документы находились точно.
 
