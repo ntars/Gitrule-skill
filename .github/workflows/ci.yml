@@ -16,13 +16,20 @@ permissions:
 jobs:
   spec-check:
     name: 规范结构校验
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       # 各 Python 版本独立跑完，便于定位兼容性问题。
       fail-fast: false
       matrix:
-        # 3.8 是 README 声明的最低版本，3.13 为当前最新稳定版。
-        python-version: ["3.8", "3.13"]
+        include:
+          # 3.8 是 README 声明的最低版本，已于 2024-10 停止维护。
+          # 官方 python-versions 对 3.8 只构建到 ubuntu-24.04，而 ubuntu-latest
+          # 已滚动至 26.04（装 3.8 会报 "not found for Ubuntu 26.04"），故显式钉住。
+          - python-version: "3.8"
+            os: ubuntu-24.04
+          # 3.13 为当前最新稳定版，跟随 ubuntu-latest。
+          - python-version: "3.13"
+            os: ubuntu-latest
     steps:
       - name: 检出代码
         uses: actions/checkout@v4
