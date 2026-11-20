@@ -18,6 +18,16 @@ NOTICE must be a standalone file; it must not be merged with the README, nor rep
 
 The component and license information in NOTICE and in the README Chapter 6 (Technology Stack and Dependency Manifest), Chapter 19 (Copyright and Licensing), and Chapter 20 (NOTICE Compliance Declaration) must be exactly consistent; there must be no discrepancies in versions, license identifiers, or copyright holders.
 
+## 3. Declaring Layered Licensing
+
+When the project uses layered licensing, the "Project's own declaration" in Section 1 must be split by layer; the primary license alone is not sufficient.
+
+1. One line per layer, stating: the scope (for example "source code under `cli/` and `mcp/`"), the license name, the SPDX identifier, and where the full text is located.
+2. The combined SPDX expression across layers must match Chapter 19 of the README word for word; it must not read `MIT AND CC-BY-4.0` in one place and only `MIT` in another.
+3. Include a one-sentence rationale for the split (for example "code and documentation have different reuse needs") so future maintainers can decide which layer a file belongs to.
+4. When some content cannot be assigned to a layer, list its paths under "Pending items"; do not count it under the primary license by default.
+5. The disclaimer must use identical wording in Chapter 19 of the README, in `LICENSING.md` (if present), and here, stating that the license choice and the layer split are confirmed by the project owner and that tooling and templates do not constitute legal advice.
+
 ## Related Files
 
 - For dependency manifest fields and collection methods, see [Open Source Compliance Specification](./open-source-compliance-specification.md)

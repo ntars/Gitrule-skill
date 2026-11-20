@@ -33,6 +33,8 @@ Según el stack tecnológico, se genera el árbol de dependencias con el comando
 2. En las dependencias con Apache-2.0 debe confirmarse que se cumplen los requisitos sobre el archivo NOTICE.
 3. Las licencias de materiales (como las tipografías SIL OFL o la familia CC) deben verificarse por separado en cuanto a los requisitos de atribución y difusión.
 4. Cuando no pueda determinarse la compatibilidad, se marca «【pendiente de confirmación: compatibilidad de licencias】» y se explica el motivo de la duda.
+5. Cuando el proyecto adopte licencias por capas, debe juzgarse capa por capa: una dependencia usada en una capa concreta se evalúa según la licencia de esa capa, y la licencia principal no debe representar a todo el repositorio. La disposición y el proceso de confirmación figuran en la [Especificación de LICENSE](./license-specification.md).
+6. Cuando una misma dependencia atraviese varias capas de licencia, indique su ámbito real de uso y resuelva según la capa aplicable más estricta.
 
 ## 5. Anotación de modificaciones de código ajeno
 

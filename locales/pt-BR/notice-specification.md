@@ -18,6 +18,16 @@ O NOTICE constitui um arquivo independente; não deve ser mesclado ao README nem
 
 As informações de componentes e licenças do NOTICE devem ser totalmente consistentes com as da seção 6 do README (stack tecnológica e lista de dependências), da seção 19 (copyright e licenciamento) e da seção 20 (declaração de conformidade de NOTICE); não deve haver divergência de versão, identificador de licença ou titular dos direitos autorais.
 
+## 3. Modo de declaração com licenças em camadas
+
+Quando o projeto adotar licenças em camadas, a “declaração do próprio projeto” da seção 1 deve ser desdobrada por camada e não limitada à licença principal.
+
+1. Cada camada ocupa uma linha com: escopo de aplicação (por exemplo “o código-fonte em `cli/` e `mcp/`”), nome da licença, identificador SPDX e local do texto integral.
+2. A expressão SPDX resultante da reunião das camadas deve coincidir literalmente com a seção 19 do README; não se deve ler `MIT AND CC-BY-4.0` em um lugar e apenas `MIT` no outro.
+3. Indique em uma frase o fundamento da estratificação, por exemplo “código e documentação têm necessidades de reutilização diferentes”, para que os mantenedores seguintes possam atribuir um arquivo à sua camada.
+4. Se houver conteúdo que não possa ser atribuído a nenhuma camada, liste seu caminho nos “itens pendentes de confirmação”; não o impute por padrão à licença principal.
+5. A isenção de responsabilidade deve estar redigida de forma idêntica na seção 19 do README e no `LICENSING.md`, se existir, indicando que a escolha da licença e a divisão em camadas são confirmadas pelo titular do projeto e que ferramentas e modelos não constituem aconselhamento jurídico.
+
 ## Arquivos relacionados
 
 - Para os campos da lista de dependências e o método de coleta, ver a [especificação de conformidade de código aberto](./open-source-compliance-specification.md)

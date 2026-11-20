@@ -33,6 +33,8 @@ Utiliser la commande correspondant à la pile technique pour générer l'arbre d
 2. Pour les dépendances sous Apache-2.0, il faut confirmer que les exigences relatives au fichier NOTICE sont satisfaites.
 3. Les licences de ressources (telles que les polices SIL OFL, la série CC) doivent faire l'objet d'une vérification distincte des exigences d'attribution et de diffusion.
 4. Lorsque la compatibilité ne peut être déterminée, marquer « 【à confirmer : compatibilité des licences】 » et préciser le motif du doute.
+5. Lorsque le projet adopte des licences par couches, la compatibilité doit être appréciée couche par couche : une dépendance utilisée dans une couche donnée est évaluée selon la licence de cette couche, et la licence principale ne doit pas représenter l'ensemble du dépôt. La disposition et le processus de confirmation figurent dans la [spécification LICENSE](./license-specification.md).
+6. Lorsqu'une même dépendance traverse plusieurs couches de licence, indiquez sa portée d'utilisation réelle et tranchez selon la couche applicable la plus stricte.
 
 ## 5. Marquage des modifications du code d'autrui
 

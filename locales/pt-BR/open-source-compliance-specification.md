@@ -33,6 +33,8 @@ Conforme a stack tecnológica, usar o comando correspondente para gerar a árvor
 2. Para dependências Apache-2.0, deve-se confirmar se os requisitos do arquivo NOTICE já foram atendidos.
 3. Licenças de materiais (como fontes SIL OFL e a série CC) devem ter seus requisitos de atribuição e disseminação verificados separadamente.
 4. Quando não for possível determinar a compatibilidade, marcar «pendente de confirmação: compatibilidade de licença» e explicar o motivo da dúvida.
+5. Quando o projeto adotar licenças em camadas, o julgamento deve ser feito camada por camada: uma dependência usada em determinada camada é avaliada pela licença dessa camada, e a licença principal não deve representar todo o repositório. A disposição e o processo de confirmação constam na [especificação de LICENSE](./license-specification.md).
+6. Quando uma mesma dependência atravessar várias camadas de licença, indicar seu escopo real de uso e decidir pela camada aplicável mais rigorosa.
 
 ## 5. Marcação de modificações em código de terceiros
 

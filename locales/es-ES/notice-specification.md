@@ -18,6 +18,16 @@ NOTICE constituye un archivo independiente; no debe fusionarse con el README ni 
 
 La información de componentes y licencias de NOTICE y la de los capítulos 6 (pila tecnológica e inventario de dependencias), 19 (copyright y licencia) y 20 (declaración de cumplimiento NOTICE) del README debe ser completamente idéntica; no deben aparecer divergencias en versiones, identificadores de licencia ni titulares de derechos.
 
+## 3. Modo de declaración con licencias por capas
+
+Cuando el proyecto adopte licencias por capas, la «declaración del propio proyecto» de la sección 1 debe desglosarse por capas y no limitarse a la licencia principal.
+
+1. Cada capa ocupa una línea con: ámbito de aplicación (por ejemplo «el código fuente bajo `cli/` y `mcp/`»), nombre de la licencia, identificador SPDX y ubicación del texto completo.
+2. La expresión SPDX resultante de reunir las capas debe coincidir literalmente con el capítulo 19 del README; no debe leerse `MIT AND CC-BY-4.0` en un lugar y solo `MIT` en el otro.
+3. Indique en una frase el fundamento de la estratificación, por ejemplo «el código y la documentación tienen necesidades de reutilización distintas», para que los mantenedores posteriores puedan atribuir un archivo a su capa.
+4. Si hay contenido que no puede atribuirse a ninguna capa, enumere su ruta en los «puntos pendientes de confirmación»; no lo impute por defecto a la licencia principal.
+5. La exención de responsabilidad debe estar redactada de forma idéntica en el capítulo 19 del README y en `LICENSING.md` si existe, indicando que la elección de licencia y la división en capas las confirma el titular del proyecto y que las herramientas y plantillas no constituyen asesoramiento jurídico.
+
 ## Archivos relacionados
 
 - Los campos del inventario de dependencias y el método de recopilación se describen en la [Especificación de cumplimiento de código abierto](./open-source-compliance-specification.md)

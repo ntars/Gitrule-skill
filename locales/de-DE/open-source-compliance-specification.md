@@ -32,7 +32,9 @@ Je nach Technologie-Stack ist der Abhängigkeitsbaum mit dem entsprechenden Befe
 1. Die Kompatibilität der Projektlizenz mit den Lizenzen aller Abhängigkeiten ist zu beurteilen; besonderes Augenmerk gilt dem viralen Wirkungsbereich von GPL, AGPL, LGPL und MPL.
 2. Bei Apache-2.0-Abhängigkeiten ist zu prüfen, ob deren NOTICE-Anforderungen erfüllt sind.
 3. Lizenzen für Materialien (etwa SIL-OFL-Schriftarten, CC-Serien) sind gesondert auf Namensnennungs- und Verbreitungsanforderungen zu prüfen.
-4. Ist die Kompatibilität nicht beurteilbar, ist „【待确认：许可证兼容性】“ zu kennzeichnen und der Grund der Unklarheit anzugeben.
+4. Ist die Kompatibilität nicht beurteilbar, ist „【Zu bestätigen: Lizenzkompatibilität】“ zu kennzeichnen und der Grund der Unklarheit anzugeben.
+5. Verwendet das Projekt geschichtete Lizenzen, ist schichtweise zu urteilen: Eine Abhängigkeit, die in einer bestimmten Schicht eingesetzt wird, ist nach der Lizenz dieser Schicht zu bewerten; die Hauptlizenz darf nicht für das gesamte Repository stehen. Anordnung und Bestätigungsablauf siehe [LICENSE-Spezifikation](./license-specification.md).
+6. Überspannt eine Abhängigkeit mehrere Lizenzschichten, ist ihr tatsächlicher Nutzungsumfang anzugeben und nach der strengsten anwendbaren Schicht zu entscheiden.
 
 ## 5. Kennzeichnung von Änderungen an fremdem Code
 

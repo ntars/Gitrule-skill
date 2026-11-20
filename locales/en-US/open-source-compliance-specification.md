@@ -33,6 +33,8 @@ Use the corresponding command for the tech stack to generate the dependency tree
 2. For Apache-2.0 dependencies, confirm whether their NOTICE file requirements have been satisfied.
 3. Asset licenses (such as SIL OFL fonts and the CC series) must be individually checked for attribution and distribution requirements.
 4. When compatibility cannot be determined, annotate with "【Pending Confirmation: License Compatibility】" and explain the reason for doubt.
+5. When the project uses layered licensing, determine compatibility layer by layer: a dependency is judged against the license of the layer it is used in, and the primary license must not be used to represent the whole repository. For the layout and confirmation workflow, see [LICENSE Specification](./license-specification.md).
+6. When a single dependency spans several license layers, record the actual scope of use and judge it against the strictest applicable layer.
 
 ## 5. Annotation of Modifications to Others' Code
 

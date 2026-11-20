@@ -18,6 +18,16 @@ Die NOTICE liegt als eigene Datei vor; sie darf nicht in die README integriert u
 
 Die Komponenten- und Lizenzinformationen in der NOTICE müssen mit Kapitel 6 (Technologie-Stack und Abhängigkeitsliste), Kapitel 19 (Copyright und Lizenzierung) und Kapitel 20 (NOTICE-Compliance-Erklärung) der README vollständig übereinstimmen; bei Version, Lizenzkennung und Rechteinhaber dürfen keine Abweichungen auftreten.
 
+## 3. Erklärungsweise bei geschichteter Lizenzierung
+
+Verwendet das Projekt geschichtete Lizenzen, ist die „Erklärung des Projekts selbst“ aus Abschnitt 1 nach Schichten aufzuteilen und darf nicht auf die Hauptlizenz beschränkt bleiben.
+
+1. Jede Schicht erhält eine eigene Zeile mit Geltungsbereich (etwa „Quellcode unter `cli/` und `mcp/`“), Lizenzname, SPDX-Bezeichner und Ort des Volltextes.
+2. Der aus allen Schichten zusammengefasste SPDX-Ausdruck muss mit Kapitel 19 der README wortgleich übereinstimmen; nicht an einer Stelle `MIT AND CC-BY-4.0` und an der anderen nur `MIT`.
+3. Der Grund der Schichtung ist in einem Satz anzugeben, etwa „Code und Dokumentation haben unterschiedliche Wiederverwendungsanforderungen“, damit nachfolgende Maintainer die Schichtzugehörigkeit einer Datei bestimmen können.
+4. Gibt es Inhalte, die keiner Schicht zugeordnet werden können, sind ihre Pfade unter „Zu bestätigende Punkte“ aufzuführen; sie dürfen nicht standardmäßig der Hauptlizenz zugerechnet werden.
+5. Der Haftungsausschluss muss in Kapitel 19 der README und in `LICENSING.md`, falls vorhanden, gleichlautend sein und klarstellen, dass Lizenzwahl und Schichtaufteilung vom Projektträger selbst bestätigt werden und Werkzeuge und Vorlagen keine Rechtsberatung darstellen.
+
 ## Verwandte Dateien
 
 - Felder der Abhängigkeitsliste und Erhebungsmethoden siehe [Open-Source-Compliance-Spezifikation](./open-source-compliance-specification.md)
