@@ -3,6 +3,8 @@
 
 零第三方依赖，仅使用 Python 标准库。
 默认只检查不写文件；--fix 才会执行安全修复。
+
+退出码：0 无问题，1 发现问题，2 参数或环境错误。
 """
 
 import argparse
@@ -13,9 +15,36 @@ import shutil
 import sys
 from pathlib import Path
 
-SUPPORTED_LANGS = ("zh-CN", "en-US", "zh-TW", "ja-JP", "ko-KR", "fr-FR", "de-DE", "es-ES", "pt-BR", "ru-RU", "ar-SA", "hi-IN")
-PLACEHOLDER_FILE = "README标准模板.md"
-INDEX_MARKERS = ("规范总索引", "Specification Master Index", "規範總索引")
+SUPPORTED_LANGS = (
+    "zh-CN", "en-US", "zh-TW", "ja-JP", "ko-KR", "fr-FR",
+    "de-DE", "es-ES", "pt-BR", "ru-RU", "ar-SA", "hi-IN",
+)
+
+# 跨语种比对的计数轴。表格形状与占位符多重集单独比对，不在此列。
+CROSS_AXES = ("heading", "fence", "link", "ordered", "unordered")
+
+# 术语译名矩阵的列名。这 6 个术语在十二个语种正文中均有实际用例，
+# 故纳入自动校验；SBOM / MVP / NLP / LLM 在正文出现 0 次，不参与校验。
+TERM_MATRIX_TERMS = ("SemVer", "ADR", "CoC", "CI/CD", "MCP", "TBD")
+
+# 变格语言的检索词干。俄语、德语正文按语法变格，矩阵取引用形，
+# 严格全字匹配会误判为"正文未出现"，故按词干比对。
+TERM_STEMS = {
+    ("ru-RU", "SemVer"): "семантическ",
+    ("ru-RU", "ADR"): "архитектурн",
+    ("ru-RU", "CI/CD"): "непрерывн",
+    ("de-DE", "SemVer"): "semantisch",
+}
+
+# 外部链接前缀：带 URL scheme（https:、mailto:）、协议相对（//）、页内锚点（#）。
+EXTERNAL_LINK_RE = re.compile(r"^(?:[a-zA-Z][a-zA-Z0-9+.\-]*:|//|#)")
+
+# Markdown 链接整体，目标地址允许被尖括号包裹，也允许带可选的标题。
+LINK_RE = re.compile(r"\[[^\]]*\]\(\s*<?([^)>]+?)>?(?:\s+[\"'][^\"']*[\"'])?\s*\)")
+
+EXIT_OK = 0
+EXIT_ISSUES = 1
+EXIT_USAGE = 2
 
 
 def strip_code(text):
@@ -25,8 +54,30 @@ def strip_code(text):
     return re.sub(r"`[^`\n]+`", "", text)
 
 
+def local_md_links(text):
+    """取出正文中的站内 Markdown 链接目标。
+
+    跳过外部链接、页内锚点与协议相对地址，只返回 .md 结尾的站内路径。
+    返回值保留原始写法（可能带 `./` 前缀或子目录），由调用方按需解析。
+    """
+    targets = []
+    for match in LINK_RE.finditer(strip_code(text)):
+        target = match.group(1).strip()
+        if not target or EXTERNAL_LINK_RE.match(target):
+            continue
+        path_part = target.split("#", 1)[0].strip()
+        if not path_part.lower().endswith(".md"):
+            continue
+        targets.append(path_part)
+    return targets
+
+
 def analyze_fences(text):
-    """检查代码围栏是否配对、哪些开口缺少语言标识。"""
+    """检查代码围栏是否配对、哪些开口缺少语言标识。
+
+    围栏长度不同的行视为内层内容，不参与配对，因此四重围栏内嵌
+    三重围栏不会被误判为提前闭合。
+    """
     lines = text.splitlines()
     stack = []
     bare_open = []
@@ -67,29 +118,28 @@ def has_related(text):
     return bool(re.search(r"(?m)^## .+\n\n(- |\|)", tail))
 
 
-def check_links(directory, files):
-    """检查同一语言目录内的相对 Markdown 链接是否存在。"""
+def check_links(directory, texts):
+    """检查同一语言目录内的相对 Markdown 链接是否存在。
+
+    外部链接（http、mailto 等）与页内锚点不属于本地校验范围，直接跳过。
+    """
     issues = []
-    for name in files:
-        text = (directory / name).read_text(encoding="utf-8")
-        for match in re.finditer(
-            r"\[([^\]]+)\]\((\.?/?[^)#]+\.md)(?:#[^)]*)?\)", strip_code(text)
-        ):
-            target = (directory / match.group(2)).resolve()
-            if not target.exists():
+    for name, text in texts.items():
+        for target in local_md_links(text):
+            if not (directory / target).exists():
                 issues.append({
                     "file": name,
                     "type": "broken-link",
-                    "detail": match.group(2),
+                    "detail": target,
                 })
     return issues
 
 
-def check_index(directory, files):
+def check_index(directory, texts):
     """检查索引域计数、表格条目数与声明合计是否一致。"""
-    if "README.md" not in files:
+    text = texts.get("README.md")
+    if text is None:
         return []
-    text = (directory / "README.md").read_text(encoding="utf-8")
     numbers = [int(value) for value in re.findall(r"[（(](\d+)\s*(?:篇|files?|specs?)\s*[）)]", text)]
     listed = len(re.findall(r"^\| \[[^\]]+\]\(\./[^)]+\.md\)", text, flags=re.M))
     declared_match = re.search(r"(?:合计|合計|total)[^\d]{0,12}(\d+)", text, flags=re.I)
@@ -110,26 +160,24 @@ def check_index(directory, files):
     return issues
 
 
-def find_template_file(directory):
+def find_template_file(texts):
     """按语言无关的结构特征定位 README 模板：同时含模板正文与占位符对照表。"""
-    for path in sorted(directory.glob("*.md")):
-        text = path.read_text(encoding="utf-8")
+    for name, text in texts.items():
         if "{{" not in text:
             continue
         has_body = re.search(r"(?mi)^##\s+.*(模板正文|template body|模板內文)", text)
         has_table = re.search(r"(?mi)^##\s+.*(占位符对照表|placeholder reference|佔位符對照表)", text)
         if has_body and has_table:
-            return path.name
+            return name
     return None
 
 
-def check_placeholders(directory):
+def check_placeholders(texts):
     """检查 README 模板正文占位符是否全部登记到对照表。"""
-    name = find_template_file(directory)
+    name = find_template_file(texts)
     if not name:
         return []
-    text = (directory / name).read_text(encoding="utf-8")
-    chunks = re.split(r"(?m)^##\s+", text)
+    chunks = re.split(r"(?m)^##\s+", texts[name])
     body, table = "", ""
     for chunk in chunks:
         low = chunk.lower()
@@ -151,15 +199,28 @@ def check_placeholders(directory):
     return []
 
 
+def read_language(directory):
+    """一次性读入某语种目录的全部 Markdown，供各检查复用。
+
+    单个文件读失败时跳过并给出提示，不让一个坏文件中断整轮检查。
+    """
+    texts = {}
+    for path in sorted(directory.glob("*.md")):
+        try:
+            texts[path.name] = path.read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError) as exc:
+            print(f"警告：跳过 {path.name}，读取失败：{exc}", file=sys.stderr)
+    return texts
+
+
 def check_language(root, lang):
     """检查单个语言目录，返回结构化问题列表。"""
     directory = Path(root) / "locales" / lang
     if not directory.exists():
         return [{"file": lang, "type": "missing-language", "detail": str(directory)}]
-    files = sorted(path.name for path in directory.glob("*.md"))
+    texts = read_language(directory)
     issues = []
-    for name in files:
-        text = (directory / name).read_text(encoding="utf-8")
+    for name, text in texts.items():
         if not has_purpose(text):
             issues.append({"file": name, "type": "missing-purpose", "detail": ""})
         if not has_related(text):
@@ -169,34 +230,18 @@ def check_language(root, lang):
             issues.append({"file": name, "type": "bare-code-fence", "detail": f"line {line}"})
         for item in fences["unclosed"]:
             issues.append({"file": name, "type": "unclosed-code-fence", "detail": f"line {item['line']}"})
-    issues.extend(check_links(directory, files))
-    issues.extend(check_index(directory, files))
-    issues.extend(check_placeholders(directory))
+    issues.extend(check_links(directory, texts))
+    issues.extend(check_index(directory, texts))
+    issues.extend(check_placeholders(texts))
+
     referenced = set()
-    for name in files:
-        text = (directory / name).read_text(encoding="utf-8")
-        for match in re.finditer(r"\]\(\./([^)#]+\.md)\)", strip_code(text)):
-            referenced.add(match.group(1))
-    for name in files:
+    for text in texts.values():
+        for target in local_md_links(text):
+            referenced.add(Path(target).name)
+    for name in texts:
         if name != "README.md" and name not in referenced:
             issues.append({"file": name, "type": "orphan", "detail": ""})
     return issues
-
-
-CROSS_AXES = ("heading", "fence", "link", "ordered", "unordered")
-
-# 术语译名矩阵的列名。这 6 个术语在十二个语种正文中均有实际用例，
-# 故纳入自动校验；SBOM / MVP / NLP / LLM 在正文出现 0 次，不参与校验。
-TERM_MATRIX_TERMS = ("SemVer", "ADR", "CoC", "CI/CD", "MCP", "TBD")
-
-# 变格语言的检索词干。俄语、德语正文按语法变格，矩阵取引用形，
-# 严格全字匹配会误判为"正文未出现"，故按词干比对。
-TERM_STEMS = {
-    ("ru-RU", "SemVer"): "семантическ",
-    ("ru-RU", "ADR"): "архитектурн",
-    ("ru-RU", "CI/CD"): "непрерывн",
-    ("de-DE", "SemVer"): "semantisch",
-}
 
 
 def cross_metrics(text):
@@ -232,7 +277,10 @@ def index_links(directory):
     index = directory / "README.md"
     if not index.exists():
         return []
-    text = index.read_text(encoding="utf-8")
+    try:
+        text = index.read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError):
+        return []
     return re.findall(r"\]\(\./([^)#]+\.md)\)", text)
 
 
@@ -277,8 +325,12 @@ def cross_check_language(root, lang, reference="zh-CN"):
                 "detail": f"{lang} 索引指向不存在的文件",
             })
             continue
-        base_m = cross_metrics(base_path.read_text(encoding="utf-8"))
-        target_m = cross_metrics(target_path.read_text(encoding="utf-8"))
+        try:
+            base_m = cross_metrics(base_path.read_text(encoding="utf-8"))
+            target_m = cross_metrics(target_path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeDecodeError) as exc:
+            issues.append({"file": target_name, "type": "cross-unreadable", "detail": str(exc)})
+            continue
         # 索引页的语言切换条比参考语种多一个本语种自链接，属固有条目。
         is_index = target_name == "README.md"
         for axis in CROSS_AXES:
@@ -320,60 +372,76 @@ def cross_check_language(root, lang, reference="zh-CN"):
     return issues
 
 
-def parse_term_matrix(directory):
-    """从术语表读回多语言译名矩阵。
+def matrix_header_terms(line):
+    """若该行是译名矩阵表头，返回其中的术语列名，否则返回空列表。
+
+    避免把普通表格误认成矩阵：要求表头同时出现两个以上已知术语列名。
+    """
+    if not line.strip().startswith("|"):
+        return []
+    header = [cell.strip() for cell in line.strip().strip("|").split("|")]
+    known = set(TERM_MATRIX_TERMS)
+    terms = [cell for cell in header[2:] if cell in known]
+    return terms if len(terms) >= 2 else []
+
+
+def parse_term_matrix_of_text(text):
+    """从文本中解析译名矩阵表头，返回 (表头列名, 首个表头行号)。
+
+    读不到则返回 ([], -1)。行号用于后续从紧随的表体取本语种行。
+    """
+    for index, line in enumerate(text.splitlines()):
+        if matrix_header_terms(line):
+            header = [cell.strip() for cell in line.strip().strip("|").split("|")]
+            return header, index
+    return [], -1
+
+
+def parse_term_matrix(texts, lang):
+    """从已读入的术语表中取回本语种的译名。
 
     矩阵形态：表头为「语种 | 语种名称 | 术语1 | 术语2 ...」，
-    每行以反引号包裹的语言码开头。为避免把普通表格误认成矩阵，
-    要求表头同时出现两个以上已知术语列名。
+    每行以反引号包裹的语言码开头。
 
-    返回 (字段名列表, {术语: 该语种译名})，读不到则返回 ([], {})。
+    返回 (术语列表, {术语: 该语种译名})，读不到则返回 ([], {})。
     """
-    known = set(TERM_MATRIX_TERMS)
-    for path in sorted(directory.glob("*.md")):
-        if path.name == "README.md":
+    for text in texts.values():
+        header, start = parse_term_matrix_of_text(text)
+        if start < 0:
             continue
-        lines = path.read_text(encoding="utf-8").splitlines()
-        for i, line in enumerate(lines):
-            if not line.strip().startswith("|"):
+        lines = text.splitlines()
+        for row in lines[start + 2:]:
+            if not row.strip().startswith("|"):
+                break
+            cells = [cell.strip() for cell in row.strip().strip("|").split("|")]
+            if len(cells) < len(header):
                 continue
-            header = [c.strip() for c in line.strip().strip("|").split("|")]
-            terms = [c for c in header[2:] if c in known]
-            if len(terms) < 2:
+            if cells[0].strip("`") != lang:
                 continue
-            for row in lines[i + 2:]:
-                if not row.strip().startswith("|"):
-                    break
-                cells = [c.strip() for c in row.strip().strip("|").split("|")]
-                if len(cells) < len(header):
-                    continue
-                if cells[0].strip("`") != directory.name:
-                    continue
-                return terms, dict(zip(header[2:], cells[2:]))
+            return header[2:], dict(zip(header[2:], cells[2:]))
     return [], {}
 
 
-def term_corpus(directory, skip_names):
+def term_corpus(texts, glossary_name):
     """拼接某语种全部正文，用于术语检索。
 
     排除术语表本身与索引页：前者是矩阵的出处，计入会自证；
     后者是导航，不承载术语定义。
     """
-    chunks = []
-    for path in sorted(directory.glob("*.md")):
-        if path.name in skip_names or path.name == "README.md":
-            continue
-        chunks.append(path.read_text(encoding="utf-8"))
-    return "\n".join(chunks)
+    return "\n".join(
+        text for name, text in texts.items()
+        if name != glossary_name and name != "README.md"
+    )
 
 
 def term_check_language(root, lang):
     """校验某语种的术语矩阵与正文用词是否自洽。
 
-    检查三类问题：
+    检查四类问题：
     1. term-not-in-corpus：矩阵登记的译名在正文一次都没出现。
     2. term-doubtful-stem：变格语言的矩阵值与登记词干对不上。
-    3. term-no-matrix / term-missing-language：矩阵或目录缺失。
+    3. term-no-matrix：术语表存在但找不到译名矩阵。
+    4. term-missing-language：语种目录不存在。
 
     只做"矩阵 -> 正文"的单向核对。不做"正文缺术语"检查：技术规范按
     主题分篇，某篇不涉及某术语是正常的，强行要求出现会产生大量误报。
@@ -381,16 +449,19 @@ def term_check_language(root, lang):
     directory = Path(root) / "locales" / lang
     if not directory.exists():
         return [{"file": lang, "type": "term-missing-language", "detail": str(directory)}]
-    terms, rendering = parse_term_matrix(directory)
+
+    texts = read_language(directory)
+    # 术语表文件名随语种变化（术语表.md / glossary.md / 用語集.md），
+    # 按"文件含矩阵"识别比按文件名匹配更可靠。
+    glossary = next((name for name in texts if parse_term_matrix_of_text(texts[name])[1] >= 0), None)
+    if glossary is None:
+        return [{"file": lang, "type": "term-no-matrix", "detail": "术语表未找到译名矩阵"}]
+
+    terms, rendering = parse_term_matrix({glossary: texts[glossary]}, lang)
     if not terms:
         return [{"file": lang, "type": "term-no-matrix", "detail": "术语表未找到译名矩阵"}]
-    skip = {path.name for path in directory.glob("*.md") if "glossary" in path.name.lower()}
-    # 术语表文件名随语种变化，按"含矩阵"识别更稳
-    for path in directory.glob("*.md"):
-        if parse_term_matrix_of_file(path):
-            skip.add(path.name)
-    corpus = term_corpus(directory, skip)
 
+    corpus = term_corpus(texts, glossary).lower()
     issues = []
     for term in terms:
         value = rendering.get(term, "").strip()
@@ -408,36 +479,19 @@ def term_check_language(root, lang):
                     "detail": f"{term} 矩阵作「{value}」，与登记词干「{stem}」不符",
                 })
                 continue
-            hit = stem.lower() in corpus.lower()
+            hit = stem.lower() in corpus
         else:
-            hit = value.lower() in corpus.lower()
+            hit = value.lower() in corpus
         if not hit:
             issues.append({
                 "file": lang,
                 "type": "term-not-in-corpus",
                 "detail": f"{term} 矩阵作「{value}」，正文未出现",
             })
-            continue
-        # 说明：曾尝试用「全称（缩写）」展开式自动发现同义异写，但自然语言的
-        # 短语边界无法可靠切分（会把定语、从句一并吞入，且单复数与冠词差异
-        # 造成大量误报），误报率高于价值，故不纳入自动检查。
+    # 说明：曾尝试用「全称（缩写）」展开式自动发现同义异写，但自然语言的
+    # 短语边界无法可靠切分（会把定语、从句一并吞入，且单复数与冠词差异
+    # 造成大量误报），误报率高于价值，故不纳入自动检查。
     return issues
-
-
-def parse_term_matrix_of_file(path):
-    """判断单个文件是否含译名矩阵，供排除术语表用。"""
-    try:
-        text = path.read_text(encoding="utf-8")
-    except OSError:
-        return False
-    known = set(TERM_MATRIX_TERMS)
-    for line in text.splitlines():
-        if not line.strip().startswith("|"):
-            continue
-        header = [c.strip() for c in line.strip().strip("|").split("|")]
-        if len([c for c in header[2:] if c in known]) >= 2:
-            return True
-    return False
 
 
 def list_specs(root, lang):
@@ -449,9 +503,18 @@ def list_specs(root, lang):
 
 
 def get_spec(root, lang, name):
-    """读取指定规范全文。"""
-    path = Path(root) / "locales" / lang / name
-    return path.read_text(encoding="utf-8") if path.exists() else ""
+    """读取指定规范全文。
+
+    只允许读取 locales/<lang>/ 下顶层的 Markdown 文件。名称含路径分隔、
+    绝对路径或跳出语种目录的写法一律拒绝，避免被用来读取仓库外文件。
+    """
+    directory = (Path(root) / "locales" / lang).resolve()
+    if not directory.is_dir():
+        return ""
+    candidate = (directory / name).resolve()
+    if candidate.parent != directory or candidate.suffix.lower() != ".md":
+        raise ValueError(f"非法文件名：{name}（只允许 {lang} 目录下的 .md 文件）")
+    return candidate.read_text(encoding="utf-8") if candidate.exists() else ""
 
 
 def language_status(root):
@@ -459,7 +522,10 @@ def language_status(root):
     readme = Path(root) / "README.md"
     if not readme.exists():
         return []
-    text = readme.read_text(encoding="utf-8")
+    try:
+        text = readme.read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError):
+        return []
     rows = []
     for line in text.splitlines():
         match = re.match(r"^\|\s*([^|]+?)\s*\|\s*([a-zA-Z]{2}-[A-Z]{2})\s*\|\s*([^|]+?)\s*\|", line)
@@ -473,65 +539,122 @@ def language_status(root):
 
 
 def optimize(root, lang, fix, backup):
-    """执行安全优化：仅为裸代码围栏补充 text 语言标识。"""
+    """执行安全优化：仅为裸代码围栏补充 text 语言标识。
+
+    按文件分组处理，每个文件只读写一次、只备份一次；修改前后行数不变，
+    因此同一文件内多处裸围栏可以一次性全部修好。
+
+    支持任意长度的反引号围栏（三重、四重等），补齐时保留原长度：
+    四重围栏加语言标识后仍是四重，不会与其内嵌的三重围栏混淆。
+    changes 中每项带 fixed 标记，用于区分"已写入"与"仅报告"。
+    """
     directory = Path(root) / "locales" / lang
     if not directory.exists():
         return {"fixed": 0, "planned": 0, "changes": []}
+
     planned = []
     for path in sorted(directory.glob("*.md")):
-        text = path.read_text(encoding="utf-8")
-        lines = text.splitlines(keepends=True)
-        for line in analyze_fences("\n".join(lines))["bare_open"]:
-            planned.append({"file": path.name, "line": line})
+        try:
+            text = path.read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError) as exc:
+            print(f"警告：跳过 {path.name}，读取失败：{exc}", file=sys.stderr)
+            continue
+        for line in analyze_fences(text)["bare_open"]:
+            planned.append({"file": path.name, "line": line, "fixed": False})
     if not fix:
         return {"fixed": 0, "planned": len(planned), "changes": planned}
+
+    grouped = {}
     for item in planned:
-        path = directory / item["file"]
+        grouped.setdefault(item["file"], []).append(item)
+
+    fixed = 0
+    for name, items in grouped.items():
+        path = directory / name
+        try:
+            lines = path.read_text(encoding="utf-8").splitlines(keepends=True)
+        except (OSError, UnicodeDecodeError) as exc:
+            print(f"警告：跳过 {name}，读取失败：{exc}", file=sys.stderr)
+            continue
+        changed = False
+        for item in items:
+            index = item["line"] - 1
+            if not 0 <= index < len(lines):
+                continue
+            # 拆分行尾再匹配，避免直接用 \s* 把换行符一起吞掉（会造成行数减少）。
+            body = lines[index].rstrip("\r\n")
+            ending = lines[index][len(body):]
+            match = re.match(r"^(`{3,})[ \t]*$", body)
+            if not match:
+                continue
+            lines[index] = f"{match.group(1)}text{ending}"
+            item["fixed"] = True
+            changed = True
+            fixed += 1
+        if not changed:
+            continue
         if backup:
             shutil.copy2(path, str(path) + ".bak")
-        lines = path.read_text(encoding="utf-8").splitlines(keepends=True)
-        index = item["line"] - 1
-        if lines[index].strip() == "```":
-            lines[index] = lines[index].replace("```", "```text", 1)
         path.write_text("".join(lines), encoding="utf-8")
-    return {"fixed": len(planned), "planned": len(planned), "changes": planned}
+    return {"fixed": fixed, "planned": len(planned), "changes": planned}
 
 
 def print_report(report, as_json):
-    """输出文本或 JSON 报告。"""
+    """输出文本或 JSON 报告。
+
+    按 report["kind"] 显式分发，不靠键名猜测：check 与 status 都含
+    "languages" 键，语义却完全不同（一个是语言码列表，一个是状态行）。
+    """
     if as_json:
         print(json.dumps(report, ensure_ascii=False, indent=2))
         return
-    if "terms" in report:
+
+    kind = report.get("kind")
+    if kind == "check":
         print(f"检查语言：{', '.join(report['languages'])}")
-        print(f"校验术语：{', '.join(report['terms'])}")
-        print(f"问题数：{len(report['termsIssues'])}")
-        for item in report["termsIssues"]:
+        print(f"文档数：{report['files']}，问题数：{len(report['issues'])}")
+        for item in report["issues"]:
             print(f"- {item['file']} / {item['type']}：{item['detail']}")
-    elif "issues" in report:
-        issues = report["issues"]
-        print(f"检查语言：{', '.join(report['languages'])}")
-        print(f"文档数：{report['files']}，问题数：{len(issues)}")
-        for item in issues:
-            print(f"- {item['file']} / {item['type']}：{item['detail']}")
-    elif "changes" in report:
-        print(f"计划修复：{report['planned']}，已修复：{report['fixed']}")
-        for item in report["changes"]:
-            print(f"- {item['file']}:{item['line']} → ```text")
-    elif "specs" in report:
-        for name in report["specs"]:
-            print(name)
-    elif "content" in report:
-        print(report["content"])
-    elif "languages" in report and isinstance(report["languages"], list):
-        for row in report["languages"]:
-            print(f"{row['code']}\t{row['status']}\t{row['language']}")
-    elif "cross" in report:
+    elif kind == "xcheck":
         print(f"参考语种：{report['reference']}")
         print(f"比对语种：{', '.join(report['compared']) or '无'}")
-        print(f"检查篇目：{report['documents']}，问题数：{len(report['cross'])}")
-        for item in report["cross"]:
+        print(f"检查篇目：{report['documents']}，问题数：{len(report['issues'])}")
+        for item in report["issues"]:
             print(f"- {item['file']} / {item['type']}：{item['detail']}")
+    elif kind == "termcheck":
+        print(f"检查语言：{', '.join(report['languages'])}")
+        print(f"校验术语：{', '.join(report['terms'])}")
+        print(f"问题数：{len(report['issues'])}")
+        for item in report["issues"]:
+            print(f"- {item['file']} / {item['type']}：{item['detail']}")
+    elif kind == "optimize":
+        print(f"计划修复：{report['planned']}，已修复：{report['fixed']}")
+        for item in report["changes"]:
+            mark = "" if item.get("fixed", True) else "（仅报告）"
+            print(f"- {item['file']}:{item['line']} → 补 text 语言标识{mark}")
+    elif kind == "list":
+        for name in report["specs"]:
+            print(name)
+    elif kind == "spec":
+        print(report["content"])
+    elif kind == "status":
+        for row in report["languages"]:
+            print(f"{row['code']}\t{row['status']}\t{row['language']}")
+    else:
+        raise ValueError(f"未知报告类型：{kind}")
+
+
+def fail(message):
+    """向标准错误输出错误信息，并返回参数错误退出码。"""
+    print(f"错误：{message}", file=sys.stderr)
+    return EXIT_USAGE
+
+
+def resolve_langs(lang):
+    """把 --lang 解析为语言码列表，对未知语言码给出提示但不阻断。"""
+    if lang != "all" and lang not in SUPPORTED_LANGS:
+        print(f"警告：{lang} 不在支持列表中，仍按该语言码检查", file=sys.stderr)
+    return SUPPORTED_LANGS if lang == "all" else (lang,)
 
 
 def main():
@@ -580,21 +703,25 @@ def main():
     args = parser.parse_args()
     root = os.path.abspath(args.path)
 
+    locales_root = Path(root) / "locales"
+    if not locales_root.is_dir():
+        return fail(f"未找到 {locales_root}，请用 --path 指定仓库根目录")
+
     if args.command == "check":
-        langs = SUPPORTED_LANGS if args.lang == "all" else (args.lang,)
+        langs = resolve_langs(args.lang)
         issues = []
         total_files = 0
         for lang in langs:
-            directory = Path(root) / "locales" / lang
+            directory = locales_root / lang
             if directory.exists():
                 total_files += len(list(directory.glob("*.md")))
             issues.extend(check_language(root, lang))
-        report = {"languages": list(langs), "files": total_files, "issues": issues}
+        report = {"kind": "check", "languages": list(langs), "files": total_files, "issues": issues}
         print_report(report, args.json)
-        return 1 if issues else 0
+        return EXIT_ISSUES if issues else EXIT_OK
 
     if args.command == "optimize":
-        langs = SUPPORTED_LANGS if args.lang == "all" else (args.lang,)
+        langs = resolve_langs(args.lang)
         all_changes = []
         fixed = 0
         planned = 0
@@ -604,52 +731,66 @@ def main():
             fixed += result["fixed"]
             for item in result["changes"]:
                 all_changes.append({"lang": lang, **item})
-        print_report({"planned": planned, "fixed": fixed, "changes": all_changes}, args.json)
-        return 0
+        print_report({"kind": "optimize", "planned": planned, "fixed": fixed, "changes": all_changes}, args.json)
+        return EXIT_OK
 
     if args.command == "list":
-        print_report({"specs": list_specs(root, args.lang)}, args.json)
-        return 0
+        print_report({"kind": "list", "specs": list_specs(root, args.lang)}, args.json)
+        return EXIT_OK
 
     if args.command == "spec":
-        print_report({"content": get_spec(root, args.lang, args.name)}, args.json)
-        return 0
+        try:
+            content = get_spec(root, args.lang, args.name)
+        except ValueError as exc:
+            return fail(str(exc))
+        if not content:
+            return fail(f"{args.lang} 目录下没有 {args.name}")
+        print_report({"kind": "spec", "content": content}, args.json)
+        return EXIT_OK
 
     if args.command == "status":
-        print_report({"languages": language_status(root)}, args.json)
-        return 0
+        print_report({"kind": "status", "languages": language_status(root)}, args.json)
+        return EXIT_OK
 
     if args.command == "xcheck":
+        reference_dir = locales_root / args.reference
+        if not reference_dir.is_dir():
+            return fail(f"参考语种目录不存在：{reference_dir}")
+        if args.lang != "all" and args.lang == args.reference:
+            return fail("待比对语种与参考语种相同，无需比对")
         langs = [lang for lang in SUPPORTED_LANGS if lang != args.reference]
         if args.lang != "all":
+            if args.lang not in SUPPORTED_LANGS:
+                print(f"警告：{args.lang} 不在支持列表中，仍按该语言码检查", file=sys.stderr)
             langs = [args.lang]
         issues = []
         for lang in langs:
             issues.extend(cross_check_language(root, lang, args.reference))
-        documents = len(index_links(Path(root) / "locales" / args.reference))
         report = {
+            "kind": "xcheck",
             "reference": args.reference,
             "compared": langs,
-            "documents": documents,
-            "cross": issues,
+            "documents": len(index_links(reference_dir)),
+            "issues": issues,
         }
         print_report(report, args.json)
-        return 1 if issues else 0
+        return EXIT_ISSUES if issues else EXIT_OK
 
     if args.command == "termcheck":
-        langs = SUPPORTED_LANGS if args.lang == "all" else (args.lang,)
+        langs = resolve_langs(args.lang)
         issues = []
         for lang in langs:
             issues.extend(term_check_language(root, lang))
         report = {
+            "kind": "termcheck",
             "languages": list(langs),
             "terms": list(TERM_MATRIX_TERMS),
-            "termsIssues": issues,
+            "issues": issues,
         }
         print_report(report, args.json)
-        return 1 if issues else 0
+        return EXIT_ISSUES if issues else EXIT_OK
 
-    return 2
+    return EXIT_USAGE
 
 
 if __name__ == "__main__":
