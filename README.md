@@ -2,11 +2,13 @@
 
 [English](./README_EN.md) | [简体中文](./README.md) | [繁體中文](./locales/zh-TW/README.md) | [日本語](./locales/ja-JP/README.md) | [한국어](./locales/ko-KR/README.md) | [Français](./locales/fr-FR/README.md) | [Deutsch](./locales/de-DE/README.md) | [العربية](./locales/ar-SA/README.md) | [हिन्दी](./locales/hi-IN/README.md)
 
+![CI](https://github.com/ntars/Gitrule-skill/actions/workflows/ci.yml/badge.svg)
 ![状态](https://img.shields.io/badge/status-12%20of%2012%20语言已交付-brightgreen?style=flat-square)
+![许可证](https://img.shields.io/badge/许可证-MIT-blue?style=flat-square)
 
 > 一套覆盖项目全生命周期的通用规范模板：从立项、开发、文档、合规到发布运维与 AI 程序化调用。全仓库采用 MIT 许可证，可自由使用、修改与再发布。
 
-> **本仓库即本规范集的首个实现案例**：本 README 与 `locales/`、`cli/`、`mcp/`、`skill/`、`expert/` 下的全部文档均按本规范集编写，并通过其结构校验（断链、孤岛、索引计数、占位符登记均为 0 问题）。
+> **本仓库即本规范集的首个实现案例**：本 README 与 `locales/`、`cli/`、`mcp/`、`skill/`、`expert/` 下的全部文档均按本规范集编写，并通过其结构校验（断链、孤岛、索引计数、占位符登记均为 0 问题）。仓库自带 [CI 工作流](./.github/workflows/ci.yml)，每次推送与 PR 自动跑一遍该校验，失败即阻断合入。
 
 ## 用途
 
@@ -41,7 +43,7 @@
 
 - 按指令逐次新增 `ja-JP`、`ko-KR` 等语言目录，并同步根语言导航。
 - 如需程序化接入，可基于清单示例生成独立 `manifest.json`。
-- 按需扩展 CLI 的自动修复范围与 CI 集成。
+- 按需扩展 CLI 的自动修复范围。
 - 以上均为非承诺计划，按实际需要调整。
 
 ## AI 可调用适配器

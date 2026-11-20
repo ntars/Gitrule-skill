@@ -1,0 +1,129 @@
+name: CI
+
+# 文档结构校验：断链、孤岛、代码围栏、索引计数、占位符登记、
+# 跨语种结构一致性、术语矩阵自洽。任一失败即阻断合入。
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# 只读权限，本工作流不写入仓库任何内容。
+permissions:
+  contents: read
+
+jobs:
+  spec-check:
+    name: 规范结构校验
+    runs-on: ubuntu-latest
+    strategy:
+      # 各 Python 版本独立跑完，便于定位兼容性问题。
+      fail-fast: false
+      matrix:
+        # 3.8 是 README 声明的最低版本，3.13 为当前最新稳定版。
+        python-version: ["3.8", "3.13"]
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # CLI 与 MCP 零第三方依赖，不执行 pip install，节省时间且避免供应链风险。
+      - name: 确认零依赖
+        run: |
+          python -c "import sys; print('Python', sys.version)"
+          python -c "import argparse, json, os, re, shutil, sys, pathlib; print('标准库导入正常')"
+
+      - name: 结构检查（断链、孤岛、围栏、索引计数、占位符）
+        run: python cli/gitrule.py check --path . --lang all
+
+      - name: 跨语种结构一致性
+        run: python cli/gitrule.py xcheck --path . --reference zh-CN --lang all
+
+      - name: 术语矩阵自洽
+        run: python cli/gitrule.py termcheck --path . --lang all
+
+      # 门禁之外单独确认：修复预览不应再有余量，否则说明 check 漏报。
+      - name: 修复预览应为空
+        run: |
+          python cli/gitrule.py optimize --path . --lang all | tee /tmp/optimize.log
+          if ! grep -q "计划修复：0" /tmp/optimize.log; then
+            echo "::error::仍有可自动修复的问题，请先本地执行 optimize --fix --backup"
+            exit 1
+          fi
+
+  mcp-smoke:
+    name: MCP 服务器冒烟
+    runs-on: ubuntu-latest
+    needs: spec-check
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      # 逐行 JSON-RPC：正常调用、非对象消息、未知方法、路径穿越。
+      - name: 异常路径不应崩溃
+        run: |
+          printf '%s\n' \
+            '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}' \
+            '{"jsonrpc":"2.0","id":2,"method":"tools/list"}' \
+            '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"gitrule_check","arguments":{"lang":"zh-CN"}}}' \
+            '5' \
+            '{"jsonrpc":"2.0","id":5,"method":"nope"}' \
+            '{"jsonrpc":"2.0","id":6,"method":"tools/call","params":{"name":"gitrule_get_spec","arguments":{"lang":"zh-CN","name":"../../etc/passwd"}}}' \
+            | python mcp/server.py > /tmp/mcp.out 2> /tmp/mcp.err
+
+          if [ -s /tmp/mcp.err ]; then
+            echo "::error::stderr 不应有输出"
+            cat /tmp/mcp.err
+            exit 1
+          fi
+
+          # 逐行输入 6 条请求，应逐行返回 6 条响应；第 4 条是非对象消息，
+          # 也必须返回 -32600 错误而非抛异常退出。
+          lines=$(grep -c . /tmp/mcp.out || true)
+          if [ "$lines" -ne 6 ]; then
+            echo "::error::期望 6 行响应，实际 $lines 行"
+            cat /tmp/mcp.out
+            exit 1
+          fi
+
+          # 工具列表必须含全部七个工具。
+          python - <<'PY'
+          import json
+          tools = None
+          for line in open("/tmp/mcp.out", encoding="utf-8"):
+              data = json.loads(line)
+              if data.get("id") == 2:
+                  tools = [t["name"] for t in data["result"]["tools"]]
+          expected = {
+              "gitrule_check", "gitrule_optimize", "gitrule_list_specs",
+              "gitrule_get_spec", "gitrule_language_status",
+              "gitrule_xcheck", "gitrule_termcheck",
+          }
+          if tools is None or set(tools) != expected:
+              raise SystemExit(f"工具列表不符：{tools}")
+          print("七个工具齐备：", sorted(tools))
+          PY
+
+      - name: 路径穿越应被拒绝
+        run: |
+          printf '%s\n' \
+            '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"gitrule_get_spec","arguments":{"lang":"zh-CN","name":"../../etc/passwd"}}}' \
+            | python mcp/server.py | tee /tmp/traversal.out
+          if grep -q "root:" /tmp/traversal.out; then
+            echo "::error::路径穿越未被拦截"
+            exit 1
+          fi
+          grep -q "非法文件名" /tmp/traversal.out || {
+            echo "::error::未返回预期的拒绝信息"
+            exit 1
+          }

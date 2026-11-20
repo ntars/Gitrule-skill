@@ -2,11 +2,13 @@
 
 [简体中文](./README.md) | [English](./README_EN.md) | [繁體中文](./locales/zh-TW/README.md) | [日本語](./locales/ja-JP/README.md) | [한국어](./locales/ko-KR/README.md) | [Français](./locales/fr-FR/README.md) | [Deutsch](./locales/de-DE/README.md) | [العربية](./locales/ar-SA/README.md)
 
+![CI](https://github.com/ntars/Gitrule-skill/actions/workflows/ci.yml/badge.svg)
 ![Status](https://img.shields.io/badge/status-12%20of%2012%20languages%20delivered-brightgreen?style=flat-square)
+![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
 
 > A universal set of specification templates covering the full project lifecycle: from planning, development, and documentation to compliance, release, operations, and programmatic access for AI. The entire repository is MIT-licensed and may be freely used, modified, and redistributed.
 
-> **This repository is the first implementation case of its own specification set**: this README and all documents under `locales/`, `cli/`, `mcp/`, `skill/`, and `expert/` are written according to this specification set and pass its structural checks (broken links, orphan files, index counts, and placeholder registration all report zero issues).
+> **This repository is the first implementation case of its own specification set**: this README and all documents under `locales/`, `cli/`, `mcp/`, `skill/`, and `expert/` are written according to this specification set and pass its structural checks (broken links, orphan files, index counts, and placeholder registration all report zero issues). The repository ships a [CI workflow](./.github/workflows/ci.yml) that runs these checks on every push and pull request, blocking merges when they fail.
 
 ## Purpose
 
@@ -41,7 +43,7 @@
 
 - Add `ja-JP`, `ko-KR`, and other language directories on instruction, and keep root navigation in sync.
 - Generate a standalone `manifest.json` from the manifest example when programmatic access requires it.
-- Extend CLI auto-fix coverage and CI integration as needed.
+- Extend CLI auto-fix coverage as needed.
 - All items are non-committal plans, adjusted to actual needs.
 
 ## AI-Callable Adapters
