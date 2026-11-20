@@ -39,6 +39,11 @@ TERM_STEMS = {
 # 外部链接前缀：带 URL scheme（https:、mailto:）、协议相对（//）、页内锚点（#）。
 EXTERNAL_LINK_RE = re.compile(r"^(?:[a-zA-Z][a-zA-Z0-9+.\-]*:|//|#)")
 
+# 围栏行：三个以上反引号或波浪线开头，其后是语言标识（可为空）。
+# 两种字符在 Markdown 里等价，必须同时识别，否则会出现
+# "检查漏报"与"代码块内容被当正文扫描"两类相反的错误。
+FENCE_RE = re.compile(r"^(?P<fence>`{3,}|~{3,})(?P<info>.*)$")
+
 # Markdown 链接整体，目标地址允许被尖括号包裹，也允许带可选的标题。
 LINK_RE = re.compile(r"\[[^\]]*\]\(\s*<?([^)>]+?)>?(?:\s+[\"'][^\"']*[\"'])?\s*\)")
 
@@ -47,11 +52,48 @@ EXIT_ISSUES = 1
 EXIT_USAGE = 2
 
 
+def fence_marker(line):
+    """解析围栏行，返回 (围栏字符, 长度, 语言标识)；不是围栏行返回 None。
+
+    反引号围栏的语言标识里不允许再出现反引号，这类行按普通正文处理，
+    与 CommonMark 的解析规则一致。
+    """
+    match = FENCE_RE.match(line)
+    if not match:
+        return None
+    fence = match.group("fence")
+    info = match.group("info").strip()
+    if fence[0] == "`" and "`" in info:
+        return None
+    return fence[0], len(fence), info
+
+
 def strip_code(text):
-    """移除代码块与行内代码，只保留用于扫描的正文。"""
-    text = re.sub(r"````.*?````", "", text, flags=re.S)
-    text = re.sub(r"```.*?```", "", text, flags=re.S)
-    return re.sub(r"`[^`\n]+`", "", text)
+    """移除围栏代码块与行内代码，只保留用于扫描的正文。
+
+    逐行扫描而非正则配对：嵌套或长度不等的围栏能正确跳过，
+    波浪线围栏与反引号围栏一视同仁。围栏未闭合时把块内各行还原，
+    避免因为解析异常而漏掉后半篇的链接检查。
+    """
+    kept = []
+    pending = []
+    fence = None
+    for line in text.splitlines():
+        parsed = fence_marker(line)
+        if fence is None:
+            if parsed:
+                fence = (parsed[0], parsed[1])
+                pending = []
+                continue
+            kept.append(line)
+        elif parsed and parsed[0] == fence[0] and parsed[1] >= fence[1] and not parsed[2]:
+            fence = None
+            pending = []
+        else:
+            pending.append(line)
+    if fence is not None:
+        kept.extend(pending)
+    return re.sub(r"`[^`\n]+`", "", "\n".join(kept))
 
 
 def local_md_links(text):
@@ -75,27 +117,27 @@ def local_md_links(text):
 def analyze_fences(text):
     """检查代码围栏是否配对、哪些开口缺少语言标识。
 
-    围栏长度不同的行视为内层内容，不参与配对，因此四重围栏内嵌
-    三重围栏不会被误判为提前闭合。
+    反引号与波浪线两种围栏都识别。围栏字符须与开口一致、长度不得短于
+    开口才视为闭合，因此四重围栏内嵌三重围栏不会被误判为提前闭合。
+    闭合行若带语言标识则不视为闭合（CommonMark 规则），避免把
+    ```text 这类误写当成正常结尾。
     """
-    lines = text.splitlines()
     stack = []
     bare_open = []
-    for number, line in enumerate(lines, 1):
-        match = re.match(r"^(`{3,})([^`]*)$", line)
-        if not match:
+    for number, line in enumerate(text.splitlines(), 1):
+        parsed = fence_marker(line)
+        if not parsed:
             continue
-        length = len(match.group(1))
-        language = match.group(2).strip()
+        char, length, info = parsed
         if not stack:
-            stack.append((length, number))
-            if not language:
+            stack.append((char, length, number))
+            if not info:
                 bare_open.append(number)
-        elif length == stack[-1][0] and not language:
+        elif char == stack[-1][0] and length >= stack[-1][1] and not info:
             stack.pop()
     return {
         "bare_open": bare_open,
-        "unclosed": [{"line": number} for _, number in stack],
+        "unclosed": [{"line": number} for _, _, number in stack],
     }
 
 
@@ -245,16 +287,18 @@ def check_language(root, lang):
 
 
 def cross_metrics(text):
-    """提取用于跨语种比对的八轴结构指标。
+    """提取用于跨语种比对的各轴结构指标。
 
     章号形态（`## 一、` 与 `## 1.`）先归一，其余数字保留，供占位符与数字比对。
+    围栏计数与 analyze_fences 同口径：反引号与波浪线都计入，否则
+    "结构一致"的判定会与"围栏配对"的判定互相矛盾。
     """
     normalized = re.sub(r"^## [一二三四五六七八九十]+、", "## ", text, flags=re.M)
     normalized = re.sub(r"^## \d+\. ", "## ", normalized, flags=re.M)
     table = [line for line in text.split("\n") if line.strip().startswith("|")]
     return {
         "heading": len(re.findall(r"^#{1,6} ", text, re.M)),
-        "fence": len(re.findall(r"^```", text, re.M)),
+        "fence": sum(1 for line in text.splitlines() if fence_marker(line)),
         "link": len(re.findall(r"\]\(", text)),
         "ordered": len(re.findall(r"^\d+\. ", text, re.M)),
         "unordered": len(re.findall(r"^[-*] ", text, re.M)),
@@ -544,8 +588,9 @@ def optimize(root, lang, fix, backup):
     按文件分组处理，每个文件只读写一次、只备份一次；修改前后行数不变，
     因此同一文件内多处裸围栏可以一次性全部修好。
 
-    支持任意长度的反引号围栏（三重、四重等），补齐时保留原长度：
-    四重围栏加语言标识后仍是四重，不会与其内嵌的三重围栏混淆。
+    支持任意长度的反引号与波浪线围栏（三重、四重等），补齐时保留原字符
+    与原长度：四重围栏加语言标识后仍是四重，不会与其内嵌的三重围栏混淆，
+    波浪线围栏也不会被改成反引号。补齐语义固定为 text，不按内容猜测语言。
     changes 中每项带 fixed 标记，用于区分"已写入"与"仅报告"。
     """
     directory = Path(root) / "locales" / lang
@@ -584,10 +629,11 @@ def optimize(root, lang, fix, backup):
             # 拆分行尾再匹配，避免直接用 \s* 把换行符一起吞掉（会造成行数减少）。
             body = lines[index].rstrip("\r\n")
             ending = lines[index][len(body):]
-            match = re.match(r"^(`{3,})[ \t]*$", body)
-            if not match:
+            parsed = fence_marker(body)
+            if not parsed or parsed[2]:
                 continue
-            lines[index] = f"{match.group(1)}text{ending}"
+            char, length, _ = parsed
+            lines[index] = f"{char * length}text{ending}"
             item["fixed"] = True
             changed = True
             fixed += 1
