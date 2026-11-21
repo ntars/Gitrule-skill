@@ -23,7 +23,7 @@
 
 ## 核心特性
 
-1. 一文件一职责：67 篇规范各自独立，按七域导航，不必通读。
+1. 一文件一职责：68 篇规范各自独立，按七域导航，不必通读。
 2. 全生命周期：八阶段映射覆盖立项、需求、架构、开发、测试、部署、运维与迭代。
 3. 多语言就绪：语言码集中在 `locales/`，新增语言不改动已有文件。
 4. 机器可读：每条规范有稳定标识与路径映射，并提供可复制清单示例。
@@ -91,18 +91,18 @@ MCP 注册示例（写入 MCP 配置的 `mcpServers`）：
 
 | 语言 | 代码 | 状态 | 入口 |
 | --- | --- | --- | --- |
-| 简体中文 | zh-CN | 已完成（67 篇） | [进入](./locales/zh-CN/README.md) |
-| 英语 | en-US | 已完成（67 篇） | [进入](./locales/en-US/README.md) |
-| 繁体中文 | zh-TW | 已完成（67 篇） | [进入](./locales/zh-TW/README.md) |
-| 日语 | ja-JP | 已完成（67 篇） | [进入](./locales/ja-JP/README.md) |
-| 韩语 | ko-KR | 已完成（67 篇） | [进入](./locales/ko-KR/README.md) |
-| 法语 | fr-FR | 已完成（67 篇） | [进入](./locales/fr-FR/README.md) |
-| 德语 | de-DE | 已完成（67 篇） | [进入](./locales/de-DE/README.md) |
-| 西班牙语 | es-ES | 已完成（67 篇） | [进入](./locales/es-ES/README.md) |
-| 葡萄牙语（巴西） | pt-BR | 已完成（67 篇） | [进入](./locales/pt-BR/README.md) |
-| 俄语 | ru-RU | 已完成（67 篇） | [进入](./locales/ru-RU/README.md) |
-| 阿拉伯语 | ar-SA | 已完成（67 篇） | [进入](./locales/ar-SA/README.md) |
-| 印地语 | hi-IN | 已完成（67 篇） | [进入](./locales/hi-IN/README.md) |
+| 简体中文 | zh-CN | 已完成（68 篇） | [进入](./locales/zh-CN/README.md) |
+| 英语 | en-US | 已完成（68 篇） | [进入](./locales/en-US/README.md) |
+| 繁体中文 | zh-TW | 已完成（68 篇） | [进入](./locales/zh-TW/README.md) |
+| 日语 | ja-JP | 已完成（68 篇） | [进入](./locales/ja-JP/README.md) |
+| 韩语 | ko-KR | 已完成（68 篇） | [进入](./locales/ko-KR/README.md) |
+| 法语 | fr-FR | 已完成（68 篇） | [进入](./locales/fr-FR/README.md) |
+| 德语 | de-DE | 已完成（68 篇） | [进入](./locales/de-DE/README.md) |
+| 西班牙语 | es-ES | 已完成（68 篇） | [进入](./locales/es-ES/README.md) |
+| 葡萄牙语（巴西） | pt-BR | 已完成（68 篇） | [进入](./locales/pt-BR/README.md) |
+| 俄语 | ru-RU | 已完成（68 篇） | [进入](./locales/ru-RU/README.md) |
+| 阿拉伯语 | ar-SA | 已完成（68 篇） | [进入](./locales/ar-SA/README.md) |
+| 印地语 | hi-IN | 已完成（68 篇） | [进入](./locales/hi-IN/README.md) |
 
 新增语言只需新建对应语言目录并按同一规范翻译，不改动已有语言文件。
 

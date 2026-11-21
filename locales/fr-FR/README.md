@@ -2,7 +2,7 @@
 
 [简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](./README.md) | [Deutsch](../de-DE/README.md) | [Español](../es-ES/README.md) | [Português](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [العربية](../ar-SA/README.md) | [हिन्दी](../hi-IN/README.md)
 
-> Problème que ce fichier résout : servir de navigation pour l'ensemble des spécifications en français, en listant la responsabilité, le domaine d'appartenance et le parcours de lecture des 67 spécifications, afin de permettre de les consulter à la demande.
+> Problème que ce fichier résout : servir de navigation pour l'ensemble des spécifications en français, en listant la responsabilité, le domaine d'appartenance et le parcours de lecture des 68 spécifications, afin de permettre de les consulter à la demande.
 
 > Ce dépôt est le premier cas d'implémentation de son propre ensemble de spécifications : cet index et tous les documents du répertoire sont rédigés selon l'ensemble de spécifications et passent ses contrôles structurels.
 
@@ -30,7 +30,7 @@
 | [Spécification de la feuille de route](./roadmap-specification.md) | Définit les champs de la feuille de route, le marquage des états et le principe d'absence d'engagement |
 | [Collecte d'informations et gabarits](./information-collection-and-templates.md) | Définit les champs obligatoires et facultatifs, le marquage des éléments manquants et les différents gabarits |
 
-## 3. Nommage et documentation (18 documents)
+## 3. Nommage et documentation (19 documents)
 
 | Fichier | Responsabilité unique |
 | --- | --- |
@@ -52,6 +52,7 @@
 | [Gabarit de guide de contribution](./contribution-guide-template.md) | Fournit un gabarit CONTRIBUTING copiable, ses commandes et les points d'auto-vérification des PR |
 | [Gabarit SECURITY](./security-template.md) | Fournit un gabarit de politique de sécurité copiable, les canaux de signalement et les délais de réponse |
 | [Spécification des gabarits d'issue et de PR](./issue-and-pr-template-specification.md) | Définit la conception des champs des formulaires d'issue structurés et de la liste d'auto-vérification des PR |
+| [Spécification des gabarits de manuel de développement](./development-manual-template-spec.md) | Définit le squelette, les cartes de tâches et le protocole de transfert du manuel de développement en deux phases « rédaction dans le cloud, exécution en local » |
 
 ## 4. Développement et ingénierie (12 documents)
 
@@ -109,7 +110,7 @@
 | [Spécification des outils MCP](./mcp-tool-specification.md) | Définit la conception des interfaces et les règles de description des outils MCP |
 | [Spécification de l'invocation d'agent et des invites](./agent-invocation-and-prompt-specification.md) | Définit les contrats de dispatch des agents et la rédaction des invites |
 
-Total des sept domaines : 67 documents.
+Total des sept domaines : 68 documents.
 
 ## Parcours de lecture
 

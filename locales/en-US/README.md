@@ -2,7 +2,7 @@
 
 [简体中文](../zh-CN/README.md) | [English](./README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](../de-DE/README.md) | [Español](../es-ES/README.md) | [Português](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [العربية](../ar-SA/README.md) | [हिन्दी](../hi-IN/README.md)
 
-> What this file solves: Serves as a navigation index for the English specification set, listing the responsibility, domain, and reading path of all 67 specifications for on-demand access.
+> What this file solves: Serves as a navigation index for the English specification set, listing the responsibility, domain, and reading path of all 68 specifications for on-demand access.
 
 > This repository is the first implementation case of its own specification set: this index and every document in this directory follow the specification set and pass its structural checks.
 
@@ -30,7 +30,7 @@
 | [Roadmap Specification](./roadmap-specification.md) | Defines roadmap fields, status labeling, and the non-commitment principle |
 | [Information Collection and Templates](./information-collection-and-templates.md) | Defines required/optional fields, missing-item markers, and various templates |
 
-## 3. Naming and Documentation (18 specifications)
+## 3. Naming and Documentation (19 specifications)
 
 | File | Unique Responsibility |
 | --- | --- |
@@ -52,6 +52,7 @@
 | [Contribution Guide Template](./contribution-guide-template.md) | Provides a copyable CONTRIBUTING template with commands and PR self-check items |
 | [SECURITY Template](./security-template.md) | Provides a copyable security policy template, reporting channels, and response timeframes |
 | [Issue and PR Template Specification](./issue-and-pr-template-specification.md) | Defines the field design of structured Issue forms and PR self-check lists |
+| [Development Manual Template Specification](./development-manual-template-spec.md) | Defines the skeleton of a "cloud-authored, locally executed" development manual, the task card format, and the handoff protocol |
 
 ## 4. Development and Engineering (12 specifications)
 
@@ -109,7 +110,7 @@
 | [MCP Tool Specification](./mcp-tool-specification.md) | Defines MCP tool interface design and description rules |
 | [Agent Invocation and Prompt Specification](./agent-invocation-and-prompt-specification.md) | Defines Agent dispatch contracts and prompt writing |
 
-The seven domains contain 67 specifications in total.
+The seven domains contain 68 specifications in total.
 
 ## Reading Paths
 

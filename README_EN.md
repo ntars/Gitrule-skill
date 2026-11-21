@@ -23,7 +23,7 @@
 
 ## Key Features
 
-1. One file, one responsibility: 67 specifications, independently navigable across seven domains.
+1. One file, one responsibility: 68 specifications, independently navigable across seven domains.
 2. Full lifecycle: eight-stage mapping from planning, requirements, architecture, development, and testing to deployment, operations, and iteration.
 3. Multilingual ready: language codes centralized in `locales/`; adding a language changes no existing file.
 4. Machine readable: stable identifiers and path mappings per specification, with a copy-ready manifest example.
@@ -91,18 +91,18 @@ MCP registration example (into the `mcpServers` block of an MCP configuration):
 
 | Language | Code | Status | Entry |
 | --- | --- | --- | --- |
-| Simplified Chinese | zh-CN | Complete (67 documents) | [Open](./locales/zh-CN/README.md) |
-| English | en-US | Complete (67 documents) | [Open](./locales/en-US/README.md) |
-| Traditional Chinese | zh-TW | Complete (67 documents) | [Open](./locales/zh-TW/README.md) |
-| Japanese | ja-JP | Complete (67 documents) | [Open](./locales/ja-JP/README.md) |
-| Korean | ko-KR | Complete (67 documents) | [Open](./locales/ko-KR/README.md) |
-| French | fr-FR | Complete (67 documents) | [Open](./locales/fr-FR/README.md) |
-| German | de-DE | Complete (67 documents) | [Open](./locales/de-DE/README.md) |
-| Spanish | es-ES | Complete (67 documents) | [Open](./locales/es-ES/README.md) |
-| Portuguese (Brazil) | pt-BR | Complete (67 documents) | [Open](./locales/pt-BR/README.md) |
-| Russian | ru-RU | Complete (67 documents) | [Open](./locales/ru-RU/README.md) |
-| Arabic | ar-SA | Complete (67 docs) | [Open](./locales/ar-SA/README.md) |
-| Hindi | hi-IN | Complete (67 documents) | [Open](./locales/hi-IN/README.md) |
+| Simplified Chinese | zh-CN | Complete (68 documents) | [Open](./locales/zh-CN/README.md) |
+| English | en-US | Complete (68 documents) | [Open](./locales/en-US/README.md) |
+| Traditional Chinese | zh-TW | Complete (68 documents) | [Open](./locales/zh-TW/README.md) |
+| Japanese | ja-JP | Complete (68 documents) | [Open](./locales/ja-JP/README.md) |
+| Korean | ko-KR | Complete (68 documents) | [Open](./locales/ko-KR/README.md) |
+| French | fr-FR | Complete (68 documents) | [Open](./locales/fr-FR/README.md) |
+| German | de-DE | Complete (68 documents) | [Open](./locales/de-DE/README.md) |
+| Spanish | es-ES | Complete (68 documents) | [Open](./locales/es-ES/README.md) |
+| Portuguese (Brazil) | pt-BR | Complete (68 documents) | [Open](./locales/pt-BR/README.md) |
+| Russian | ru-RU | Complete (68 documents) | [Open](./locales/ru-RU/README.md) |
+| Arabic | ar-SA | Complete (68 docs) | [Open](./locales/ar-SA/README.md) |
+| Hindi | hi-IN | Complete (68 documents) | [Open](./locales/hi-IN/README.md) |
 
 Adding a language only requires creating the corresponding directory and translating according to the same specifications, without changing existing language files.
 

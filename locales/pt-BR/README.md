@@ -2,7 +2,7 @@
 
 [简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](../de-DE/README.md) | [Español](../es-ES/README.md) | [Português](./README.md) | [Русский](../ru-RU/README.md) | [العربية](../ar-SA/README.md) | [हिन्दी](../hi-IN/README.md)
 
-> Problema que este arquivo resolve: serve como navegação da coleção de especificações em português e lista a responsabilidade, o domínio correspondente e o caminho de leitura das 67 especificações, para que os documentos necessários sejam localizados com precisão.
+> Problema que este arquivo resolve: serve como navegação da coleção de especificações em português e lista a responsabilidade, o domínio correspondente e o caminho de leitura das 68 especificações, para que os documentos necessários sejam localizados com precisão.
 
 > Este repositório é o primeiro caso de aplicação desta coleção de especificações: tanto este índice quanto todos os documentos do diretório foram redigidos conforme a coleção e validados pela sua verificação estrutural.
 
@@ -30,7 +30,7 @@
 | [Especificação do roteiro](./roadmap-specification.md) | Define os campos do roteiro, a marcação de estados e o princípio de «nenhum compromisso» |
 | [Coleta de informações e modelos](./information-collection-and-templates.md) | Define os campos obrigatórios e opcionais, a marcação de informações faltantes e cada um dos modelos |
 
-## 3. Nomenclatura e documentação (18 documentos)
+## 3. Nomenclatura e documentação (19 documentos)
 
 | Arquivo | Responsabilidade exclusiva |
 | --- | --- |
@@ -52,6 +52,7 @@
 | [Modelo de guia de contribuição](./contribution-guide-template.md) | Fornece um modelo de CONTRIBUTING pronto para copiar, com comandos e pontos de autoverificação do PR |
 | [Modelo de SECURITY](./security-template.md) | Fornece um modelo de política de segurança pronto para copiar, com canais de relato e prazos de resposta |
 | [Especificação de modelos de Issue e PR](./issue-and-pr-template-specification.md) | Define o desenho de campos dos formulários estruturados de Issue e a lista de autoverificação do PR |
+| [Especificação do modelo de manual de desenvolvimento](./development-manual-template-spec.md) | Define o esqueleto do manual de desenvolvimento de duas fases redigir na nuvem e executar localmente, os cartões de tarefa e o protocolo de transição |
 
 ## 4. Desenvolvimento e engenharia (12 documentos)
 
@@ -109,7 +110,7 @@
 | [Especificação de ferramentas MCP](./mcp-tool-specification.md) | Define o design de interface e as regras de descrição das ferramentas MCP |
 | [Especificação de invocação de agentes e prompts](./agent-invocation-and-prompt-specification.md) | Define o contrato de despacho de agentes e a redação de prompts |
 
-Os sete domínios somam 67 documentos.
+Os sete domínios somam 68 documentos.
 
 ## Caminhos de leitura
 

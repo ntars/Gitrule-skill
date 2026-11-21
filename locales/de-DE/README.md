@@ -2,7 +2,7 @@
 
 [简体中文](../zh-CN/README.md) | [English](../en-US/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Français](../fr-FR/README.md) | [Deutsch](./README.md) | [Español](../es-ES/README.md) | [Português](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [العربية](../ar-SA/README.md) | [हिन्दी](../hi-IN/README.md)
 
-> Problem, das diese Datei löst: Sie dient als Navigation der deutschsprachigen Spezifikationssammlung und listet Zuständigkeit, zugehörigen Bereich und Lesepfad aller 67 Spezifikationen auf, damit die benötigten Dokumente gezielt gefunden werden.
+> Problem, das diese Datei löst: Sie dient als Navigation der deutschsprachigen Spezifikationssammlung und listet Zuständigkeit, zugehörigen Bereich und Lesepfad aller 68 Spezifikationen auf, damit die benötigten Dokumente gezielt gefunden werden.
 
 > Dieses Repository ist selbst der erste Anwendungsfall dieser Spezifikationssammlung: Dieser Index und alle Dokumente im Verzeichnis sind nach der Spezifikationssammlung verfasst und wurden durch deren Strukturprüfung validiert.
 
@@ -30,7 +30,7 @@
 | [Roadmap-Spezifikation](./roadmap-specification.md) | Definiert Felder der Roadmap, Statuskennzeichnung und das Prinzip „keine Zusage“ |
 | [Informationserhebung und Vorlagen](./information-collection-and-templates.md) | Definiert Pflicht- und Wahlfelder, Kennzeichnung fehlender Angaben und die einzelnen Vorlagen |
 
-## 3. Benennung und Dokumentation (18 Dokumente)
+## 3. Benennung und Dokumentation (19 Dokumente)
 
 | Datei | Eindeutige Zuständigkeit |
 | --- | --- |
@@ -52,6 +52,7 @@
 | [Beitragsleitfaden-Vorlage](./contribution-guide-template.md) | Stellt eine kopierbare CONTRIBUTING-Vorlage mit Befehlen und PR-Selbstprüfpunkten bereit |
 | [SECURITY-Vorlage](./security-template.md) | Stellt eine kopierbare Sicherheitsrichtlinien-Vorlage mit Meldewegen und Reaktionsfristen bereit |
 | [Spezifikation für Issue- und PR-Vorlagen](./issue-and-pr-template-specification.md) | Definiert das Felddesign strukturierter Issue-Formulare und der PR-Selbstprüfungs-Checkliste |
+| [Entwicklungshandbuch-Vorlagenspezifikation](./development-manual-template-spec.md) | Definiert das Skelett, die Aufgabenkarten und das Übergabeprotokoll eines zweiphasigen Entwicklungshandbuchs mit Verfassen in der Cloud und lokaler Ausführung |
 
 ## 4. Entwicklung und Technik (12 Dokumente)
 
@@ -109,7 +110,7 @@
 | [MCP-Werkzeugspezifikation](./mcp-tool-specification.md) | Definiert Schnittstellendesign und Beschreibungsregeln für MCP-Werkzeuge |
 | [Agent-Aufruf- und Prompt-Spezifikation](./agent-invocation-and-prompt-specification.md) | Definiert den Dispositionsvertrag für Agents und die Schreibweise von Prompts |
 
-Die sieben Bereiche umfassen insgesamt 67 Dokumente.
+Die sieben Bereiche umfassen insgesamt 68 Dokumente.
 
 ## Lesepfade
 
